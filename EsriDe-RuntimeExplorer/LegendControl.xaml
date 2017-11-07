@@ -11,6 +11,13 @@
         <StackPanel>
             <TextBlock Text="--- Layerliste ---" />
             <TextBlock DataContext="{Binding MainData.SelectedMapView.Map.OperationalLayers}" Text="{Binding Count}" />
+            <ListView ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </Grid>
 </UserControl>
