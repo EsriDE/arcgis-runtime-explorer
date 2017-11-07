@@ -39,7 +39,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 Debug.WriteLine("File open");
                 var dlg = new OpenFileDialog();
                 dlg.Filter =
-                    "Mobile Map Packages (*.mmpk)|*.mmpk|Runtime Geodatabases (*.geodatabase)|*.geodatabase|All Files (*.*)|*.*";
+                    "Mobile Map Packages (*.mmpk)|*.mmpk|Mobile Geodatabases (*.geodatabase)|*.geodatabase|All Files (*.*)|*.*";
                 if (dlg.ShowDialog() == true)
                 {
                     FilePath = dlg.FileName;
