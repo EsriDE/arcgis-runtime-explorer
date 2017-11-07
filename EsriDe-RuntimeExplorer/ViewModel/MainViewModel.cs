@@ -1,7 +1,9 @@
 using System.Diagnostics;
 using System.Windows.Input;
+using Esri.ArcGISRuntime.Mapping;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using Microsoft.Win32;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
 {
@@ -22,7 +24,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(MapViewModel mapViewModel)
         {
             ////if (IsInDesignMode)
             ////{
@@ -32,8 +34,40 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+            FileOpenCommand = new RelayCommand(() =>
+            {
+                Debug.WriteLine("File open");
+                var dlg = new OpenFileDialog();
+                dlg.Filter =
+                    "Mobile Map Packages (*.mmpk)|*.mmpk|Runtime Geodatabases (*.geodatabase)|*.geodatabase|All Files (*.*)|*.*";
+                if (dlg.ShowDialog() == true)
+                {
+                    FilePath = dlg.FileName;
+                    //var mmpk = await MobileMapPackage.OpenAsync(FilePath);
+                    //mapViewModel.Map = mmpk.Maps[0];
+                }
+            });
+            PropertyChanged += async (sender, args) =>
+            {
+                if (args.PropertyName == nameof(FilePath))
+                {
+                    var mmpk = await MobileMapPackage.OpenAsync(FilePath);
+                    mapViewModel.Map = mmpk.Maps[0];
+                }
+            };
+
         }
 
-        public ICommand FileOpenCommand { get; } = new RelayCommand(() => Debug.WriteLine("File open"));
+        public ICommand FileOpenCommand { get; private set; }
+
+        private string _filePath;
+        public string FilePath
+        {
+            get
+            {
+                return _filePath;
+            }
+            set { Set(ref _filePath, value); }
+        }
     }
 }
