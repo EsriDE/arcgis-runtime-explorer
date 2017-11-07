@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using Esri.ArcGISRuntime.Mapping;
 
-namespace EsriDe.RuntimeExplorer
+namespace EsriDe.RuntimeExplorer.ViewModel
 {
     public class MapViewModel : DependencyObject
     {

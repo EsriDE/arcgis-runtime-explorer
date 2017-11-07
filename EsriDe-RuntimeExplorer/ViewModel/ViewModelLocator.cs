@@ -43,6 +43,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MapViewModel>();
         }
 
         public MainViewModel Main
@@ -52,7 +53,9 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+        public MapViewModel Map { get { return ServiceLocator.Current.GetInstance<MapViewModel>(); } }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

@@ -5,22 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
         xmlns:runtimeExplorer="clr-namespace:EsriDe.RuntimeExplorer"
+        xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Window.DataContext>
-        <runtimeExplorer:MapViewModel/>
-    </Window.DataContext>
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="{StaticResource Locator}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" DataContext="{Binding Main}">
             <MenuItem Header="File">
-                <MenuItem Header="Open"></MenuItem>
+                <MenuItem Header="Open" Command="{Binding FileOpenCommand}"></MenuItem>
                 <MenuItem Header="Exit"></MenuItem>
             </MenuItem>
         </Menu>
-        <esri:MapView Grid.Row="1" Map="{Binding Map}"></esri:MapView>
+        <esri:MapView Grid.Row="1" DataContext="{Binding Map}" Map="{Binding Map}"></esri:MapView>
     </Grid>
 </Window>

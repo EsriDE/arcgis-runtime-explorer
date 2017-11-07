@@ -1,4 +1,7 @@
+using System.Diagnostics;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
 {
@@ -30,5 +33,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             ////    // Code runs "for real"
             ////}
         }
+
+        public ICommand FileOpenCommand { get; } = new RelayCommand(() => Debug.WriteLine("File open"));
     }
 }
