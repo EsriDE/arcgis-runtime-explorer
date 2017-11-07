@@ -25,7 +25,7 @@
             </MenuItem>
         </Menu>
         <runtimeExplorer:LegendControl Grid.Row="1" Grid.Column="0"/>
-        <TabControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}">
+        <TabControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
             <TabControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
                     <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title}"></TextBlock>

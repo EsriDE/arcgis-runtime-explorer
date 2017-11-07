@@ -18,6 +18,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
         public ObservableCollection<MapViewModel> MapViews { get; } = new ObservableCollection<MapViewModel>();
 
+        private MapViewModel _selectedMapView;
+
+        public MapViewModel SelectedMapView
+        {
+            get => _selectedMapView;
+            set => Set(ref _selectedMapView, value);
+        }
+
         public MainDataViewModel()
         {
             PropertyChanged += async (sender, args) =>
