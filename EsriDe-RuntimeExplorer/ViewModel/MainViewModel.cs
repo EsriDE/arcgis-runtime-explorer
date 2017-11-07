@@ -43,8 +43,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 if (dlg.ShowDialog() == true)
                 {
                     FilePath = dlg.FileName;
-                    //var mmpk = await MobileMapPackage.OpenAsync(FilePath);
-                    //mapViewModel.Map = mmpk.Maps[0];
                 }
             });
             PropertyChanged += async (sender, args) =>
