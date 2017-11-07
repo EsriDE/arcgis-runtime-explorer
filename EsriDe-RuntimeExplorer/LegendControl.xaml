@@ -11,7 +11,7 @@
         <ListView ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers, Converter={local:ReverseItemsConverter}}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}"></TextBlock>
+                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsVisible}"></CheckBox>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
