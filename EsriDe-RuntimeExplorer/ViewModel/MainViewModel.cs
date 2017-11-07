@@ -63,5 +63,13 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             }
             set { Set(ref _filePath, value); }
         }
+
+        private string _appStatus;
+
+        public string AppStatus
+        {
+            get { return _appStatus; }
+            set { Set(ref _appStatus, value); }
+        }
     }
 }

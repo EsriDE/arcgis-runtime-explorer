@@ -7,20 +7,26 @@
         xmlns:runtimeExplorer="clr-namespace:EsriDe.RuntimeExplorer"
         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="768" Width="1024"
         DataContext="{StaticResource Locator}">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" DataContext="{Binding Main}">
+        <Menu Grid.Row="0" Grid.Column="0" DataContext="{Binding Main}">
             <MenuItem Header="File">
                 <MenuItem Header="Open" Command="{Binding FileOpenCommand}"></MenuItem>
                 <MenuItem Header="Exit"></MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl Grid.Row="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}">
+        <runtimeExplorer:LegendControl Grid.Row="1" Grid.Column="0"/>
+        <TabControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
             <TabControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
                     <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title}"></TextBlock>
@@ -28,9 +34,12 @@
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
-                    <esri:MapView Map="{Binding Map}"></esri:MapView>
+                    <esri:MapView Map="{Binding Map}" DrawStatusChanged="GeoView_OnDrawStatusChanged"></esri:MapView>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
+        <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock DockPanel.Dock="Right" DataContext="{Binding Main}" Text="{Binding AppStatus}"></TextBlock>
+        </StatusBar>
     </Grid>
 </Window>
