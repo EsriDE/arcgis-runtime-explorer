@@ -24,7 +24,7 @@
                 <MenuItem Header="Exit"></MenuItem>
             </MenuItem>
         </Menu>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Layerlist"></TextBlock>
+        <runtimeExplorer:LegendControl Grid.Row="1" Grid.Column="0"/>
         <TabControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}">
             <TabControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
