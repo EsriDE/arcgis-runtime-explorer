@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Security.RightsManagement;
+using System.Windows;
 using Esri.ArcGISRuntime.Mapping;
 using GalaSoft.MvvmLight;
 
@@ -12,6 +13,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         {
             get => _map;
             set => Set(ref _map, value);
-        } 
+        }
     }
 }

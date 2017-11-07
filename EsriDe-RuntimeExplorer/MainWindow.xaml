@@ -20,14 +20,17 @@
                 <MenuItem Header="Exit"></MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl Grid.Row="1">
-            <TabItem Header="Default">
-                <esri:MapView DataContext="{Binding Map}" Map="{Binding Map}"></esri:MapView>
-            </TabItem>            
-            <TabItem Header="Map[0]">
-            </TabItem>            
-            <TabItem Header="Map[1]">
-            </TabItem>            
+        <TabControl Grid.Row="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}">
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
+                    <TextBlock DataContext="{Binding}" Text="{Binding Info}"></TextBlock>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
+                    <esri:MapView Map="{Binding Map}"></esri:MapView>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
         </TabControl>
     </Grid>
 </Window>

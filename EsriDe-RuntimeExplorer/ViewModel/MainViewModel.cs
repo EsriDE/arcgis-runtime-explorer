@@ -24,7 +24,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(MapViewModel mapViewModel)
+        public MainViewModel(MainDataViewModel mainDataViewModel)
         {
             ////if (IsInDesignMode)
             ////{
@@ -45,13 +45,9 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     FilePath = dlg.FileName;
                 }
             });
-            PropertyChanged += async (sender, args) =>
+            PropertyChanged += (sender, args) =>
             {
-                if (args.PropertyName == nameof(FilePath))
-                {
-                    var mmpk = await MobileMapPackage.OpenAsync(FilePath);
-                    mapViewModel.Map = mmpk.Maps[0];
-                }
+                mainDataViewModel.FilePath = FilePath;
             };
 
         }
