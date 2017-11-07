@@ -8,16 +8,12 @@
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{StaticResource Locator}">
     <Grid>
-        <StackPanel>
-            <TextBlock Text="--- Layerliste ---" />
-            <TextBlock DataContext="{Binding MainData.SelectedMapView.Map.OperationalLayers}" Text="{Binding Count}" />
-            <ListView ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+        <ListView ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers, Converter={local:ReverseItemsConverter}}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>
