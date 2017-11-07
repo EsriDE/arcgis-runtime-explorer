@@ -11,6 +11,16 @@
         <runtimeExplorer:MapViewModel/>
     </Window.DataContext>
     <Grid>
-        <esri:MapView Map="{Binding Map}"></esri:MapView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Open"></MenuItem>
+                <MenuItem Header="Exit"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <esri:MapView Grid.Row="1" Map="{Binding Map}"></esri:MapView>
     </Grid>
 </Window>
