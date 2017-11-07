@@ -26,6 +26,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     var mmpk = await MobileMapPackage.OpenAsync(FilePath);
                     foreach (var map in mmpk.Maps)
                     {
+                        await map.LoadAsync();
                         MapViews.Add(new MapViewModel{Map = map});
                     }
                 }

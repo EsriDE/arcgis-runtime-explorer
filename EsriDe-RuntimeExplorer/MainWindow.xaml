@@ -23,7 +23,7 @@
         <TabControl Grid.Row="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}">
             <TabControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
-                    <TextBlock DataContext="{Binding}" Text="{Binding Info}"></TextBlock>
+                    <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title}"></TextBlock>
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
