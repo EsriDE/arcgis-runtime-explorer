@@ -26,14 +26,12 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         /// </summary>
         public MainViewModel(MainDataViewModel mainDataViewModel)
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            LayerDetailsCommand = new RelayCommand(() =>
+            {
+	            LayerDetailWindow view = new LayerDetailWindow();
+	            view.Show();
+            }); 
+            
             FileOpenCommand = new RelayCommand(() =>
             {
                 Debug.WriteLine("File open");
@@ -71,5 +69,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             get { return _appStatus; }
             set { Set(ref _appStatus, value); }
         }
-    }
+
+	    public ICommand LayerDetailsCommand { get; private set; }
+	}
 }

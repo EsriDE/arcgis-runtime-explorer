@@ -1,0 +1,17 @@
+﻿<Window x:Class="EsriDe.RuntimeExplorer.LayerDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EsriDe.RuntimeExplorer"
+        mc:Ignorable="d"
+        Title="LayerDetailWindow" Height="300" Width="300"
+        xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
+        DataContext="{StaticResource Locator}"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="Width"
+        >
+    <Grid DataContext="{Binding LayerDetail}">
+        <DataGrid ItemsSource="{Binding Layers}"></DataGrid>
+    </Grid>
+</Window>

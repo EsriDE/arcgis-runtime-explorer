@@ -20,10 +20,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" DataContext="{Binding Main}">
-            <MenuItem Header="File">
-                <MenuItem Header="Open" Command="{Binding FileOpenCommand}"></MenuItem>
-                <MenuItem Header="Exit"></MenuItem>
-            </MenuItem>
+            <MenuItem Header="Open File" Command="{Binding FileOpenCommand}" />
+            <MenuItem Header="Layer Details" Command="{Binding LayerDetailsCommand}" />
         </Menu>
         <runtimeExplorer:LegendControl Grid.Row="1" Grid.Column="0"/>
         <TabControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
