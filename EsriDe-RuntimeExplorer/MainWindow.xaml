@@ -1,0 +1,36 @@
+﻿<Window x:Class="EsriDe.RuntimeExplorer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:runtimeExplorer="clr-namespace:EsriDe.RuntimeExplorer"
+        xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="{StaticResource Locator}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" DataContext="{Binding Main}">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Command="{Binding FileOpenCommand}"></MenuItem>
+                <MenuItem Header="Exit"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl Grid.Row="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}">
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
+                    <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title}"></TextBlock>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
+                    <esri:MapView Map="{Binding Map}"></esri:MapView>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</Window>
