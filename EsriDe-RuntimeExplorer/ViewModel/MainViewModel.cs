@@ -43,6 +43,39 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     FilePath = dlg.FileName;
                 }
             });
+
+            InspectMmpkCommand = new RelayCommand(() =>
+            {
+                var inspectWindow = new InspectWindow
+                {
+                    DataContext = mainDataViewModel.Mmpk
+                };
+                inspectWindow.Show();
+            }, () => mainDataViewModel.Mmpk != null);
+            InspectGeodatabaseCommand = new RelayCommand(() =>
+            {
+                var inspectWindow = new InspectWindow
+                {
+                    DataContext = mainDataViewModel.Geodatabase
+                };
+                inspectWindow.Show();
+            }, () => mainDataViewModel.Geodatabase != null);
+            InspectMapCommand = new RelayCommand(() =>
+            {
+                var inspectWindow = new InspectWindow
+                {
+                    DataContext = mainDataViewModel.SelectedMapView.Map
+                };
+                inspectWindow.Show();
+            }, () => mainDataViewModel.SelectedMapView != null);
+            InspectLayerCommand = new RelayCommand(() =>
+            {
+                var inspectWindow = new InspectWindow
+                {
+                    DataContext = mainDataViewModel.SelectedMapView.SelectedLayer
+                };
+                inspectWindow.Show();
+            }, () => mainDataViewModel.SelectedMapView.SelectedLayer != null);
             PropertyChanged += (sender, args) =>
             {
                 mainDataViewModel.FilePath = FilePath;
@@ -71,5 +104,9 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         }
 
 	    public ICommand LayerDetailsCommand { get; private set; }
+	    public ICommand InspectMmpkCommand { get; private set; }
+	    public ICommand InspectGeodatabaseCommand { get; private set; }
+	    public ICommand InspectMapCommand { get; private set; }
+	    public ICommand InspectLayerCommand { get; private set; }
 	}
 }
