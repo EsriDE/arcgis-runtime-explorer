@@ -48,5 +48,15 @@ namespace EsriDe.RuntimeExplorer.Controls
             var mapViewModel = ServiceLocator.Current.GetInstance<MainDataViewModel>().SelectedMapView;
             mapViewModel.ViewScale = (double) mapView?.MapScale;
         }
+
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var dataContext = e.NewValue;
+            var mapViewModel = dataContext as MapViewModel;
+            if (mapViewModel != null)
+            {
+                mapViewModel.MapView = MapView;
+            }
+        }
     }
 }
