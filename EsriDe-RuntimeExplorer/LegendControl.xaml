@@ -8,27 +8,40 @@
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{StaticResource Locator}">
     <Grid>
+        
         <ListView ItemsSource="{Binding MainData.SelectedMapView.LegendItems}" SelectedItem="{Binding MainData.SelectedMapView.SelectedLegendItem}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsVisible}">
-                            <CheckBox.Style>
-                                <Style TargetType="{x:Type CheckBox}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsVisibleAtCurrentScale}" Value="False">
-                                            <Setter Property="Foreground" Value="Gray"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </CheckBox.Style>
-                        </CheckBox>
-                        <TextBlock Text=" (" Foreground="Gray"></TextBlock>
-                        <TextBlock Text="{Binding MinScale}" Foreground="Gray"></TextBlock>
-                        <TextBlock Text=")" Foreground="Gray"></TextBlock>
-                    </StackPanel>
-                 </DataTemplate>
-            </ListView.ItemTemplate>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Grid.Column="0" Content="{Binding Name}" IsChecked="{Binding IsVisible}">
+                                    <CheckBox.Style>
+                                        <Style TargetType="{x:Type CheckBox}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsVisibleAtCurrentScale}" Value="False">
+                                                    <Setter Property="Foreground" Value="Gray"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </CheckBox.Style>
+                                </CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text=" (" Foreground="Gray"></TextBlock>
+                                    <TextBlock Text="{Binding MinScale}" Foreground="Gray"></TextBlock>
+                                    <TextBlock Text=")" Foreground="Gray"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </UserControl>
