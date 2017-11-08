@@ -13,13 +13,5 @@ namespace EsriDe.RuntimeExplorer
         {
             InitializeComponent();
         }
-
-        private void GeoView_OnDrawStatusChanged(object sender, DrawStatusChangedEventArgs e)
-        {
-            if (this.DataContext is ViewModelLocator locator)
-            {
-                locator.Main.AppStatus = e.Status.ToString();
-            }
-        }
     }
 }
