@@ -14,5 +14,13 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             get => _map;
             set => Set(ref _map, value);
         }
+
+        private Layer _selectedLayer;
+
+        public Layer SelectedLayer
+        {
+            get => _selectedLayer;
+            set => Set(ref _selectedLayer, value);
+        }
     }
 }

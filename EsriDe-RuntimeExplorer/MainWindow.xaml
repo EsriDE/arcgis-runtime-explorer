@@ -8,7 +8,7 @@
         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
         xmlns:controls="clr-namespace:EsriDe.RuntimeExplorer.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024"
+        Title="Runtime Explorer" Height="768" Width="1024"
         DataContext="{StaticResource Locator}">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
@@ -28,6 +28,12 @@
         <Menu Grid.Row="0" Grid.Column="0" DataContext="{Binding Main}">
             <MenuItem Header="Open File" Command="{Binding FileOpenCommand}" />
             <MenuItem Header="Layer Details" Command="{Binding LayerDetailsCommand}" />
+            <MenuItem Header="Inspect">
+                <MenuItem Header="Mmpk" Command="{Binding InspectMmpkCommand}" />
+                <MenuItem Header="Geodatabase" Command="{Binding InspectGeodatabaseCommand}" />
+                <MenuItem Header="Map" Command="{Binding InspectMapCommand}" />
+                <MenuItem Header="Layer" Command="{Binding InspectLayerCommand}" />
+            </MenuItem>
         </Menu>
         <runtimeExplorer:LegendControl Grid.Row="1" Grid.Column="0"/>
         <TabControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
