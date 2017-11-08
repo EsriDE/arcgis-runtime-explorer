@@ -30,12 +30,23 @@ namespace EsriDe.RuntimeExplorer
 		{
 			if (e.PropertyName == "SpatialReference")
 			{
-				//DataGridTemplateColumn templateColumn = new DataGridTemplateColumn();
-				//templateColumn.
-				//templateColumn.CellTemplate = (DataTemplate)Resources["dueDateCellTemplate"];
-				//templateColumn.CellEditingTemplate = (DataTemplate)Resources["dueDateCellEditingTemplate"];
-				//templateColumn.SortMemberPath = "DueDate";
-				//e.Column = templateColumn;
+				var templateColumn = new DataGridTemplateColumn
+				{
+					Header = e.PropertyName,
+					CellTemplate = (DataTemplate) Resources["SpatRefTemplate"],
+					SortMemberPath = e.PropertyName
+				};
+				e.Column = templateColumn;
+			}
+			if (e.PropertyName == "SelectionColor")
+			{
+				var templateColumn = new DataGridTemplateColumn
+				{
+					Header = e.PropertyName,
+					CellTemplate = (DataTemplate)Resources["ColorTemplate"],
+					SortMemberPath = e.PropertyName
+				};
+				e.Column = templateColumn;
 			}
 		}
 	}

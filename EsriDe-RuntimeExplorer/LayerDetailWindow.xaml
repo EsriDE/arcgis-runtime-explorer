@@ -20,6 +20,20 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
+        <DataTemplate x:Key="SpatRefTemplate" DataType="{x:Type geometry:SpatialReference}">
+            <TextBlock Text="{Binding SpatialReference, Converter={local:SpatialReferenceToWkidConverter}}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ColorTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding SelectionColor}">
+                    <TextBlock.TextDecorations>
+                        <TextDecoration Location="Underline" Pen="{Binding SelectionColor, Converter={local:StringToPenConverter}}"></TextDecoration>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
     
     <Grid DataContext="{Binding LayerDetail}">
@@ -37,7 +51,7 @@
         
         <Label Grid.Row="0">FeatureLayer</Label>
         <DataGrid x:Name="FeatureLayerGrid"  Grid.Row="1" ItemsSource="{Binding FeatureLayers}" AutoGenerateColumns="True" IsReadOnly="True">
-            <DataGrid.Columns>
+            <!--<DataGrid.Columns>
                 <DataGridTemplateColumn Header="SpatialReference">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -46,7 +60,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 
-            </DataGrid.Columns>
+            </DataGrid.Columns>-->
         </DataGrid>
 
         <Label Grid.Row="2">RasterLayer</Label>
