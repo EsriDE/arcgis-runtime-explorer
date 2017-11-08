@@ -6,9 +6,15 @@
         xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
         xmlns:runtimeExplorer="clr-namespace:EsriDe.RuntimeExplorer"
         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
+        xmlns:controls="clr-namespace:EsriDe.RuntimeExplorer.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024"
         DataContext="{StaticResource Locator}">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
+            <controls:MapContentControl></controls:MapContentControl>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -30,11 +36,6 @@
                     <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title}"></TextBlock>
                 </DataTemplate>
             </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
-                    <esri:MapView Map="{Binding Map}" DrawStatusChanged="GeoView_OnDrawStatusChanged"></esri:MapView>
-                </DataTemplate>
-            </TabControl.ContentTemplate>
         </TabControl>
         <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
             <TextBlock DockPanel.Dock="Right" DataContext="{Binding Main}" Text="{Binding AppStatus}"></TextBlock>
