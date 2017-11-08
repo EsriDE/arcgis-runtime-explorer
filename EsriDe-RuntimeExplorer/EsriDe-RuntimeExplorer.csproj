@@ -75,6 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\MapContentControl.xaml.cs">
+      <DependentUpon>MapContentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LayerDetailWindow.xaml.cs">
       <DependentUpon>LayerDetailWindow.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,10 @@
     <Compile Include="ViewModel\MainDataViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Page Include="Controls\MapContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LayerDetailWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
