@@ -93,6 +93,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BaseConverter.cs" />
     <Compile Include="Controls\MapContentControl.xaml.cs">
       <DependentUpon>MapContentControl.xaml</DependentUpon>
     </Compile>
@@ -106,6 +107,7 @@
       <DependentUpon>LegendControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReverseItemsConverter.cs" />
+    <Compile Include="SpatialReferenceToWkidConverter.cs" />
     <Compile Include="ViewModel\LayerDetailViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

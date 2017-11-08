@@ -7,11 +7,50 @@
         mc:Ignorable="d"
         Title="LayerDetailWindow" Height="300" Width="300"
         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
+        xmlns:geometry="clr-namespace:Esri.ArcGISRuntime.Geometry;assembly=Esri.ArcGISRuntime"
         DataContext="{StaticResource Locator}"
         WindowStartupLocation="CenterOwner"
         SizeToContent="Width"
         >
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGrid}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
     <Grid DataContext="{Binding LayerDetail}">
-        <DataGrid ItemsSource="{Binding Layers}"></DataGrid>
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0">FeatureLayer</Label>
+        <DataGrid x:Name="FeatureLayerGrid"  Grid.Row="1" ItemsSource="{Binding FeatureLayers}" AutoGenerateColumns="True" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="SpatialReference">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SpatialReference, Converter={local:SpatialReferenceToWkidConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Row="2">RasterLayer</Label>
+        <DataGrid Grid.Row="3" ItemsSource="{Binding RasterLayers}" IsReadOnly="True"></DataGrid>
+
     </Grid>
 </Window>

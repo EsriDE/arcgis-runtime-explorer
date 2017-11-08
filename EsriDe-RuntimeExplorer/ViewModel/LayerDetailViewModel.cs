@@ -1,4 +1,7 @@
-﻿using Esri.ArcGISRuntime.Mapping;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Esri.ArcGISRuntime;
+using Esri.ArcGISRuntime.Mapping;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
@@ -32,9 +35,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 		}
 		
 
-		public LayerCollection Layers
+		public IEnumerable<FeatureLayer> FeatureLayers
 		{
-			get { return Map.OperationalLayers; }
+			get { return Map.OperationalLayers.OfType<FeatureLayer>(); }
+		}
+
+		public IEnumerable<RasterLayer> RasterLayers
+		{
+			get { return Map.OperationalLayers.OfType<RasterLayer>(); }
 		}
 	}
 }

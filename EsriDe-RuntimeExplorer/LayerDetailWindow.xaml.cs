@@ -22,6 +22,21 @@ namespace EsriDe.RuntimeExplorer
 		public LayerDetailWindow()
 		{
 			InitializeComponent();
+
+			FeatureLayerGrid.AutoGeneratingColumn += FeatureLayerGrid_AutoGeneratingColumn;
+		}
+
+		private void FeatureLayerGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+		{
+			if (e.PropertyName == "SpatialReference")
+			{
+				//DataGridTemplateColumn templateColumn = new DataGridTemplateColumn();
+				//templateColumn.
+				//templateColumn.CellTemplate = (DataTemplate)Resources["dueDateCellTemplate"];
+				//templateColumn.CellEditingTemplate = (DataTemplate)Resources["dueDateCellEditingTemplate"];
+				//templateColumn.SortMemberPath = "DueDate";
+				//e.Column = templateColumn;
+			}
 		}
 	}
 }

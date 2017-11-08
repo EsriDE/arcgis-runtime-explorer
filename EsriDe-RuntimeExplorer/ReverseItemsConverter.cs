@@ -8,14 +8,9 @@ using System.Windows.Markup;
 
 namespace EsriDe.RuntimeExplorer
 {
-    public class ReverseItemsConverter : MarkupExtension, IValueConverter
+    public class ReverseItemsConverter : BaseConverter, IValueConverter
     {
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+	    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is IEnumerable<object>)
             {
