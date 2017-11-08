@@ -12,11 +12,20 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsVisible}"></CheckBox>
+                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsVisible}">
+                            <CheckBox.Style>
+                                <Style TargetType="{x:Type CheckBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsVisibleAtCurrentScale}" Value="False">
+                                            <Setter Property="Foreground" Value="Gray"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </CheckBox.Style>
+                        </CheckBox>
                         <TextBlock Text=" (" Foreground="Gray"></TextBlock>
                         <TextBlock Text="{Binding MinScale}" Foreground="Gray"></TextBlock>
                         <TextBlock Text=")" Foreground="Gray"></TextBlock>
-                        <CheckBox IsChecked="{Binding IsVisibleAtCurrentScale}"></CheckBox>
                     </StackPanel>
                  </DataTemplate>
             </ListView.ItemTemplate>
