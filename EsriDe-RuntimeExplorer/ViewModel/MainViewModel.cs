@@ -29,7 +29,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             LayerDetailsCommand = new RelayCommand(() =>
             {
 	            LayerDetailWindow view = new LayerDetailWindow();
-	            view.Show();
+	            view.ShowDialog();
             }); 
             
             FileOpenCommand = new RelayCommand(() =>
