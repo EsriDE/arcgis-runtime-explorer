@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <esri:MapView x:Name="MapView" Map="{Binding Map}" DrawStatusChanged="GeoView_OnDrawStatusChanged"></esri:MapView>
+        <esri:MapView x:Name="MapView" Map="{Binding Map}" DrawStatusChanged="GeoView_OnDrawStatusChanged" NavigationCompleted="MapView_OnNavigationCompleted"></esri:MapView>
         <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MapScale,ElementName=MapView}"></TextBlock>
     </Grid>
 </UserControl>

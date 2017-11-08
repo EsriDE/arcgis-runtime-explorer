@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Esri.ArcGISRuntime.UI;
+using Esri.ArcGISRuntime.UI.Controls;
 using EsriDe.RuntimeExplorer.ViewModel;
 using Microsoft.Practices.ServiceLocation;
 
@@ -33,6 +34,13 @@ namespace EsriDe.RuntimeExplorer.Controls
             // TODO: Accessing the ServiceLocator here is not good practice..
             var mainViewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
             mainViewModel.AppStatus = e.Status.ToString();
+        }
+
+        private void MapView_OnNavigationCompleted(object sender, EventArgs e)
+        {
+            var mapView = sender as MapView;
+            var mapViewModel = ServiceLocator.Current.GetInstance<MainDataViewModel>().SelectedMapView;
+            mapViewModel.ViewScale = (double) mapView?.MapScale;
         }
     }
 }
