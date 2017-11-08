@@ -8,7 +8,7 @@
         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
         xmlns:controls="clr-namespace:EsriDe.RuntimeExplorer.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024"
+        Title="Runtime Explorer" Height="768" Width="1024"
         DataContext="{StaticResource Locator}">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
