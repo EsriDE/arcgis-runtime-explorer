@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Esri.ArcGISRuntime.UI;
+using EsriDe.RuntimeExplorer.ViewModel;
+using Microsoft.Practices.ServiceLocation;
 
 namespace EsriDe.RuntimeExplorer.Controls
 {
@@ -28,7 +30,9 @@ namespace EsriDe.RuntimeExplorer.Controls
 
         private void GeoView_OnDrawStatusChanged(object sender, DrawStatusChangedEventArgs e)
         {
-            
+            // TODO: Accessing the ServiceLocator here is not good practice..
+            var mainViewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
+            mainViewModel.AppStatus = e.Status.ToString();
         }
     }
 }

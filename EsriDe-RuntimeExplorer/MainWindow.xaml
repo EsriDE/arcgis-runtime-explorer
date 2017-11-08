@@ -38,7 +38,8 @@
             </TabControl.ItemTemplate>
         </TabControl>
         <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock DockPanel.Dock="Right" DataContext="{Binding Main}" Text="{Binding AppStatus}"></TextBlock>
+            <TextBlock DataContext="{Binding Main}" Text="{Binding FilePath}"></TextBlock>
+            <TextBlock DataContext="{Binding Main}" Text="{Binding AppStatus}"></TextBlock>
         </StatusBar>
     </Grid>
 </Window>
