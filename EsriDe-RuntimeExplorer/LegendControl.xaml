@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{StaticResource Locator}">
     <Grid>
-        <ListView ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers, Converter={local:ReverseItemsConverter}}">
+        <ListView ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers, Converter={local:ReverseItemsConverter}}" SelectedItem="{Binding MainData.SelectedMapView.SelectedLayer}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <CheckBox Content="{Binding Name}" IsChecked="{Binding IsVisible}"></CheckBox>

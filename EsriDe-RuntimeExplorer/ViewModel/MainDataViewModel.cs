@@ -26,6 +26,21 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _selectedMapView, value);
         }
 
+        private MobileMapPackage _mmpk;
+
+        public MobileMapPackage Mmpk
+        {
+            get => _mmpk;
+            set => Set(ref _mmpk, value);
+        }
+
+        private Geodatabase _geodatabase;
+        public Geodatabase Geodatabase
+        {
+            get => _geodatabase;
+            set => Set(ref _geodatabase, value);
+        }
+
         public MainDataViewModel()
         {
             PropertyChanged += async (sender, args) =>
@@ -48,9 +63,9 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
         private async Task OpenGeodatabaseAsync()
         {
-            var geodatabase = await Geodatabase.OpenAsync(FilePath);
+            Geodatabase = await Geodatabase.OpenAsync(FilePath);
             var map = new Map(Basemap.CreateStreetsVector());
-            foreach (var table in geodatabase.GeodatabaseFeatureTables)
+            foreach (var table in Geodatabase.GeodatabaseFeatureTables)
             {
                 var layer = new FeatureLayer(table);
                 map.OperationalLayers.Add(layer);
@@ -60,8 +75,8 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
         private async Task OpenMmpkAsync()
         {
-            var mmpk = await MobileMapPackage.OpenAsync(FilePath);
-            foreach (var map in mmpk.Maps)
+            Mmpk = await MobileMapPackage.OpenAsync(FilePath);
+            foreach (var map in Mmpk.Maps)
             {
                 await map.LoadAsync();
                 MapViews.Add(new MapViewModel {Map = map});
