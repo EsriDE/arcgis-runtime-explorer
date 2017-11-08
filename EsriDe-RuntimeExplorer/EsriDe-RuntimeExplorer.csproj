@@ -109,6 +109,7 @@
     <Compile Include="ReverseItemsConverter.cs" />
     <Compile Include="SpatialReferenceToWkidConverter.cs" />
     <Compile Include="ViewModel\LayerDetailViewModel.cs" />
+    <Compile Include="ViewModel\LegendItemViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

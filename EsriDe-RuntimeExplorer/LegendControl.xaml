@@ -8,11 +8,17 @@
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{StaticResource Locator}">
     <Grid>
-        <ListView ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers, Converter={local:ReverseItemsConverter}}" SelectedItem="{Binding MainData.SelectedMapView.SelectedLayer}">
+        <ListView ItemsSource="{Binding MainData.SelectedMapView.LegendItems}" SelectedItem="{Binding MainData.SelectedMapView.SelectedLegendItem}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsVisible}"></CheckBox>
-                </DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsVisible}"></CheckBox>
+                        <TextBlock Text=" (" Foreground="Gray"></TextBlock>
+                        <TextBlock Text="{Binding MinScale}" Foreground="Gray"></TextBlock>
+                        <TextBlock Text=")" Foreground="Gray"></TextBlock>
+                        <CheckBox IsChecked="{Binding IsVisibleAtCurrentScale}"></CheckBox>
+                    </StackPanel>
+                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
