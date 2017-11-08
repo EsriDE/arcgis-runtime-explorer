@@ -43,6 +43,12 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     FilePath = dlg.FileName;
                 }
             });
+
+            InspectCommand = new RelayCommand(() =>
+            {
+                var inspectWindow = new InspectWindow();
+                inspectWindow.Show();
+            }, () => mainDataViewModel.SelectedMapView != null);
             PropertyChanged += (sender, args) =>
             {
                 mainDataViewModel.FilePath = FilePath;
@@ -71,5 +77,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         }
 
 	    public ICommand LayerDetailsCommand { get; private set; }
+	    public ICommand InspectCommand { get; private set; }
 	}
 }
