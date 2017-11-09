@@ -70,7 +70,9 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 var layer = new FeatureLayer(table);
                 map.OperationalLayers.Add(layer);
             }
-            MapViews.Add(new MapViewModel {Map = map});
+            var mapViewModel = new MapViewModel { Map = map };
+            MapViews.Add(mapViewModel);
+            SelectedMapView = mapViewModel;
         }
 
         private async Task OpenMmpkAsync()

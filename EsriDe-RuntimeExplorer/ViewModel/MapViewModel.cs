@@ -9,6 +9,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 {
     public class MapViewModel : ViewModelBase
     {
+        private Esri.ArcGISRuntime.UI.Controls.MapView _mapView;
+
+        public Esri.ArcGISRuntime.UI.Controls.MapView MapView
+        {
+            get => _mapView;
+            set => Set(ref _mapView, value);
+        }
+
         private Map _map = new Map(Basemap.CreateStreetsVector());
 
         public ObservableCollection<LegendItemViewModel> LegendItems { get; } = new ObservableCollection<LegendItemViewModel>();
@@ -58,7 +66,19 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                         LegendItems.Add(new LegendItemViewModel(this, layer));
                     }
                 }
+                if (args.PropertyName == nameof(SelectedBookmark))
+                {
+                    MapView.SetViewpoint(SelectedBookmark.Viewpoint);
+                }
             };
+        }
+
+        private Bookmark _selectedBookmark;
+
+        public Bookmark SelectedBookmark
+        {
+            get => _selectedBookmark;
+            set => Set(ref _selectedBookmark, value);
         }
     }
 }
