@@ -39,7 +39,7 @@
         <TabControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
             <TabControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
-                    <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title, FallbackValue='New Map'}"></TextBlock>
+                    <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title, FallbackValue='Unnamed Map'}"></TextBlock>
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
