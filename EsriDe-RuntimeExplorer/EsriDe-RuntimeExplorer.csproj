@@ -93,22 +93,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BaseConverter.cs" />
+    <Compile Include="Converter\BaseConverter.cs" />
     <Compile Include="Controls\MapContentControl.xaml.cs">
       <DependentUpon>MapContentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="InspectWindow.xaml.cs">
       <DependentUpon>InspectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\CountToVisibiltyConverter.cs" />
     <Compile Include="LayerDetailWindow.xaml.cs">
       <DependentUpon>LayerDetailWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LegendControl.xaml.cs">
       <DependentUpon>LegendControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReverseItemsConverter.cs" />
-    <Compile Include="SpatialReferenceToWkidConverter.cs" />
-    <Compile Include="StringToPenConverter.cs" />
+    <Compile Include="Converter\ReverseItemsConverter.cs" />
+    <Compile Include="Converter\SpatialReferenceToWkidConverter.cs" />
+    <Compile Include="Converter\StringToPenConverter.cs" />
     <Compile Include="ViewModel\LayerDetailViewModel.cs" />
     <Compile Include="ViewModel\LegendItemViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />

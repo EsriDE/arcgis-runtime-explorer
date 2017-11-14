@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Esri.ArcGISRuntime.Mapping;
+﻿using Esri.ArcGISRuntime.Mapping;
 using GalaSoft.MvvmLight;
 
 namespace EsriDe.RuntimeExplorer.ViewModel

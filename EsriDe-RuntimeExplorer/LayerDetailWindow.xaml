@@ -8,6 +8,7 @@
         Title="LayerDetailWindow" Height="300" Width="300"
         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
         xmlns:geometry="clr-namespace:Esri.ArcGISRuntime.Geometry;assembly=Esri.ArcGISRuntime"
+        xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
         DataContext="{StaticResource Locator}"
         WindowStartupLocation="CenterOwner"
         SizeToContent="Width"
@@ -22,14 +23,14 @@
         </Style>
 
         <DataTemplate x:Key="SpatRefTemplate" DataType="{x:Type geometry:SpatialReference}">
-            <TextBlock Text="{Binding SpatialReference, Converter={local:SpatialReferenceToWkidConverter}}"/>
+            <TextBlock Text="{Binding SpatialReference, Converter={converter:SpatialReferenceToWkidConverter}}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="ColorTemplate">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding SelectionColor}">
                     <TextBlock.TextDecorations>
-                        <TextDecoration Location="Underline" Pen="{Binding SelectionColor, Converter={local:StringToPenConverter}}"></TextDecoration>
+                        <TextDecoration Location="Underline" Pen="{Binding SelectionColor, Converter={converter:StringToPenConverter}}"></TextDecoration>
                     </TextBlock.TextDecorations>
                 </TextBlock>
             </StackPanel>

@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Media;
+using Esri.ArcGISRuntime.Geometry;
 
-namespace EsriDe.RuntimeExplorer
+namespace EsriDe.RuntimeExplorer.Converter
 {
-	public class StringToPenConverter : BaseConverter, IValueConverter
+	public class SpatialReferenceToWkidConverter : BaseConverter, IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			try
-			{
-				var color = (Color) ColorConverter.ConvertFromString(value?.ToString());
-				return new Pen(new SolidColorBrush(color), 2);
-			}
-			catch (Exception)
-			{
-				return value;
-			}
+			return (value as SpatialReference)?.Wkid;
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

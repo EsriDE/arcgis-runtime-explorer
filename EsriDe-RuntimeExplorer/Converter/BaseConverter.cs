@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Markup;
 
-namespace EsriDe.RuntimeExplorer
+namespace EsriDe.RuntimeExplorer.Converter
 {
 	public class BaseConverter : MarkupExtension
 	{

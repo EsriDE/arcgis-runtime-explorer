@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Data;
-using System.Windows.Markup;
 
-namespace EsriDe.RuntimeExplorer
+namespace EsriDe.RuntimeExplorer.Converter
 {
     public class ReverseItemsConverter : BaseConverter, IValueConverter
     {
