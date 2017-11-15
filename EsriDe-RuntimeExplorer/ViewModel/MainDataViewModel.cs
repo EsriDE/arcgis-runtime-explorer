@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Mapping;
@@ -65,7 +66,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         {
             Geodatabase = await Geodatabase.OpenAsync(FilePath);
             var map = new Map(Basemap.CreateStreetsVector());
-            foreach (var table in Geodatabase.GeodatabaseFeatureTables)
+            foreach (var table in Geodatabase.GeodatabaseFeatureTables.Reverse())
             {
                 var layer = new FeatureLayer(table);
                 map.OperationalLayers.Add(layer);
