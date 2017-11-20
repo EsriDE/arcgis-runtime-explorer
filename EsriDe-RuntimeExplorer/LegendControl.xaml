@@ -20,7 +20,7 @@
                                         <Style TargetType="{x:Type CheckBox}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsVisibleAtCurrentScale}" Value="False">
-                                                    <Setter Property="Foreground" Value="Gray"/>
+                                                    <Setter Property="Foreground" Value="LightGray"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
