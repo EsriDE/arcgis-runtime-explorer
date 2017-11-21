@@ -36,7 +36,7 @@
             </MenuItem>
         </Menu>
         <runtimeExplorer:LegendTabControl Grid.Row="1" Grid.Column="0"/>
-        <TabControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
+        <TabControl x:Name="MapTabControl" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
             <TabControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
                     <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title, FallbackValue='Unnamed Map'}"></TextBlock>
@@ -44,7 +44,7 @@
             </TabControl.ItemTemplate>
         </TabControl>
         <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock DataContext="{Binding Main}" Text="{Binding FilePath}"></TextBlock>
+            <TextBlock DataContext="{Binding Main}" Text="{Binding FilePath, NotifyOnTargetUpdated=True}" TargetUpdated="FilePath_Changed"></TextBlock>
             <TextBlock DataContext="{Binding Main}" Text="{Binding AppStatus}"></TextBlock>
         </StatusBar>
     </Grid>

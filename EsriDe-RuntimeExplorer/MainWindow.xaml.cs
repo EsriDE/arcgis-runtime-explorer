@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using Esri.ArcGISRuntime.UI;
 using EsriDe.RuntimeExplorer.ViewModel;
+using Microsoft.Practices.ServiceLocation;
 
 namespace EsriDe.RuntimeExplorer
 {
@@ -12,6 +15,22 @@ namespace EsriDe.RuntimeExplorer
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void FilePath_Changed(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            try
+            {
+                var text = (sender as TextBlock)?.Text;
+                if (!string.IsNullOrEmpty(text))
+                {
+                    Dispatcher.BeginInvoke((Action)(() => MapTabControl.SelectedIndex = 0));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }
