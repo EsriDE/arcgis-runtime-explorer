@@ -12,7 +12,7 @@
         <ListView ItemsSource="{Binding MainData.SelectedMapView.LegendItems}" SelectedItem="{Binding MainData.SelectedMapView.SelectedLegendItem}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="Auto">
+                    <GridViewColumn Width="Auto" Header="Layer">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox Grid.Column="0" Content="{Binding Name}" IsChecked="{Binding IsVisible}">
@@ -29,7 +29,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="Auto">
+                    <GridViewColumn Width="Auto" Header="MinScale">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
