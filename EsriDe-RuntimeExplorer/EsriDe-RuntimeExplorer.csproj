@@ -39,6 +39,9 @@
     <Reference Include="Esri.ArcGISRuntime, Version=100.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
       <HintPath>packages\Esri.ArcGISRuntime.WPF.100.1.0\lib\net452\Esri.ArcGISRuntime.dll</HintPath>
     </Reference>
+    <Reference Include="Esri.ArcGISRuntime.Toolkit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Esri.ArcGISRuntime.Toolkit.WPF.100.1.0-beta2\lib\net452\Esri.ArcGISRuntime.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -110,6 +113,9 @@
     <Compile Include="Converter\ReverseItemsConverter.cs" />
     <Compile Include="Converter\SpatialReferenceToWkidConverter.cs" />
     <Compile Include="Converter\StringToPenConverter.cs" />
+    <Compile Include="LegendTabControl.xaml.cs">
+      <DependentUpon>LegendTabControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\LayerDetailViewModel.cs" />
     <Compile Include="ViewModel\LegendItemViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />
@@ -128,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LegendControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LegendTabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
