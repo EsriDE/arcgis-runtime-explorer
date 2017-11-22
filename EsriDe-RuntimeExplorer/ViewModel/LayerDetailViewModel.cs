@@ -62,7 +62,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             {
                 Console.WriteLine(ex);
             }
-	    public ICommand ExportToCsvCommand { get; private set; }
         }
 
 
@@ -70,6 +69,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
         public IEnumerable<RasterLayer> RasterLayers => Map?.OperationalLayers?.OfType<RasterLayer>();
         
-        
+        public ICommand ExportToCsvCommand { get; private set; }
+
     }
 }
