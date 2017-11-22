@@ -30,14 +30,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             {
 	            LayerDetailWindow view = new LayerDetailWindow();
 	            view.ShowDialog();
-            }); 
-            
+            });
+
             FileOpenCommand = new RelayCommand(() =>
             {
                 Debug.WriteLine("File open");
                 var dlg = new OpenFileDialog();
-	            dlg.Filter =
-		            "ArcGIS Runtime Mobile Formats|*.mmpk;*.geodatabase|Mobile Map Packages (*.mmpk)|*.mmpk|Mobile Geodatabases (*.geodatabase)|*.geodatabase|All Files (*.*)|*.*";
+                dlg.Filter =
+                    "ArcGIS Runtime Mobile Formats|*.mmpk;*.geodatabase|Mobile Map Packages (*.mmpk)|*.mmpk|Mobile Geodatabases (*.geodatabase)|*.geodatabase|All Files (*.*)|*.*";
                 if (dlg.ShowDialog() == true)
                 {
                     FilePath = dlg.FileName;
@@ -75,7 +75,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     DataContext = mainDataViewModel.SelectedMapView.SelectedLayer
                 };
                 inspectWindow.Show();
-            }, () => mainDataViewModel.SelectedMapView.SelectedLayer != null);
+            }, () => mainDataViewModel?.SelectedMapView?.SelectedLayer != null);
             PropertyChanged += (sender, args) =>
             {
                 mainDataViewModel.FilePath = FilePath;

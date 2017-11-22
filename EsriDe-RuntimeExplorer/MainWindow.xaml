@@ -1,4 +1,4 @@
-﻿<Window x:Class="EsriDe.RuntimeExplorer.MainWindow"
+﻿<mahControls:MetroWindow x:Class="EsriDe.RuntimeExplorer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,13 +7,20 @@
         xmlns:runtimeExplorer="clr-namespace:EsriDe.RuntimeExplorer"
         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
         xmlns:controls="clr-namespace:EsriDe.RuntimeExplorer.Controls"
+        xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
+        GlowBrush="{DynamicResource AccentColorBrush}"
         Title="Runtime Explorer" Height="768" Width="1024"
         DataContext="{StaticResource Locator}">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
-            <controls:MapContentControl></controls:MapContentControl>
-        </DataTemplate>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
+                <controls:MapContentControl></controls:MapContentControl>
+            </DataTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,9 +33,41 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" DataContext="{Binding Main}">
-            <MenuItem Header="Open File" Command="{Binding FileOpenCommand}" />
-            <MenuItem Header="Layer Details" Command="{Binding LayerDetailsCommand}" />
-            <MenuItem Header="Inspect">
+            <MenuItem ToolTip="Open File" Height="48" Width="48" Command="{Binding FileOpenCommand}">
+                <MenuItem.Header>
+                    <Rectangle Height="26" Width="32">
+                        <Rectangle.Resources>
+                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
+                        </Rectangle.Resources>
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_folder_open}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem ToolTip="Layer Details" Height="48" Width="48" Command="{Binding LayerDetailsCommand}">
+                <MenuItem.Header>
+                    <Rectangle Height="28" Width="28">
+                        <Rectangle.Resources>
+                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
+                        </Rectangle.Resources>
+                        <Rectangle.Fill>
+                            <VisualBrush Visual="{StaticResource appbar_layer}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem ToolTip="Inspect" Height="48" Width="48">
+                <MenuItem.Header>
+                    <Rectangle Height="28" Width="24">
+                        <Rectangle.Resources>
+                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
+                        </Rectangle.Resources>
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_journal}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </MenuItem.Header>
                 <MenuItem Header="Mmpk" Command="{Binding InspectMmpkCommand}" />
                 <MenuItem Header="Geodatabase" Command="{Binding InspectGeodatabaseCommand}" />
                 <MenuItem Header="Map" Command="{Binding InspectMapCommand}" />
@@ -48,4 +87,5 @@
             <TextBlock DataContext="{Binding Main}" Text="{Binding AppStatus}"></TextBlock>
         </StatusBar>
     </Grid>
-</Window>
+</mahControls:MetroWindow>
+
