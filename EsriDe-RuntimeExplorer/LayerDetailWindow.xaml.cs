@@ -24,7 +24,9 @@ namespace EsriDe.RuntimeExplorer
 			InitializeComponent();
 
 			FeatureLayerGrid.AutoGeneratingColumn += FeatureLayerGrid_AutoGeneratingColumn;
-		}
+		    this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.9);
+		    this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.9);
+        }
 
 		private void FeatureLayerGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
 		{
