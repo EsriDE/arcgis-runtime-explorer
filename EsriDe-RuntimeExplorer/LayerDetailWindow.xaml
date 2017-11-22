@@ -1,4 +1,4 @@
-﻿<Window x:Class="EsriDe.RuntimeExplorer.LayerDetailWindow"
+﻿<mahControls:MetroWindow x:Class="EsriDe.RuntimeExplorer.LayerDetailWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,6 +9,7 @@
         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
         xmlns:geometry="clr-namespace:Esri.ArcGISRuntime.Geometry;assembly=Esri.ArcGISRuntime"
         xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
+        xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         DataContext="{StaticResource Locator}"
         WindowStartupLocation="CenterScreen"
         >
@@ -82,4 +83,4 @@
 
     </Grid>
 
-</Window>
+</mahControls:MetroWindow>
