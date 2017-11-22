@@ -5,9 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EsriDe.RuntimeExplorer"
              xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+             xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{StaticResource Locator}">
+    
     <Grid>
         <TabControl TabStripPlacement="Left" Grid.IsSharedSizeScope="True">
             <TabControl.Resources>
@@ -42,7 +44,7 @@
                         <ColumnDefinition SharedSizeGroup="xxx"/>
                     </Grid.ColumnDefinitions>
                     <ScrollViewer>
-                        <ItemsControl ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers}">
+                        <ItemsControl ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers, Converter={converter:ReverseItemsConverter}}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Background="White"></StackPanel>
