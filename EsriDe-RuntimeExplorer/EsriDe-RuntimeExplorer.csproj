@@ -103,10 +103,11 @@
     <Compile Include="Controls\MapContentControl.xaml.cs">
       <DependentUpon>MapContentControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\DrawStatusToVisibilityConverter.cs" />
     <Compile Include="InspectWindow.xaml.cs">
       <DependentUpon>InspectWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converter\CountToVisibiltyConverter.cs" />
+    <Compile Include="Converter\CountToVisibilityConverter.cs" />
     <Compile Include="LayerDetailWindow.xaml.cs">
       <DependentUpon>LayerDetailWindow.xaml</DependentUpon>
     </Compile>

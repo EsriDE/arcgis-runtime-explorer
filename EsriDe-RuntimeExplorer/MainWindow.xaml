@@ -8,6 +8,7 @@
         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
         xmlns:controls="clr-namespace:EsriDe.RuntimeExplorer.Controls"
         xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
         mc:Ignorable="d"
         GlowBrush="{DynamicResource AccentColorBrush}"
         Title="Runtime Explorer" Height="768" Width="1024"
@@ -76,6 +77,11 @@
         </Menu>
         <runtimeExplorer:LegendTabControl Grid.Row="1" Grid.Column="0"/>
         <TabControl x:Name="MapTabControl" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                    <Setter Property="mahControls:ControlsHelper.HeaderFontSize" Value="18" />
+                </Style>
+            </TabControl.Resources>
             <TabControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
                     <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title, FallbackValue='Unnamed Map'}"></TextBlock>
@@ -83,8 +89,27 @@
             </TabControl.ItemTemplate>
         </TabControl>
         <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock DataContext="{Binding Main}" Text="{Binding FilePath, NotifyOnTargetUpdated=True}" TargetUpdated="FilePath_Changed"></TextBlock>
-            <TextBlock DataContext="{Binding Main}" Text="{Binding AppStatus}"></TextBlock>
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+
+            <StatusBarItem Grid.Column="0">
+                <TextBlock DataContext="{Binding Main}" Text="{Binding FilePath, NotifyOnTargetUpdated=True}" TargetUpdated="FilePath_Changed"></TextBlock>
+            </StatusBarItem>
+
+            <StatusBarItem Grid.Column="1" HorizontalContentAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <mahControls:ProgressRing DataContext="{Binding Main}" Foreground="Black" Width="20" Height="20" IsActive="True" Visibility="{Binding MapDrawStatus, Converter={converter:DrawStatusToVisibilityConverter}}"/>
+                    <TextBlock DataContext="{Binding Main}" Text="{Binding MapDrawStatus}" />
+                </StackPanel>
+            </StatusBarItem>
         </StatusBar>
     </Grid>
 </mahControls:MetroWindow>

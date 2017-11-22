@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace EsriDe.RuntimeExplorer.Converter
 {
-	public class CountToVisibiltyConverter : BaseConverter, IValueConverter
+	public class CountToVisibilityConverter : BaseConverter, IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{

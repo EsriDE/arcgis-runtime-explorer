@@ -19,7 +19,7 @@
         <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MapScale,ElementName=MapView}"></TextBlock>
 
         <ContentControl VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" 
-                        Content="{Binding Map.Bookmarks}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibiltyConverter}}">
+                        Content="{Binding Map.Bookmarks}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">
             <ContentControl.ContentTemplate>
                 <DataTemplate>
                     <Grid>
