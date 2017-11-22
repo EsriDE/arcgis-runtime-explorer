@@ -30,7 +30,8 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             {
 	            LayerDetailWindow view = new LayerDetailWindow();
 	            view.ShowDialog();
-            }); 
+            },
+            () => mainDataViewModel.SelectedMapView != null); 
             
             FileOpenCommand = new RelayCommand(() =>
             {
