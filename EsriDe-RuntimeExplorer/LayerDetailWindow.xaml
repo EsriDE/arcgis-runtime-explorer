@@ -36,24 +36,32 @@
         </DataTemplate>
     </Window.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Export to CSV" DataContext="{Binding LayerDetail}" Command="{Binding ExportToCsvCommand}"></MenuItem>
+        </Menu>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
 
-        <Grid DataContext="{Binding LayerDetail}">
-            <!--<Grid.ColumnDefinitions>
+            <Grid DataContext="{Binding LayerDetail}">
+                <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>-->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="FeatureLayer"/>
-            <DataGrid x:Name="FeatureLayerGrid"  Grid.Row="1" ItemsSource="{Binding FeatureLayers}" AutoGenerateColumns="True" IsReadOnly="True">
-                <!--<DataGrid.Columns>
+                <Label Grid.Row="0" Content="FeatureLayer"/>
+                <DataGrid x:Name="FeatureLayerGrid"  Grid.Row="1" ItemsSource="{Binding FeatureLayers}" AutoGenerateColumns="True" IsReadOnly="True">
+                    <!--<DataGrid.Columns>
                 <DataGridTemplateColumn Header="SpatialReference">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -63,13 +71,15 @@
                 </DataGridTemplateColumn>
                 
             </DataGrid.Columns>-->
-            </DataGrid>
+                </DataGrid>
 
-            <Label Grid.Row="2" Content="RasterLayer"/>
-            <DataGrid Grid.Row="3" ItemsSource="{Binding RasterLayers}" IsReadOnly="True"/>
+                <Label Grid.Row="2" Content="RasterLayer"/>
+                <DataGrid Grid.Row="3" ItemsSource="{Binding RasterLayers}" IsReadOnly="True"/>
 
-        </Grid>
+            </Grid>
 
-    </ScrollViewer>
+        </ScrollViewer>
+
+    </Grid>
 
 </Window>
