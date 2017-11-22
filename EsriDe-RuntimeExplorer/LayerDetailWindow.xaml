@@ -10,7 +10,7 @@
         xmlns:geometry="clr-namespace:Esri.ArcGISRuntime.Geometry;assembly=Esri.ArcGISRuntime"
         xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
         DataContext="{StaticResource Locator}"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         >
     <Window.Resources>
         <Style TargetType="{x:Type DataGrid}">
