@@ -33,7 +33,7 @@ namespace EsriDe.RuntimeExplorer.Controls
         {
             // TODO: Accessing the ServiceLocator here is not good practice..
             var mainViewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
-            mainViewModel.AppStatus = e.Status.ToString();
+            mainViewModel.MapDrawStatus = e.Status;
             if (e.Status == DrawStatus.Completed)
             {
                 var mapView = sender as MapView;

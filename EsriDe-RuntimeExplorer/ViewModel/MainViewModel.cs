@@ -4,6 +4,7 @@ using Esri.ArcGISRuntime.Mapping;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
+using Esri.ArcGISRuntime.UI;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
 {
@@ -37,8 +38,8 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             {
                 Debug.WriteLine("File open");
                 var dlg = new OpenFileDialog();
-	            dlg.Filter =
-		            "ArcGIS Runtime Mobile Formats|*.mmpk;*.geodatabase|Mobile Map Packages (*.mmpk)|*.mmpk|Mobile Geodatabases (*.geodatabase)|*.geodatabase|All Files (*.*)|*.*";
+                dlg.Filter =
+                    "ArcGIS Runtime Mobile Formats|*.mmpk;*.geodatabase|Mobile Map Packages (*.mmpk)|*.mmpk|Mobile Geodatabases (*.geodatabase)|*.geodatabase|All Files (*.*)|*.*";
                 if (dlg.ShowDialog() == true)
                 {
                     FilePath = dlg.FileName;
@@ -76,7 +77,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     DataContext = mainDataViewModel.SelectedMapView.SelectedLayer
                 };
                 inspectWindow.Show();
-            }, () => mainDataViewModel.SelectedMapView.SelectedLayer != null);
+            }, () => mainDataViewModel?.SelectedMapView?.SelectedLayer != null);
             PropertyChanged += (sender, args) =>
             {
                 mainDataViewModel.FilePath = FilePath;
@@ -96,12 +97,12 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set { Set(ref _filePath, value); }
         }
 
-        private string _appStatus;
+        private DrawStatus _mapDrawStatus = DrawStatus.Completed;
 
-        public string AppStatus
+        public DrawStatus MapDrawStatus
         {
-            get { return _appStatus; }
-            set { Set(ref _appStatus, value); }
+            get { return _mapDrawStatus; }
+            set { Set(ref _mapDrawStatus, value); }
         }
 
 	    public ICommand LayerDetailsCommand { get; private set; }
