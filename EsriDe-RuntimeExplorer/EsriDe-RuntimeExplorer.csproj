@@ -103,6 +103,7 @@
     <Compile Include="Controls\MapContentControl.xaml.cs">
       <DependentUpon>MapContentControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CsvConverter\FeatureTableTypeConverter.cs" />
     <Compile Include="InspectWindow.xaml.cs">
       <DependentUpon>InspectWindow.xaml</DependentUpon>
     </Compile>

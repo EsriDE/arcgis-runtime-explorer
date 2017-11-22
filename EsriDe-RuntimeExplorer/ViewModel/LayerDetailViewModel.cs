@@ -3,8 +3,11 @@ using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using CsvHelper;
+using CsvHelper.TypeConversion;
 using Esri.ArcGISRuntime;
+using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Mapping;
+using EsriDe.RuntimeExplorer.CsvConverter;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Ioc;
@@ -29,6 +32,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     using (var sw = new StreamWriter(dlg.FileName))
                     using (var csv = new CsvWriter(sw))
                     {
+                        csv.Configuration.TypeConverterCache.AddConverter<FeatureTable>(new FeatureTableTypeConverter());
                         csv.WriteRecords(FeatureLayers);
                     }
                 }
