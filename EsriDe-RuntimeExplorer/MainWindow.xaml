@@ -13,6 +13,16 @@
         GlowBrush="{DynamicResource AccentColorBrush}"
         Title="Runtime Explorer" Height="768" Width="1024"
         DataContext="{StaticResource Locator}">
+    <mahControls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <Grid Width="{TemplateBinding Width}"
+                  Height="{TemplateBinding Height}"
+                  Margin="4"
+                  RenderOptions.BitmapScalingMode="HighQuality">
+                <Image Source="Resources/world.ico"></Image>
+            </Grid>
+        </DataTemplate>
+    </mahControls:MetroWindow.IconTemplate>
     <Window.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
