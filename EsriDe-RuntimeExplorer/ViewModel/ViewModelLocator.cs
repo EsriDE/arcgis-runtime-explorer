@@ -29,37 +29,34 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         /// </summary>
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            Initialize();
+        }
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
+        public static void Initialize()
+        {
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MainDataViewModel>();
             SimpleIoc.Default.Register<LayerDetailViewModel>();
-		}
+        }
 
         public MainViewModel Main
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
+            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
 
-        public MainDataViewModel MainData { get { return ServiceLocator.Current.GetInstance<MainDataViewModel>(); } }
+        public MainDataViewModel MainData
+        {
+            get { return ServiceLocator.Current.GetInstance<MainDataViewModel>(); }
+        }
 
-	    public LayerDetailViewModel LayerDetail { get { return ServiceLocator.Current.GetInstance<LayerDetailViewModel>(); } }
+        public LayerDetailViewModel LayerDetail
+        {
+            get { return ServiceLocator.Current.GetInstance<LayerDetailViewModel>(); }
+        }
 
-	    public static void Cleanup()
+        public static void Cleanup()
         {
             // TODO Clear the ViewModels
         }
