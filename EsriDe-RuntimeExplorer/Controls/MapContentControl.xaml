@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
              xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              DataContextChanged="UserControl_DataContextChanged">
@@ -18,35 +19,14 @@
         <esri:MapView x:Name="MapView" Map="{Binding Map}" DrawStatusChanged="GeoView_OnDrawStatusChanged" NavigationCompleted="MapView_OnNavigationCompleted"></esri:MapView>
         <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MapScale,ElementName=MapView}"></TextBlock>
 
-        <ContentControl VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" 
-                        Content="{Binding Map.Bookmarks}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">
-            <ContentControl.ContentTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <ComboBox x:Name="cb" ItemsSource="{Binding}" SelectedItem="{Binding SelectedBookmark}" Width="100">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate DataType="{x:Type esri:Bookmark}">
-                                    <TextBlock Text="{Binding Name}"></TextBlock>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <TextBlock x:Name="tb" Text="Bookmarks" FontStyle="Italic" IsHitTestVisible="False" Visibility="Hidden"/>
-                    </Grid>
-                    <DataTemplate.Triggers>
-                        <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
-                            <Setter TargetName="tb" Property="Visibility" Value="Visible"/>
-                        </Trigger>
-                    </DataTemplate.Triggers>
-                </DataTemplate>
-            </ContentControl.ContentTemplate>
-        </ContentControl>
-        <!--<ComboBox VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" ItemsSource="{Binding Map.Bookmarks}" SelectedItem="{Binding SelectedBookmark}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibiltyConverter}}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
+        <xctk:WatermarkComboBox VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" MinWidth="100" Watermark="Bookmarks" ItemsSource="{Binding Map.Bookmarks}" SelectedItem="{Binding SelectedBookmark}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">
+            <xctk:WatermarkComboBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type esri:Bookmark}">
                     <TextBlock Text="{Binding Name}"></TextBlock>
                 </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>-->
+            </xctk:WatermarkComboBox.ItemTemplate>
+        </xctk:WatermarkComboBox>
+        
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,0,0,15">
             <TextBlock Text="{Binding VisibleArea.Extent.XMin, ElementName=MapView}"></TextBlock>
             <TextBlock Text=" / "></TextBlock>
