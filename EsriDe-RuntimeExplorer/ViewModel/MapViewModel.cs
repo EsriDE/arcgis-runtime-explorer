@@ -41,6 +41,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             get => _selectedLegendItem;
             set
             {
+                if (value == null) return;
                 Set(ref _selectedLegendItem, value);
                 SelectedLayer = value.Layer;
             }
