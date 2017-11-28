@@ -20,61 +20,75 @@
                     </Style.Resources>
                 </Style>
             </Border.Resources>-->
-            
-            <TabControl TabStripPlacement="Left" Grid.IsSharedSizeScope="True" >
-                <TabControl.Resources>
-                    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource MetroTabItem}">
-                        <!--<Setter Property="BorderThickness" Value="1"></Setter>-->
-                        <Setter Property="mahControls:ControlsHelper.HeaderFontSize" Value="14" />
-                        <Setter Property="HeaderTemplate">
-                            <Setter.Value>
-                                <DataTemplate>
-                                    <ContentPresenter Content="{TemplateBinding Content}">
-                                        <ContentPresenter.LayoutTransform>
-                                            <RotateTransform Angle="270" />
-                                        </ContentPresenter.LayoutTransform>
-                                    </ContentPresenter>
-                                </DataTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Property="Padding" Value="1,5,1,5" />
-                    </Style>
-                </TabControl.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
 
-                <TabItem Header="Visibility" TextOptions.TextFormattingMode="Display">
-                    <Grid >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition SharedSizeGroup="xxx"/>
-                        </Grid.ColumnDefinitions>
-                        <local:LegendControl></local:LegendControl>
-                    </Grid>
-                </TabItem>
-
-                <TabItem Header="Symbology" TextOptions.TextFormattingMode="Display">
-                    <Grid >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition SharedSizeGroup="xxx"/>
-                        </Grid.ColumnDefinitions>
-                        <ScrollViewer>
-                            <ItemsControl ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers, Converter={converter:ReverseItemsConverter}}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Background="White"></StackPanel>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <TextBlock Margin="3,0">Total Layers:</TextBlock>
+                    <TextBlock Margin="3,0" FontWeight="UltraBold" Text="{Binding MainData.SelectedMapView.AllLayersCount, FallbackValue=0}"></TextBlock>
+                    <TextBlock>|</TextBlock>
+                    <TextBlock Margin="3,0">Operational Layers:</TextBlock>
+                    <TextBlock Margin="3,0" FontWeight="UltraBold" Text="{Binding MainData.SelectedMapView.OperationalLayersCount, FallbackValue=0}"></TextBlock>
+                </StackPanel>
+               
+                <TabControl Grid.Row="1" TabStripPlacement="Left" Grid.IsSharedSizeScope="True" >
+                    <TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource MetroTabItem}">
+                            <!--<Setter Property="BorderThickness" Value="1"></Setter>-->
+                            <Setter Property="mahControls:ControlsHelper.HeaderFontSize" Value="14" />
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
                                     <DataTemplate>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                                            <esri:LayerLegend LayerContent="{Binding}" ShowEntireTreeHiarchy="True" Margin="10,0" />
-                                        </StackPanel>
+                                        <ContentPresenter Content="{TemplateBinding Content}">
+                                            <ContentPresenter.LayoutTransform>
+                                                <RotateTransform Angle="270" />
+                                            </ContentPresenter.LayoutTransform>
+                                        </ContentPresenter>
                                     </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
-                    </Grid>
-                </TabItem>
-            </TabControl>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Padding" Value="1,5,1,5" />
+                        </Style>
+                    </TabControl.Resources>
+
+                    <TabItem Header="Visibility" TextOptions.TextFormattingMode="Display">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="xxx"/>
+                            </Grid.ColumnDefinitions>
+                            <local:LegendControl></local:LegendControl>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Symbology" TextOptions.TextFormattingMode="Display">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="xxx"/>
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer>
+                                <ItemsControl ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers, Converter={converter:ReverseItemsConverter}}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Background="White"></StackPanel>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                                                <esri:LayerLegend LayerContent="{Binding}" ShowEntireTreeHiarchy="True" Margin="10,0" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

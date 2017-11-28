@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.RightsManagement;
-using System.Windows;
 using Esri.ArcGISRuntime.Mapping;
 using GalaSoft.MvvmLight;
 
@@ -66,6 +64,8 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     {
                         LegendItems.Add(new LegendItemViewModel(this, layer));
                     }
+                    AllLayersCount = Map.AllLayers.Count;
+                    OperationalLayersCount = Map.OperationalLayers.Count;
                 }
                 if (args.PropertyName == nameof(SelectedBookmark))
                 {
@@ -75,11 +75,24 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         }
 
         private Bookmark _selectedBookmark;
-
         public Bookmark SelectedBookmark
         {
             get => _selectedBookmark;
             set => Set(ref _selectedBookmark, value);
+        }
+
+        private int _allLayersCount;
+        public int AllLayersCount
+        {
+            get => _allLayersCount;
+            set => Set(ref _allLayersCount, value);
+        }
+
+        private int _operationalLayersCount;
+        public int OperationalLayersCount
+        {
+            get => _operationalLayersCount;
+            set => Set(ref _operationalLayersCount, value);
         }
     }
 }
