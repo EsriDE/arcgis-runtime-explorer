@@ -84,6 +84,18 @@
                 <MenuItem Header="Map" Command="{Binding InspectMapCommand}" />
                 <MenuItem Header="Layer" Command="{Binding InspectLayerCommand}" />
             </MenuItem>
+            <MenuItem ToolTip="Underlay a Topographic Basemap from ArcGIS Online" Height="48" Width="48" Command="{Binding AddBasemapCommand}">
+                <MenuItem.Header>
+                    <Rectangle Height="28" Width="28">
+                        <Rectangle.Resources>
+                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
+                        </Rectangle.Resources>
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_globe}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </MenuItem.Header>
+            </MenuItem>
         </Menu>
         <runtimeExplorer:LegendTabControl Grid.Row="1" Grid.Column="0"/>
         <TabControl x:Name="MapTabControl" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">

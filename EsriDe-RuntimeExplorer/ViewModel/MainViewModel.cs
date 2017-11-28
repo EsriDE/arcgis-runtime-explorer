@@ -28,12 +28,12 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public MainViewModel(MainDataViewModel mainDataViewModel)
         {
             LayerDetailsCommand = new RelayCommand(() =>
-            {
-	            LayerDetailWindow view = new LayerDetailWindow();
-	            view.ShowDialog();
-            },
-            () => mainDataViewModel.SelectedMapView != null); 
-            
+                {
+                    LayerDetailWindow view = new LayerDetailWindow();
+                    view.ShowDialog();
+                },
+                () => mainDataViewModel.SelectedMapView != null);
+
             FileOpenCommand = new RelayCommand(() =>
             {
                 Debug.WriteLine("File open");
@@ -78,6 +78,17 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 };
                 inspectWindow.Show();
             }, () => mainDataViewModel?.SelectedMapView?.SelectedLayer != null);
+
+            AddBasemapCommand = new RelayCommand(() =>
+                {
+                    var map = mainDataViewModel?.SelectedMapView?.Map;
+                    if (map != null)
+                    {
+                        map.Basemap = Basemap.CreateTopographic();
+                    }
+                },
+                () => mainDataViewModel.SelectedMapView != null);
+
             PropertyChanged += (sender, args) =>
             {
                 mainDataViewModel.FilePath = FilePath;
@@ -88,12 +99,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand FileOpenCommand { get; private set; }
 
         private string _filePath;
+
         public string FilePath
         {
-            get
-            {
-                return _filePath;
-            }
+            get { return _filePath; }
             set { Set(ref _filePath, value); }
         }
 
@@ -105,10 +114,11 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set { Set(ref _mapDrawStatus, value); }
         }
 
-	    public ICommand LayerDetailsCommand { get; private set; }
-	    public ICommand InspectMmpkCommand { get; private set; }
-	    public ICommand InspectGeodatabaseCommand { get; private set; }
-	    public ICommand InspectMapCommand { get; private set; }
-	    public ICommand InspectLayerCommand { get; private set; }
-	}
+        public ICommand LayerDetailsCommand { get; private set; }
+        public ICommand InspectMmpkCommand { get; private set; }
+        public ICommand InspectGeodatabaseCommand { get; private set; }
+        public ICommand InspectMapCommand { get; private set; }
+        public ICommand InspectLayerCommand { get; private set; }
+        public ICommand AddBasemapCommand { get; private set; }
+    }
 }
