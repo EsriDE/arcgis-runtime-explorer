@@ -81,6 +81,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 };
                 inspectWindow.Show();
             }, () => mainDataViewModel?.SelectedMapView?.SelectedLayer != null);
+            InspectBackgroundGridCommand = new RelayCommand(() =>
+            {
+                var inspectWindow = new InspectWindow
+                {
+                    DataContext = mainDataViewModel.SelectedMapView.MapView.BackgroundGrid
+                };
+                inspectWindow.Show();
+            }, () => mainDataViewModel?.SelectedMapView?.MapView?.BackgroundGrid != null);
 
             AddBasemapCommand = new RelayCommand(() =>
                 {
@@ -144,6 +152,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand InspectGeodatabaseCommand { get; private set; }
         public ICommand InspectMapCommand { get; private set; }
         public ICommand InspectLayerCommand { get; private set; }
+        public ICommand InspectBackgroundGridCommand { get; private set; }
         public ICommand AddBasemapCommand { get; private set; }
         public ICommand AddTpkBasemapCommand { get; private set; }
     }
