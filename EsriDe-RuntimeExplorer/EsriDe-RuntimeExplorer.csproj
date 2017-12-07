@@ -130,6 +130,9 @@
     <Compile Include="LocatorControl.xaml.cs">
       <DependentUpon>LocatorControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Theme\AccentColorMenuData.cs" />
+    <Compile Include="Theme\AppThemeMenuData.cs" />
+    <Compile Include="Theme\SimpleCommand.cs" />
     <Compile Include="ViewModel\LayerDetailViewModel.cs" />
     <Compile Include="ViewModel\LegendItemViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />
