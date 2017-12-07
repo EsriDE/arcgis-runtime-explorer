@@ -84,6 +84,7 @@
                 <MenuItem Header="Geodatabase" Command="{Binding InspectGeodatabaseCommand}" />
                 <MenuItem Header="Map" Command="{Binding InspectMapCommand}" />
                 <MenuItem Header="Layer" Command="{Binding InspectLayerCommand}" />
+                <MenuItem Header="BackgroundGrid" Command="{Binding InspectBackgroundGridCommand}" />
             </MenuItem>
             <MenuItem ToolTip="Underlay a Topographic Basemap from ArcGIS Online" Height="48" Width="48" Command="{Binding AddBasemapCommand}">
                 <MenuItem.Header>
