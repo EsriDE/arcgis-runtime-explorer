@@ -1,8 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Esri.ArcGISRuntime;
 using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Mapping;
+using Esri.ArcGISRuntime.Tasks.Geocoding;
 using GalaSoft.MvvmLight;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
@@ -42,6 +45,32 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _geodatabase, value);
         }
 
+        private LocatorTask _locatorTask;
+
+        public LocatorTask LocatorTask
+        {
+            get => _locatorTask;
+            set => Set(ref _locatorTask, value);
+        }
+
+        private string _locatorSearchText;
+
+        public string LocatorSearchText
+        {
+            get => _locatorSearchText;
+            set => Set(ref _locatorSearchText, value);
+        }
+
+        public ObservableCollection<GeocodeResult> GeocodeResults { get; } = new ObservableCollection<GeocodeResult>();
+
+        private GeocodeResult _selectedGeocodeResult;
+
+        public GeocodeResult SelectedGeocodeResult
+        {
+            get => _selectedGeocodeResult;
+            set => Set(ref _selectedGeocodeResult, value);
+        }
+
         public MainDataViewModel()
         {
             PropertyChanged += async (sender, args) =>
@@ -58,8 +87,27 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                         await OpenMmpkAsync();
                     }
                 }
+                if (args.PropertyName == nameof(LocatorSearchText) && LocatorTask != null)
+                {
+                    if (LocatorTask.LoadStatus != LoadStatus.Loaded)
+                    {
+                        await LocatorTask.LoadAsync();
+                    }
+                    var geocodeResults = await LocatorTask.GeocodeAsync(LocatorSearchText);
+                    GeocodeResults.Clear();
+                    foreach (var geocodeResult in geocodeResults.Take(10))
+                    {
+                        GeocodeResults.Add(geocodeResult);
+                    }
+                }
+                if (args.PropertyName == nameof(SelectedGeocodeResult))
+                {
+                    SelectedMapView.SelectedGeocodeResult = SelectedGeocodeResult;
+                    LocatorSearchText = null;
+                }
             };
-
+            var geocodeServiceUrl = @"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer";
+            LocatorTask = new LocatorTask(new Uri(geocodeServiceUrl));
         }
 
         private async Task OpenGeodatabaseAsync()
@@ -83,6 +131,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             {
                 await map.LoadAsync();
                 MapViews.Add(new MapViewModel {Map = map});
+            }
+            if (Mmpk.LocatorTask != null)
+            {
+                LocatorTask = Mmpk.LocatorTask;
             }
         }
     }

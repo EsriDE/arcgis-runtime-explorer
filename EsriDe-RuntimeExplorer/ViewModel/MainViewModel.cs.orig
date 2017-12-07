@@ -160,7 +160,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand InspectLayerCommand { get; private set; }
         public ICommand InspectBackgroundGridCommand { get; private set; }
         public ICommand AddBasemapCommand { get; private set; }
-        public ICommand AddTpkBasemapCommand { get; private set; }
+<<<<<<< HEAD
         public ICommand ShowAboutCommand { get; private set; }
+=======
+        public ICommand AddTpkBasemapCommand { get; private set; }
+>>>>>>> master
     }
 }

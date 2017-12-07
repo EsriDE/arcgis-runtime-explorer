@@ -134,10 +134,13 @@
     <Compile Include="LegendTabControl.xaml.cs">
       <DependentUpon>LegendTabControl.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ShowAboutCommand.cs" />
+=======
     <Compile Include="LocatorControl.xaml.cs">
       <DependentUpon>LocatorControl.xaml</DependentUpon>
     </Compile>
+>>>>>>> master
     <Compile Include="ViewModel\LayerDetailViewModel.cs" />
     <Compile Include="ViewModel\LegendItemViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />
