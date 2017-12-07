@@ -89,6 +89,12 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 },
                 () => mainDataViewModel.SelectedMapView != null);
 
+            ShowAboutCommand = new RelayCommand(() =>
+                {
+                   // await((MainWindow)sender).ShowMessageAsync("", $"You clicked on {menuItem.Label} button");
+                },
+                () => mainDataViewModel.SelectedMapView != null);
+
             PropertyChanged += (sender, args) =>
             {
                 mainDataViewModel.FilePath = FilePath;
@@ -120,5 +126,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand InspectMapCommand { get; private set; }
         public ICommand InspectLayerCommand { get; private set; }
         public ICommand AddBasemapCommand { get; private set; }
+        public ICommand ShowAboutCommand { get; private set; }
     }
 }
