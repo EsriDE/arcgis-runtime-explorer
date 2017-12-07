@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Mapping;
+using Esri.ArcGISRuntime.Tasks.Geocoding;
 using GalaSoft.MvvmLight;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
@@ -42,6 +43,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _geodatabase, value);
         }
 
+        private LocatorTask _locatorTask;
+
+        public LocatorTask LocatorTask
+        {
+            get => _locatorTask;
+            set => Set(ref _locatorTask, value);
+        }
+
         public MainDataViewModel()
         {
             PropertyChanged += async (sender, args) =>
@@ -59,7 +68,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     }
                 }
             };
-
         }
 
         private async Task OpenGeodatabaseAsync()
@@ -84,6 +92,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 await map.LoadAsync();
                 MapViews.Add(new MapViewModel {Map = map});
             }
+            LocatorTask = Mmpk.LocatorTask;
         }
     }
 }

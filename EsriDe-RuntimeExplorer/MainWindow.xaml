@@ -40,6 +40,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
@@ -97,7 +98,8 @@
                 </MenuItem.Header>
             </MenuItem>
         </Menu>
-        <runtimeExplorer:LegendTabControl Grid.Row="1" Grid.Column="0"/>
+        <runtimeExplorer:LocatorControl Grid.Row="1" Grid.Column="0"></runtimeExplorer:LocatorControl>
+        <runtimeExplorer:LegendTabControl Grid.Row="2" Grid.Column="0"/>
         <TabControl x:Name="MapTabControl" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
@@ -110,7 +112,7 @@
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
-        <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+        <StatusBar Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
