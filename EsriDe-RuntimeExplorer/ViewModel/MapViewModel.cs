@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Esri.ArcGISRuntime.Mapping;
+using Esri.ArcGISRuntime.Tasks.Geocoding;
 using GalaSoft.MvvmLight;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
@@ -53,9 +54,17 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _viewScale, value);
         }
 
+        private GeocodeResult _selectedGeocodeResult;
+
+        public GeocodeResult SelectedGeocodeResult
+        {
+            get => _selectedGeocodeResult;
+            set => Set(ref _selectedGeocodeResult, value);
+        }
+
         public MapViewModel()
         {
-            PropertyChanged += (sender, args) =>
+            PropertyChanged += async (sender, args) =>
             {
                 if (args.PropertyName == nameof(Map))
                 {
@@ -70,6 +79,13 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 if (args.PropertyName == nameof(SelectedBookmark))
                 {
                     MapView.SetViewpoint(SelectedBookmark.Viewpoint);
+                }
+                if (args.PropertyName == nameof(SelectedGeocodeResult))
+                {
+                    if (SelectedGeocodeResult != null)
+                    {
+                        await MapView.SetViewpointGeometryAsync(SelectedGeocodeResult.Extent);
+                    }
                 }
             };
         }

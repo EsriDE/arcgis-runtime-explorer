@@ -4,9 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EsriDe.RuntimeExplorer"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:geocoding="clr-namespace:Esri.ArcGISRuntime.Tasks.Geocoding;assembly=Esri.ArcGISRuntime"
              mc:Ignorable="d" 
-             d:DesignHeight="25" d:DesignWidth="200">
-    <Grid Background="Aqua">
-            <TextBox Text="Locatpr"></TextBox>
+             d:DesignHeight="25" d:DesignWidth="200"
+             DataContext="{Binding MainData}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <xctk:WatermarkTextBox Grid.Row="0" Watermark="Search address.." Text="{Binding LocatorSearchText, UpdateSourceTrigger=PropertyChanged}"></xctk:WatermarkTextBox>
+        <ListBox Grid.Row="1" ItemsSource="{Binding GeocodeResults}" SelectedItem="{Binding SelectedGeocodeResult}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="geocoding:GeocodeResult">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Score, StringFormat={}{0:0.00} %}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Label}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

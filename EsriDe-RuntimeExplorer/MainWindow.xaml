@@ -100,7 +100,7 @@
         </Menu>
         <runtimeExplorer:LocatorControl Grid.Row="1" Grid.Column="0"></runtimeExplorer:LocatorControl>
         <runtimeExplorer:LegendTabControl Grid.Row="2" Grid.Column="0"/>
-        <TabControl x:Name="MapTabControl" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
+        <TabControl x:Name="MapTabControl" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
                     <Setter Property="mahControls:ControlsHelper.HeaderFontSize" Value="18" />
