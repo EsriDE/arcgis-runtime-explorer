@@ -17,7 +17,7 @@
             </Style>
         </Grid.Resources>
         <esri:MapView x:Name="MapView" Map="{Binding Map}" DrawStatusChanged="GeoView_OnDrawStatusChanged" NavigationCompleted="MapView_OnNavigationCompleted"></esri:MapView>
-        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MapScale,ElementName=MapView}"></TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="{Binding MapScale,ElementName=MapView,StringFormat=1:{0:0}}"></TextBlock>
 
         <xctk:WatermarkComboBox VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" MinWidth="100" Watermark="Bookmarks" ItemsSource="{Binding Map.Bookmarks}" SelectedItem="{Binding SelectedBookmark}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">
             <xctk:WatermarkComboBox.ItemTemplate>
@@ -27,7 +27,7 @@
             </xctk:WatermarkComboBox.ItemTemplate>
         </xctk:WatermarkComboBox>
         
-        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,0,0,15">
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
             <TextBlock Text="{Binding VisibleArea.Extent.XMin, ElementName=MapView}"></TextBlock>
             <TextBlock Text=" / "></TextBlock>
             <TextBlock Text="{Binding VisibleArea.Extent.YMin, ElementName=MapView}"></TextBlock>
