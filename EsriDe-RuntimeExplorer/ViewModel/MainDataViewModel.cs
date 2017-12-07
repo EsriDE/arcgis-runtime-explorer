@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Esri.ArcGISRuntime;
@@ -94,7 +95,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     }
                     var geocodeResults = await LocatorTask.GeocodeAsync(LocatorSearchText);
                     GeocodeResults.Clear();
-                    foreach (var geocodeResult in geocodeResults)
+                    foreach (var geocodeResult in geocodeResults.Take(10))
                     {
                         GeocodeResults.Add(geocodeResult);
                     }
@@ -105,6 +106,8 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     LocatorSearchText = null;
                 }
             };
+            var geocodeServiceUrl = @"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer";
+            LocatorTask = new LocatorTask(new Uri(geocodeServiceUrl));
         }
 
         private async Task OpenGeodatabaseAsync()
@@ -129,7 +132,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 await map.LoadAsync();
                 MapViews.Add(new MapViewModel {Map = map});
             }
-            LocatorTask = Mmpk.LocatorTask;
+            if (Mmpk.LocatorTask != null)
+            {
+                LocatorTask = Mmpk.LocatorTask;
+            }
         }
     }
 }
