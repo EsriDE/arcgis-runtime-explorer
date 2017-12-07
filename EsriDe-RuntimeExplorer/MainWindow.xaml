@@ -96,6 +96,8 @@
                         </Rectangle.Fill>
                     </Rectangle>
                 </MenuItem.Header>
+                <MenuItem Header="Topographic" Command="{Binding AddBasemapCommand}" />
+                <MenuItem Header="TPK File..." Command="{Binding AddTpkBasemapCommand}" />
             </MenuItem>
         </Menu>
         <runtimeExplorer:LocatorControl Grid.Row="1" Grid.Column="0"></runtimeExplorer:LocatorControl>

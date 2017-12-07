@@ -1,10 +1,13 @@
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 using Esri.ArcGISRuntime.Mapping;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
 using Esri.ArcGISRuntime.UI;
+using GalaSoft.MvvmLight.Messaging;
+using Xceed.Wpf.Toolkit;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
 {
@@ -85,9 +88,31 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     if (map != null)
                     {
                         map.Basemap = Basemap.CreateTopographic();
+                        if (map.SpatialReference != map.Basemap.BaseLayers.First().SpatialReference)
+                        {
+                            MessageBox.Show(
+                                "Basemap applied, but SpatialReference of current map differs from basemaps SpatialReference. Basemap is not visible.");
+                        }
                     }
                 },
                 () => mainDataViewModel.SelectedMapView != null);
+            AddTpkBasemapCommand = new RelayCommand(() =>
+            {
+                var dlg = new OpenFileDialog();
+                dlg.Filter =
+                    "ArcGIS Tile Package|*.tpk|All Files (*.*)|*.*";
+                if (dlg.ShowDialog() == true)
+                {
+                    var map = mainDataViewModel?.SelectedMapView?.Map;
+                    if (map != null)
+                    {
+                        var tileCache = new TileCache(dlg.FileName);
+                        var tileLayer = new ArcGISTiledLayer(tileCache);
+                        map.Basemap = new Basemap(tileLayer);
+                    }
+                }
+            },
+            () => mainDataViewModel.SelectedMapView != null);
 
             PropertyChanged += (sender, args) =>
             {
@@ -120,5 +145,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand InspectMapCommand { get; private set; }
         public ICommand InspectLayerCommand { get; private set; }
         public ICommand AddBasemapCommand { get; private set; }
+        public ICommand AddTpkBasemapCommand { get; private set; }
     }
 }
