@@ -127,6 +127,9 @@
     <Compile Include="LegendTabControl.xaml.cs">
       <DependentUpon>LegendTabControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LocatorControl.xaml.cs">
+      <DependentUpon>LocatorControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\LayerDetailViewModel.cs" />
     <Compile Include="ViewModel\LegendItemViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LegendTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LocatorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
