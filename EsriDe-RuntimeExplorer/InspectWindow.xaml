@@ -9,6 +9,6 @@
         DataContext="{StaticResource Locator}"
         Title="InspectWindow" Height="768" Width="1024">
     <Grid>
-        <xctk:PropertyGrid SelectedObject="{Binding}" />
+        <xctk:PropertyGrid SelectedObject="{Binding}" SelectedObjectChanged="PropertyGrid_OnSelectedObjectChanged" />
     </Grid>
 </Window>
