@@ -1,13 +1,14 @@
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using Esri.ArcGISRuntime.Mapping;
+using Esri.ArcGISRuntime.UI;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
-using Esri.ArcGISRuntime.UI;
-using GalaSoft.MvvmLight.Messaging;
-using Xceed.Wpf.Toolkit;
+using MahApps.Metro;
+//using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
 {
