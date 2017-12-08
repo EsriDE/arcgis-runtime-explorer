@@ -17,31 +17,66 @@
                         DataContext="{StaticResource Locator}" 
                         WindowButtonCommandsOverlayBehavior="Always">
 
-    <mahControls:MetroWindow.WindowButtonCommands>
-        <mahControls:WindowButtonCommands Template="{DynamicResource MahApps.Metro.Templates.WindowButtonCommands.Win10}">
-        </mahControls:WindowButtonCommands>
-    </mahControls:MetroWindow.WindowButtonCommands>
+    <Window.Resources>
+        <ResourceDictionary>
+            <Ellipse x:Key="AppThemeMenuIcon"
+                     Width="16"
+                     Height="16"
+                     x:Shared="False"
+                     Fill="{Binding ColorBrush, Mode=OneWay}"
+                     Stroke="{Binding BorderColorBrush, Mode=OneWay}"
+                     StrokeThickness="1" />
 
-    <mahControls:MetroWindow.RightWindowCommands >
+            <Ellipse x:Key="AccentMenuIcon"
+                     Width="16"
+                     Height="16"
+                     x:Shared="False"
+                     Fill="{Binding ColorBrush, Mode=OneWay}" />
+
+            <Style x:Key="AppThemeMenuItemStyle"
+                   BasedOn="{StaticResource MetroMenuItem}"
+                   TargetType="{x:Type MenuItem}">
+                <Setter Property="Command" Value="{Binding ChangeAccentCommand}" />
+                <Setter Property="Header" Value="{Binding Name, Mode=OneWay}" />
+                <Setter Property="Icon" Value="{StaticResource AppThemeMenuIcon}" />
+            </Style>
+
+            <Style x:Key="AccentColorMenuItemStyle"
+                   BasedOn="{StaticResource MetroMenuItem}"
+                   TargetType="{x:Type MenuItem}">
+                <Setter Property="Command" Value="{Binding ChangeAccentCommand}" />
+                <Setter Property="Header" Value="{Binding Name, Mode=OneWay}" />
+                <Setter Property="Icon" Value="{StaticResource AccentMenuIcon}" />
+            </Style>
+
+            <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
+                <controls:MapContentControl></controls:MapContentControl>
+            </DataTemplate>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <mahControls:MetroWindow.RightWindowCommands>
         <mahControls:WindowCommands>
-            <Button Content="?" />
+            <mahControls:DropDownButton Content="Theme" ItemContainerStyle="{StaticResource AppThemeMenuItemStyle}" ItemsSource="{Binding Main.AppThemes, Mode=OneWay}" Background="{DynamicResource WindowTitleColorBrush}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource WindowTitleColorBrush}" ArrowBrush="{DynamicResource HighlightBrush}">
+            </mahControls:DropDownButton>
+
+            <mahControls:DropDownButton Content="Color"
+                ItemContainerStyle="{StaticResource AccentColorMenuItemStyle}"
+                ItemsSource="{Binding Main.AccentColors, Mode=OneWay}"
+                Background="{DynamicResource WindowTitleColorBrush}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource WindowTitleColorBrush}" ArrowBrush="{DynamicResource HighlightBrush}">
+            </mahControls:DropDownButton>
+
+            <!--<Button Content="?" />-->
             <Button Command="{x:Static runtimeExplorer:ShowAboutCommand.Command}" ToolTip="About">
-                <iconPacks:PackIconModern Width="16"
-                                          Height="16"
+                <iconPacks:PackIconModern Width="10"
+                                          Height="10"
                                           Kind="Question" />
             </Button>
-            <!--<Button>
-                <Button.Content>
-                    <Rectangle Height="26" Width="32">
-                        <Rectangle.Resources>
-                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
-                        </Rectangle.Resources>
-                        <Rectangle.Fill>
-                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_folder_open}" />
-                        </Rectangle.Fill>
-                    </Rectangle>
-                </Button.Content>
-            </Button>-->
+
         </mahControls:WindowCommands>
     </mahControls:MetroWindow.RightWindowCommands>
     
@@ -55,18 +90,6 @@
             </Grid>
         </DataTemplate>
     </mahControls:MetroWindow.IconTemplate>
-    
-    <Window.Resources>
-        <ResourceDictionary>
-            <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
-                <controls:MapContentControl></controls:MapContentControl>
-            </DataTemplate>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Icons.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-    
     
     <Grid>
         <Grid.ColumnDefinitions>

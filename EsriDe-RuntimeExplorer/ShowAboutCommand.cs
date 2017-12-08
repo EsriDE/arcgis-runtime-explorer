@@ -27,19 +27,20 @@ namespace EsriDe.RuntimeExplorer
 
         }
 
-        private async void ShowAwaitCustomDialog(object sender, RoutedEventArgs e)
-        {
-            EventHandler<DialogStateChangedEventArgs> dialogManagerOnDialogOpened = null;
-            dialogManagerOnDialogOpened = (o, args) => {
-                DialogManager.DialogOpened -= dialogManagerOnDialogOpened;
-                Console.WriteLine("Custom Dialog opened!");
-            };
-            DialogManager.DialogOpened += dialogManagerOnDialogOpened;;
+        //private async void ShowAwaitCustomDialog(object sender, RoutedEventArgs e)
+        //{
+        //    EventHandler<DialogStateChangedEventArgs> dialogManagerOnDialogOpened = null;
+        //    dialogManagerOnDialogOpened = (o, args) =>
+        //    {
+        //        DialogManager.DialogOpened -= dialogManagerOnDialogOpened;
+        //        Console.WriteLine("Custom Dialog opened!");
+        //    };
+        //    DialogManager.DialogOpened += dialogManagerOnDialogOpened; ;
 
-            var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
+        //    var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
 
-            await this.ShowMetroDialogAsync(dialog);
-            await dialog.WaitUntilUnloadedAsync();
-        }
+        //    await this.ShowMetroDialogAsync(dialog);
+        //    await dialog.WaitUntilUnloadedAsync();
+        //}
     }
 }

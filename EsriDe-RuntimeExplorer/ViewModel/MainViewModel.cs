@@ -8,6 +8,9 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
 using MahApps.Metro;
+using EsriDe.RuntimeExplorer.Theme;
+using System.Collections.Generic;
+using System.Windows.Media;
 //using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
@@ -31,6 +34,16 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         /// </summary>
         public MainViewModel(MainDataViewModel mainDataViewModel)
         {
+            // create accent color menu items for the demo
+            this.AccentColors = ThemeManager.Accents
+                .Select(a => new AccentColorMenuData() { Name = a.Name, ColorBrush = a.Resources["AccentColorBrush"] as Brush })
+                .ToList();
+
+            // create metro theme color menu items for the demo
+            this.AppThemes = ThemeManager.AppThemes
+                .Select(a => new AppThemeMenuData() { Name = a.Name, BorderColorBrush = a.Resources["BlackColorBrush"] as Brush, ColorBrush = a.Resources["WhiteColorBrush"] as Brush })
+                .ToList();
+
             LayerDetailsCommand = new RelayCommand(() =>
                 {
                     LayerDetailWindow view = new LayerDetailWindow();
@@ -135,6 +148,9 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             };
 
         }
+
+        public List<AccentColorMenuData> AccentColors { get; set; }
+        public List<AppThemeMenuData> AppThemes { get; set; }
 
         public ICommand FileOpenCommand { get; private set; }
 

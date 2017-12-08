@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using EsriDe.RuntimeExplorer.Properties;
 using MahApps.Metro;
 
 namespace EsriDe.RuntimeExplorer.Theme
@@ -23,6 +24,9 @@ namespace EsriDe.RuntimeExplorer.Theme
             var theme = ThemeManager.DetectAppStyle(Application.Current);
             var accent = ThemeManager.GetAccent(this.Name);
             ThemeManager.ChangeAppStyle(Application.Current, accent, theme.Item1);
+
+            Settings.Default.UserAccent = accent.Name;
+            Settings.Default.Save();
         }
     }
 
