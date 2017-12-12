@@ -9,13 +9,15 @@ namespace EsriDe.RuntimeExplorer
     /// </summary>
     public partial class LayerDetailWindow : MetroWindow
     {
+        private const double ScaleFactor = 0.95;
+
         public LayerDetailWindow()
         {
             InitializeComponent();
 
             FeatureLayerGrid.AutoGeneratingColumn += FeatureLayerGrid_AutoGeneratingColumn;
-            this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.9);
-            this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.9);
+            Height = SystemParameters.PrimaryScreenHeight * ScaleFactor;
+            Width = SystemParameters.PrimaryScreenWidth * ScaleFactor;
         }
 
         private void FeatureLayerGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
