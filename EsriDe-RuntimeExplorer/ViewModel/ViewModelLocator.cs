@@ -38,6 +38,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MainDataViewModel>();
             SimpleIoc.Default.Register<LayerDetailViewModel>();
+            SimpleIoc.Default.Register<AboutContentViewModel>();
         }
 
         public MainViewModel Main
@@ -53,6 +54,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public LayerDetailViewModel LayerDetail
         {
             get { return ServiceLocator.Current.GetInstance<LayerDetailViewModel>(); }
+        }
+        public AboutContentViewModel AboutInformation
+        {
+            get { return ServiceLocator.Current.GetInstance<AboutContentViewModel>(); }
         }
 
         public static void Cleanup()

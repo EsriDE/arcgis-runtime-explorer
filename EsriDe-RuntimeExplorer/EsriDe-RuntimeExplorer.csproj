@@ -109,8 +109,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AboutDialog.xaml.cs">
-      <DependentUpon>AboutDialog.xaml</DependentUpon>
+    <Compile Include="AboutContentControl.xaml.cs">
+      <DependentUpon>AboutContentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\BaseConverter.cs" />
     <Compile Include="Controls\MapContentControl.xaml.cs">
@@ -134,19 +134,21 @@
     <Compile Include="LegendTabControl.xaml.cs">
       <DependentUpon>LegendTabControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShowAboutCommand.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="RichTextFile.cs" />
     <Compile Include="LocatorControl.xaml.cs">
       <DependentUpon>LocatorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Theme\AccentColorMenuData.cs" />
     <Compile Include="Theme\AppThemeMenuData.cs" />
     <Compile Include="Theme\SimpleCommand.cs" />
+    <Compile Include="ViewModel\AboutContentViewModel.cs" />
     <Compile Include="ViewModel\LayerDetailViewModel.cs" />
     <Compile Include="ViewModel\LegendItemViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Page Include="AboutDialog.xaml">
+    <Page Include="AboutContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,6 +234,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\world.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Esri.ArcGISRuntime.WPF.100.1.0\build\net452\Esri.ArcGISRuntime.WPF.targets" Condition="Exists('packages\Esri.ArcGISRuntime.WPF.100.1.0\build\net452\Esri.ArcGISRuntime.WPF.targets')" />

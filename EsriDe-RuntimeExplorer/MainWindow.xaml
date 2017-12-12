@@ -16,7 +16,6 @@
                         Height="768" Width="1024"
                         DataContext="{StaticResource Locator}" 
                         WindowButtonCommandsOverlayBehavior="Always">
-
     <Window.Resources>
         <ResourceDictionary>
             <Ellipse x:Key="AppThemeMenuIcon"
@@ -70,8 +69,7 @@
                 Background="{DynamicResource WindowTitleColorBrush}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource WindowTitleColorBrush}" ArrowBrush="{DynamicResource HighlightBrush}">
             </mahControls:DropDownButton>
 
-            <!--<Button Content="?" />-->
-            <Button Command="{x:Static runtimeExplorer:ShowAboutCommand.Command}" ToolTip="About">
+            <Button Click="ShowAbout" ToolTip="About">
                 <iconPacks:PackIconModern Width="10"
                                           Height="10"
                                           Kind="Question" />
@@ -79,7 +77,17 @@
 
         </mahControls:WindowCommands>
     </mahControls:MetroWindow.RightWindowCommands>
-    
+
+    <mahControls:MetroWindow.Flyouts>
+        <mahControls:FlyoutsControl>
+            <mahControls:Flyout x:Name="AboutFlyout" Header="About"
+                     IsModal="True"
+                     Position="Right">
+                <runtimeExplorer:AboutContentControl/>
+            </mahControls:Flyout>
+        </mahControls:FlyoutsControl>
+    </mahControls:MetroWindow.Flyouts>
+
     <mahControls:MetroWindow.IconTemplate>
         <DataTemplate>
             <Grid Width="{TemplateBinding Width}"

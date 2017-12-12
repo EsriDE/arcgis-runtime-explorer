@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using MahApps.Metro.Controls;
 
@@ -28,6 +30,12 @@ namespace EsriDe.RuntimeExplorer
             {
                 Console.WriteLine(ex);
             }
+        }
+
+        private void ShowAbout(object sender, RoutedEventArgs e)
+        {
+            var flyout = Flyouts.Items.OfType<Flyout>().First(f => f.Name == "AboutFlyout");
+            flyout.IsOpen = !flyout.IsOpen;
         }
     }
 }
