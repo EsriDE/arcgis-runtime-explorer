@@ -134,8 +134,6 @@
     <Compile Include="LegendTabControl.xaml.cs">
       <DependentUpon>LegendTabControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="RichTextFile.cs" />
     <Compile Include="LocatorControl.xaml.cs">
       <DependentUpon>LocatorControl.xaml</DependentUpon>
     </Compile>
