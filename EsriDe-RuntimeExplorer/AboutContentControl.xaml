@@ -35,14 +35,17 @@
             <TextBlock FontWeight="Bold">About</TextBlock>
             <TextBlock TextWrapping="Wrap">This is a tool from developers for developers. The main focus is to give ArcGIS Runtime developers a tool to visualize and evaluate mobile caches very quickly.</TextBlock>
             <TextBlock FontWeight="Bold">Credits</TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock>This tool was initially developed by</TextBlock>
-                <TextBlock>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>This tool was initially developed by</TextBlock>
+                    <TextBlock>
                     <Hyperlink Command="{Binding OpenWebsiteCommand}" 
                                CommandParameter="https://www.esri.de/">
                         Esri Germany
                     </Hyperlink>
-                </TextBlock>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Margin="0,0,0,0">Head of development are Jens Buchta and Maximilian Glas</TextBlock>
             </StackPanel>
         </StackPanel>
     </Border>

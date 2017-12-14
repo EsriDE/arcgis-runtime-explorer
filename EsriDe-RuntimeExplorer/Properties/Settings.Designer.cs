@@ -46,5 +46,17 @@ namespace EsriDe.RuntimeExplorer.Properties {
                 this["UserAccent"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UserLiscenseHasSeenOnce {
+            get {
+                return ((bool)(this["UserLiscenseHasSeenOnce"]));
+            }
+            set {
+                this["UserLiscenseHasSeenOnce"] = value;
+            }
+        }
     }
 }
