@@ -10,10 +10,14 @@
         xmlns:geometry="clr-namespace:Esri.ArcGISRuntime.Geometry;assembly=Esri.ArcGISRuntime"
         xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
         xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         DataContext="{StaticResource Locator}"
         WindowStartupLocation="CenterScreen"
         >
     <Window.Resources>
+        <viewModel:LayerDetailViewModel x:Key="ViewModel"></viewModel:LayerDetailViewModel>
+        
         <Style TargetType="{x:Type DataGrid}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
@@ -30,9 +34,50 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding SelectionColor}">
                     <TextBlock.TextDecorations>
-                        <TextDecoration Location="Underline" Pen="{Binding SelectionColor, Converter={converter:StringToPenConverter}}"></TextDecoration>
+                        <TextDecoration Location="Underline" >
+                            <TextDecoration.Pen>
+                                <Pen Brush="{Binding SelectionColor, Converter={converter:StringToColorConverter}}" Thickness="3" />
+                            </TextDecoration.Pen>
+                        </TextDecoration>
                     </TextBlock.TextDecorations>
                 </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="FeatureTableTemplate" DataType="{x:Type esri:FeatureTable}" >
+            <StackPanel Orientation="Horizontal" DataContext="{Binding FeatureTable}">
+                <Button Style="{DynamicResource MetroCircleButtonStyle}" BorderThickness="1" Width="30" Height="30" ToolTip="Inspect" Command="{Binding InspectCommand, Source={StaticResource ViewModel}}" CommandParameter="{Binding}">
+                    <iconPacks:PackIconModern Width="15"
+                                              Height="15"
+                                              Kind="Eye" />
+                </Button>
+                <StackPanel>
+                    <TextBlock Text="{Binding}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="0,0,5,0"/>
+                                <Setter Property="FontSize" Value="9"></Setter>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="{Binding GeometryType}"/>
+                        <TextBlock Text="/" />
+                        <TextBlock Text="{Binding TableName}" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RendererTemplate" DataType="{x:Type esri:Renderer}" >
+            <StackPanel Orientation="Horizontal" DataContext="{Binding Renderer}">
+                <Button Style="{DynamicResource MetroCircleButtonStyle}" BorderThickness="1" Width="30" Height="30" ToolTip="Inspect" Command="{Binding InspectCommand, Source={StaticResource ViewModel}}" CommandParameter="{Binding}">
+                    <iconPacks:PackIconModern Width="15"
+                                              Height="15"
+                                              Kind="Eye" />
+                </Button>
+                <StackPanel>
+                    <TextBlock Text="{Binding}"/>
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
@@ -48,10 +93,6 @@
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
 
             <Grid DataContext="{Binding LayerDetail}">
-                <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -61,21 +102,11 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Content="FeatureLayer"/>
-                <DataGrid x:Name="FeatureLayerGrid"  Grid.Row="1" ItemsSource="{Binding FeatureLayers}" AutoGenerateColumns="True" IsReadOnly="True">
-                    <!--<DataGrid.Columns>
-                <DataGridTemplateColumn Header="SpatialReference">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding SpatialReference, Converter={local:SpatialReferenceToWkidConverter}}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
-            </DataGrid.Columns>-->
+                <DataGrid x:Name="FeatureLayerGrid" Grid.Row="1" ItemsSource="{Binding FeatureLayers}" AutoGenerateColumns="True" IsReadOnly="True" TextOptions.TextFormattingMode="Display">
                 </DataGrid>
 
                 <Label Grid.Row="2" Content="RasterLayer"/>
-                <DataGrid Grid.Row="3" ItemsSource="{Binding RasterLayers}" IsReadOnly="True"/>
+                <DataGrid Grid.Row="3" ItemsSource="{Binding RasterLayers}" AutoGenerateColumns="True" IsReadOnly="True" TextOptions.TextFormattingMode="Display"/>
 
             </Grid>
 
@@ -84,3 +115,4 @@
     </Grid>
 
 </mahControls:MetroWindow>
+

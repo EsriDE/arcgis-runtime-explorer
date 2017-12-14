@@ -5,14 +5,14 @@ using System.Windows.Media;
 
 namespace EsriDe.RuntimeExplorer.Converter
 {
-	public class StringToPenConverter : BaseConverter, IValueConverter
+	public class StringToColorConverter : BaseConverter, IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			try
 			{
 				var color = (Color) ColorConverter.ConvertFromString(value?.ToString());
-				return new Pen(new SolidColorBrush(color), 2);
+				return new SolidColorBrush(color);
 			}
 			catch (Exception)
 			{

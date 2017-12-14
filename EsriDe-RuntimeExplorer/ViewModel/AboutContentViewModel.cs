@@ -6,25 +6,15 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 {
     public class AboutContentViewModel : ViewModelBase
     {
+        private RelayCommand<object> _openWebsiteCommand;
+
         public ICommand OpenWebsiteCommand
         {
             get
             {
-                if (_openWebsiteCommand == null)
-                {
-                    _openWebsiteCommand = new RelayCommand<object>(OpenWebsite);
-                }
-
-                return _openWebsiteCommand;
+                return _openWebsiteCommand ?? (_openWebsiteCommand =
+                           new RelayCommand<object>(url => { System.Diagnostics.Process.Start(url as string); }));
             }
-        }
-
-
-        private RelayCommand<object> _openWebsiteCommand;
-
-        private void OpenWebsite(object url)
-        {
-            System.Diagnostics.Process.Start(url as string);
         }
     }
 }
