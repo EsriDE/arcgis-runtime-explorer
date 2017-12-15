@@ -12,7 +12,7 @@
                         xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
                         mc:Ignorable="d"
                         GlowBrush="{DynamicResource AccentColorBrush}"
-                        Title="Runtime Explorer" 
+                        Title="ArcGIS Runtime Explorer" 
                         Height="768" Width="1024"
                         DataContext="{StaticResource Locator}" 
                         WindowButtonCommandsOverlayBehavior="Always">
