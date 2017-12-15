@@ -11,7 +11,7 @@ And there are two ways to read these file formats
 * Open a cache file with the application
 
 #### Start the application and load a file
-![Menu - Open Folder](https://github.com/EsriDE/arcgis-runtime-explorer/master/docs/mainmenu_openfile.png)
+![Menu - Open Folder](https://github.com/EsriDE/arcgis-runtime-explorer/blob/master/docs/mainmenu_openfile.png)
 
 Select a cache you want to load into the application and watch the result
 
@@ -24,7 +24,7 @@ Clicking _OK_ opens the _ArcGIS Runtime Explorer_ and directly loads your cache.
 
 ## Have a view
 Here it is:
-![Application - Cache loaded](https://github.com/EsriDE/arcgis-runtime-explorer/master/docs/app_mmpk_loaded.png)
+![Application - Cache loaded](https://github.com/EsriDE/arcgis-runtime-explorer/blob/master/docs/app_mmpk_loaded.png)
 
 ## Features
 * Shows MMPK and mobile geodatabase files
