@@ -79,7 +79,8 @@
                                         <DataTemplate>
                                             <StackPanel>
                                                 <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                                                <esri:LayerLegend LayerContent="{Binding}" ShowEntireTreeHiarchy="True" Margin="10,0" />
+                                                <TextBlock Text="Legend not yet available in Runtime 100.2"></TextBlock>
+                                                <!--esri:LayerLegend LayerContent="{Binding}" ShowEntireTreeHiarchy="True" Margin="10,0" /-->
                                             </StackPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
