@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
@@ -145,6 +146,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             PropertyChanged += (sender, args) =>
             {
                 mainDataViewModel.FilePath = FilePath;
+                if (args.PropertyName == nameof(MapDrawStatus))
+                {
+                    AppStatus = MapDrawStatus.ToString();
+                }
             };
 
         }
@@ -168,6 +173,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         {
             get { return _mapDrawStatus; }
             set { Set(ref _mapDrawStatus, value); }
+        }
+
+        private string _appStatus = String.Empty;
+
+        public string AppStatus
+        {
+            get => _appStatus;
+            set => Set(ref _appStatus, value);
         }
 
         public ICommand LayerDetailsCommand { get; private set; }
