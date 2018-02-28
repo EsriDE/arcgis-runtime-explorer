@@ -80,6 +80,11 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public MapViewModel()
         {
             var fullExtentOverlay = new GraphicsOverlay();
+            var fullExtentRenderer = new SimpleRenderer();
+            var outlineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Colors.Red, 1.0);
+            var fillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, Color.FromArgb(255, 0, 80, 0), outlineSymbol);
+            fullExtentRenderer.Symbol = fillSymbol;
+            fullExtentOverlay.Renderer = fullExtentRenderer;
             GraphicsOverlays.Add(fullExtentOverlay);
 
             PropertyChanged += async (sender, args) =>
@@ -124,12 +129,8 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 await layer.LoadAsync();
 
                 var fullExtent = layer.FullExtent;
-                // define the polygon outline
-                var outlineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Colors.Red, 1.0);
-                // define the fill symbol
-                var fillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, Color.FromArgb(255, 0, 80, 0),
-                    outlineSymbol);
-                var fullExtentGraphic = new Graphic(fullExtent, fillSymbol);
+                
+                var fullExtentGraphic = new Graphic(fullExtent);
                 graphicsList.Add(fullExtentGraphic);
             }
 
