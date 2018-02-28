@@ -98,6 +98,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     }
                     AllLayersCount = Map.AllLayers.Count;
                     OperationalLayersCount = Map.OperationalLayers.Count;
+                    fullExtentOverlay.Graphics.Clear();
                     await BuildFullExtentGraphicsAsync(fullExtentOverlay.Graphics);
                 }
                 if (args.PropertyName == nameof(SelectedBookmark))
