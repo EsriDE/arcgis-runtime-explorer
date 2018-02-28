@@ -1,6 +1,6 @@
 ﻿using System.Windows;
+using CommonServiceLocator;
 using EsriDe.RuntimeExplorer.Properties;
-using Microsoft.Practices.ServiceLocation;
 using EsriDe.RuntimeExplorer.ViewModel;
 using MahApps.Metro;
 

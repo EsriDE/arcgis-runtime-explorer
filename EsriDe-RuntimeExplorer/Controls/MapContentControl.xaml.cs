@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Practices.ServiceLocation;
+using CommonServiceLocator;
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.UI.Controls;
 using EsriDe.RuntimeExplorer.ViewModel;
