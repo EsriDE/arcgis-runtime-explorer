@@ -1,7 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Media;
+using Esri.ArcGISRuntime;
+using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Mapping;
+using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.Tasks.Geocoding;
+using Esri.ArcGISRuntime.UI;
 using GalaSoft.MvvmLight;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
@@ -24,6 +31,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         {
             get => _map;
             set => Set(ref _map, value);
+        }
+
+        private GraphicsOverlayCollection _graphicsOverlays = new GraphicsOverlayCollection();
+
+        public GraphicsOverlayCollection GraphicsOverlays
+        {
+            get => _graphicsOverlays;
+            set => Set(ref _graphicsOverlays, value);
         }
 
         private Layer _selectedLayer;
@@ -64,6 +79,9 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
         public MapViewModel()
         {
+            var fullExtentOverlay = new GraphicsOverlay();
+            GraphicsOverlays.Add(fullExtentOverlay);
+
             PropertyChanged += async (sender, args) =>
             {
                 if (args.PropertyName == nameof(Map))
@@ -75,6 +93,11 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     }
                     AllLayersCount = Map.AllLayers.Count;
                     OperationalLayersCount = Map.OperationalLayers.Count;
+                    var fullExtentGraphics = await BuildFullExtentGraphicsAsync();
+                    foreach (var fullExtentGraphic in fullExtentGraphics)
+                    {
+                        fullExtentOverlay.Graphics.Add(fullExtentGraphic);
+                    }
                 }
                 if (args.PropertyName == nameof(SelectedBookmark))
                 {
@@ -88,6 +111,29 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     }
                 }
             };
+
+
+        }
+
+        private async Task<IEnumerable<Graphic>> BuildFullExtentGraphicsAsync()
+        {
+            var graphicsList = new List<Graphic>();
+
+            foreach (var layer in Map.OperationalLayers)
+            {
+                await layer.LoadAsync();
+
+                var fullExtent = layer.FullExtent;
+                // define the polygon outline
+                var outlineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Colors.Red, 1.0);
+                // define the fill symbol
+                var fillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, Color.FromArgb(255, 0, 80, 0),
+                    outlineSymbol);
+                var fullExtentGraphic = new Graphic(fullExtent, fillSymbol);
+                graphicsList.Add(fullExtentGraphic);
+            }
+
+            return graphicsList;
         }
 
         private Bookmark _selectedBookmark;
