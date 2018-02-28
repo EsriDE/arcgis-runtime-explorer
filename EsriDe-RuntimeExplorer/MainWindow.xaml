@@ -166,6 +166,19 @@
                 <MenuItem Header="Topographic" Command="{Binding AddBasemapCommand}" />
                 <MenuItem Header="TPK File..." Command="{Binding AddTpkBasemapCommand}" />
             </MenuItem>
+            <MenuItem ToolTip="Options" Height="48" Width="48">
+                <MenuItem.Header>
+                    <Rectangle Height="28" Width="28">
+                        <Rectangle.Resources>
+                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
+                        </Rectangle.Resources>
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_symbol_braces}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </MenuItem.Header>
+                <MenuItem Header="Show layer extent graphics" IsChecked="{Binding LayerExtentGraphicsVisible}" Command="{Binding ToggleLayerExtentGraphicsVisibility}"/>
+            </MenuItem>
         </Menu>
         <runtimeExplorer:LocatorControl Grid.Row="1" Grid.Column="0"></runtimeExplorer:LocatorControl>
         <runtimeExplorer:LegendTabControl Grid.Row="2" Grid.Column="0"/>

@@ -80,6 +80,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public MapViewModel()
         {
             var fullExtentOverlay = new GraphicsOverlay();
+            fullExtentOverlay.IsVisible = false;
             var fullExtentRenderer = new SimpleRenderer();
             var outlineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Colors.Red, 1.0);
             var fillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, Colors.Black, outlineSymbol);
@@ -114,7 +115,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 }
             };
 
-
+            MessengerInstance.Register(this, (bool b) =>
+            {
+                fullExtentOverlay.IsVisible = b;
+            });
         }
 
         private async Task BuildFullExtentGraphicsAsync(GraphicCollection graphicCollection)
