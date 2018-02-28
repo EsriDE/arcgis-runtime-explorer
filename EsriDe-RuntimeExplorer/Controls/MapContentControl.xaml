@@ -22,7 +22,7 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
-        <esri:MapView x:Name="MapView" Map="{Binding Map}" DrawStatusChanged="GeoView_OnDrawStatusChanged" NavigationCompleted="MapView_OnNavigationCompleted"></esri:MapView>
+        <esri:MapView x:Name="MapView" Map="{Binding Map}" GraphicsOverlays="{Binding GraphicsOverlays}" DrawStatusChanged="GeoView_OnDrawStatusChanged" NavigationCompleted="MapView_OnNavigationCompleted"></esri:MapView>
         <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="{Binding MapScale,ElementName=MapView,StringFormat=1:{0:0}}"></TextBlock>
 
         <xctk:WatermarkComboBox VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" MinWidth="100" Watermark="Bookmarks" ItemsSource="{Binding Map.Bookmarks}" SelectedItem="{Binding SelectedBookmark}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">

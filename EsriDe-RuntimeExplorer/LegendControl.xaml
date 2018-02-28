@@ -8,24 +8,27 @@
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{StaticResource Locator}">
     <Grid>
-        
         <ListView ItemsSource="{Binding MainData.SelectedMapView.LegendItems}" SelectedItem="{Binding MainData.SelectedMapView.SelectedLegendItem}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="Auto" Header="Layer">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox Grid.Column="0" Content="{Binding Name}" IsChecked="{Binding IsVisible}">
-                                    <CheckBox.Style>
-                                        <Style TargetType="{x:Type CheckBox}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsVisibleAtCurrentScale}" Value="False">
-                                                    <Setter Property="Foreground" Value="LightGray"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </CheckBox.Style>
-                                </CheckBox>
+                                <StackPanel Orientation="Horizontal" DataContext="{Binding}">
+                                    <CheckBox IsChecked="{Binding IsVisible}" Margin="0,0,1,0">
+                                    </CheckBox>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsVisibleAtCurrentScale}" Value="False">
+                                                        <Setter Property="Foreground" Value="LightGray"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -42,6 +45,11 @@
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Inspect" Command="{Binding Main.InspectLayerCommand}"></MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
         </ListView>
     </Grid>
 </UserControl>

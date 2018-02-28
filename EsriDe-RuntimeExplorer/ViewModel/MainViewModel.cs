@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
@@ -142,9 +143,19 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 },
                 () => mainDataViewModel.SelectedMapView != null);
 
+            ToggleLayerExtentGraphicsVisibility = new RelayCommand(() =>
+            {
+                LayerExtentGraphicsVisible = !LayerExtentGraphicsVisible;
+                mainDataViewModel.SelectedMapView.LayerExtentGraphicsVisible = LayerExtentGraphicsVisible;
+            });
+
             PropertyChanged += (sender, args) =>
             {
                 mainDataViewModel.FilePath = FilePath;
+                if (args.PropertyName == nameof(MapDrawStatus))
+                {
+                    AppStatus = MapDrawStatus.ToString();
+                }
             };
 
         }
@@ -170,6 +181,22 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set { Set(ref _mapDrawStatus, value); }
         }
 
+        private string _appStatus = String.Empty;
+
+        public string AppStatus
+        {
+            get => _appStatus;
+            set => Set(ref _appStatus, value);
+        }
+
+        private bool _layerExtentGraphicsVisible;
+
+        public bool LayerExtentGraphicsVisible
+        {
+            get => _layerExtentGraphicsVisible;
+            set => Set(ref _layerExtentGraphicsVisible, value);
+        }
+
         public ICommand LayerDetailsCommand { get; private set; }
         public ICommand InspectMmpkCommand { get; private set; }
         public ICommand InspectGeodatabaseCommand { get; private set; }
@@ -179,5 +206,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand AddBasemapCommand { get; private set; }
         public ICommand AddTpkBasemapCommand { get; private set; }
         public ICommand ShowAboutCommand { get; private set; }
+        public ICommand ToggleLayerExtentGraphicsVisibility { get; private set; }
     }
 }
