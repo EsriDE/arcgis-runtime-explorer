@@ -146,6 +146,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             ToggleLayerExtentGraphicsVisibility = new RelayCommand(() =>
             {
                 LayerExtentGraphicsVisible = !LayerExtentGraphicsVisible;
+                mainDataViewModel.SelectedMapView.LayerExtentGraphicsVisible = LayerExtentGraphicsVisible;
             });
 
             PropertyChanged += (sender, args) =>
@@ -154,10 +155,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 if (args.PropertyName == nameof(MapDrawStatus))
                 {
                     AppStatus = MapDrawStatus.ToString();
-                }
-                if (args.PropertyName == nameof(LayerExtentGraphicsVisible))
-                {
-                    MessengerInstance.Send<bool>(LayerExtentGraphicsVisible);
                 }
             };
 

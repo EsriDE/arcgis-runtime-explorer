@@ -77,6 +77,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _selectedGeocodeResult, value);
         }
 
+        private bool _layerExtentGraphicsVisible;
+
+        public bool LayerExtentGraphicsVisible
+        {
+            get => _layerExtentGraphicsVisible;
+            set => Set(ref _layerExtentGraphicsVisible, value);
+        }
+
         public MapViewModel()
         {
             var fullExtentOverlay = new GraphicsOverlay();
@@ -113,12 +121,11 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                         await MapView.SetViewpointGeometryAsync(SelectedGeocodeResult.Extent);
                     }
                 }
+                if (args.PropertyName == nameof(LayerExtentGraphicsVisible))
+                {
+                    fullExtentOverlay.IsVisible = LayerExtentGraphicsVisible;
+                }
             };
-
-            MessengerInstance.Register(this, (bool b) =>
-            {
-                fullExtentOverlay.IsVisible = b;
-            });
         }
 
         private async Task BuildFullExtentGraphicsAsync(GraphicCollection graphicCollection)
