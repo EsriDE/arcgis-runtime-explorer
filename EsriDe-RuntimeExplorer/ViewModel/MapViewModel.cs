@@ -82,7 +82,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             var fullExtentOverlay = new GraphicsOverlay();
             var fullExtentRenderer = new SimpleRenderer();
             var outlineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Colors.Red, 1.0);
-            var fillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, Color.FromArgb(255, 0, 80, 0), outlineSymbol);
+            var fillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, Colors.Black, outlineSymbol);
             fullExtentRenderer.Symbol = fillSymbol;
             fullExtentOverlay.Renderer = fullExtentRenderer;
             GraphicsOverlays.Add(fullExtentOverlay);
@@ -98,11 +98,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     }
                     AllLayersCount = Map.AllLayers.Count;
                     OperationalLayersCount = Map.OperationalLayers.Count;
-                    var fullExtentGraphics = await BuildFullExtentGraphicsAsync();
-                    foreach (var fullExtentGraphic in fullExtentGraphics)
-                    {
-                        fullExtentOverlay.Graphics.Add(fullExtentGraphic);
-                    }
+                    await BuildFullExtentGraphicsAsync(fullExtentOverlay.Graphics);
                 }
                 if (args.PropertyName == nameof(SelectedBookmark))
                 {
@@ -120,21 +116,15 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
         }
 
-        private async Task<IEnumerable<Graphic>> BuildFullExtentGraphicsAsync()
+        private async Task BuildFullExtentGraphicsAsync(GraphicCollection graphicCollection)
         {
-            var graphicsList = new List<Graphic>();
-
             foreach (var layer in Map.OperationalLayers)
             {
                 await layer.LoadAsync();
 
-                var fullExtent = layer.FullExtent;
-                
-                var fullExtentGraphic = new Graphic(fullExtent);
-                graphicsList.Add(fullExtentGraphic);
+                var fullExtentGraphic = new Graphic(layer.FullExtent);
+                graphicCollection.Add(fullExtentGraphic);
             }
-
-            return graphicsList;
         }
 
         private Bookmark _selectedBookmark;
