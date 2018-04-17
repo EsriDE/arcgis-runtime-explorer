@@ -113,10 +113,12 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     if (map != null)
                     {
                         map.Basemap = Basemap.CreateTopographic();
-                        if (map.SpatialReference != map.Basemap.BaseLayers.First().SpatialReference)
+                        
+                        if (map.SpatialReference.BaseGeographic != SpatialReferences.WebMercator &&
+                            map.SpatialReference.BaseGeographic != SpatialReferences.Wgs84)
                         {
                             MessageBox.Show(
-                                "Basemap applied, but SpatialReference of current map differs from basemaps SpatialReference. Basemap is not visible.");
+                                "Basemap applied, but SpatialReference of current map differs from basemaps SpatialReference. Basemap may be not visible.", "Hint", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     }
                 },
