@@ -12,6 +12,8 @@ using MahApps.Metro;
 using EsriDe.RuntimeExplorer.Theme;
 using System.Collections.Generic;
 using System.Windows.Media;
+using Esri.ArcGISRuntime.Geometry;
+
 //using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
@@ -119,19 +121,32 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     }
                 },
                 () => mainDataViewModel.SelectedMapView != null);
-            AddTpkBasemapCommand = new RelayCommand(() =>
+            AddFileBasemapCommand = new RelayCommand(() =>
             {
                 var dlg = new OpenFileDialog();
                 dlg.Filter =
-                    "ArcGIS Tile Package|*.tpk|All Files (*.*)|*.*";
+                    "ArcGIS Offline Basemap Packages|*.tpk;*.vtpk|ArcGIS Tile Package|*.tpk|ArcGIS Vector Tile Package|*.vtpk|All Files (*.*)|*.*";
                 if (dlg.ShowDialog() == true)
                 {
                     var map = mainDataViewModel?.SelectedMapView?.Map;
                     if (map != null)
                     {
-                        var tileCache = new TileCache(dlg.FileName);
-                        var tileLayer = new ArcGISTiledLayer(tileCache);
-                        map.Basemap = new Basemap(tileLayer);
+                        switch (System.IO.Path.GetExtension(dlg.FileName).ToLower())
+                        {
+                            case ".tpk":
+                                var tileCache = new TileCache(dlg.FileName);
+                                var tileLayer = new ArcGISTiledLayer(tileCache);
+                                map.Basemap = new Basemap(tileLayer);
+                                break;
+                            case ".vtpk":
+                                //var vectorTileCache = new Esri.ArcGISRuntime.Mapping.VectorTileCache()
+                                var vectorTileLayer = new ArcGISVectorTiledLayer(new Uri(dlg.FileName));
+                                map.Basemap = new Basemap(vectorTileLayer);
+                                break;
+                            default:
+                                break;
+                        }
+
                     }
                 }
             },
@@ -204,7 +219,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand InspectLayerCommand { get; private set; }
         public ICommand InspectBackgroundGridCommand { get; private set; }
         public ICommand AddBasemapCommand { get; private set; }
-        public ICommand AddTpkBasemapCommand { get; private set; }
+        public ICommand AddFileBasemapCommand { get; private set; }
         public ICommand ShowAboutCommand { get; private set; }
         public ICommand ToggleLayerExtentGraphicsVisibility { get; private set; }
     }

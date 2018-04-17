@@ -163,8 +163,8 @@
                         </Rectangle.Fill>
                     </Rectangle>
                 </MenuItem.Header>
-                <MenuItem Header="Topographic" Command="{Binding AddBasemapCommand}" />
-                <MenuItem Header="TPK File..." Command="{Binding AddTpkBasemapCommand}" />
+                <MenuItem Header="AGOL Topographic" Command="{Binding AddBasemapCommand}" />
+                <MenuItem Header="TPK/VTPK File ..." Command="{Binding AddFileBasemapCommand}" />
             </MenuItem>
             <MenuItem ToolTip="Options" Height="48" Width="48">
                 <MenuItem.Header>
