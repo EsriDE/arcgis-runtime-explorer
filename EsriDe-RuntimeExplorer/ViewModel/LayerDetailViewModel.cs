@@ -50,6 +50,9 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 {
                     if (args.PropertyName == nameof(MainDataViewModel.SelectedMapView))
                     {
+                        if (instance.SelectedMapView == null)
+                            return;
+                        
                         Map = instance.SelectedMapView.Map;
                         //der Wechsel einer Map innerhalb eines Tabs interessiert mich auch
                         instance.SelectedMapView.PropertyChanged += (sender1, args1) =>
