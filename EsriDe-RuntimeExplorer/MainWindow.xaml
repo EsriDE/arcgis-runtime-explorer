@@ -190,7 +190,7 @@
             </TabControl.Resources>
             <TabControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
-                    <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title, FallbackValue='Unnamed Map'}"></TextBlock>
+                    <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title, FallbackValue='Unnamed Map', TargetNullValue='No Name Found'}"></TextBlock>
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
