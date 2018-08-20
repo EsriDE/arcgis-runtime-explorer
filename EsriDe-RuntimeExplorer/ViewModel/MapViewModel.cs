@@ -90,8 +90,8 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             var fullExtentOverlay = new GraphicsOverlay();
             fullExtentOverlay.IsVisible = false;
             var fullExtentRenderer = new SimpleRenderer();
-            var outlineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Colors.Red, 1.0);
-            var fillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, Colors.Black, outlineSymbol);
+            var outlineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Red, 1.0);
+            var fillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, System.Drawing.Color.Black, outlineSymbol);
             fullExtentRenderer.Symbol = fillSymbol;
             fullExtentOverlay.Renderer = fullExtentRenderer;
             GraphicsOverlays.Add(fullExtentOverlay);
