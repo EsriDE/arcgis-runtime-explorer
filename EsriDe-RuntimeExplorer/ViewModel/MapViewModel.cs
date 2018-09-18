@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using Esri.ArcGISRuntime;
+using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.Tasks.Geocoding;
 using Esri.ArcGISRuntime.UI;
+using Esri.ArcGISRuntime.UI.Controls;
 using GalaSoft.MvvmLight;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
@@ -132,7 +135,30 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 {
                     fullExtentOverlay.IsVisible = LayerExtentGraphicsVisible;
                 }
+                if (args.PropertyName == nameof(MapView))
+                {
+                    MapView.GeoViewTapped += MapViewOnGeoViewTapped;
+                }
             };
+        }
+
+        private async void MapViewOnGeoViewTapped(object s, GeoViewInputEventArgs e)
+        {
+            if (IdentifyModeEnabled)
+            {
+                // get the tap location in screen units
+                System.Windows.Point tapScreenPoint = e.Position;
+
+
+                var pixelTolerance = 20;
+                var returnPopupsOnly = false;
+                var maxLayerResults = 5;
+
+
+                // identify all layers in the MapView, passing the tap point, tolerance, types to return, and max results
+                var identifyLayerResults = await MapView.IdentifyLayersAsync(tapScreenPoint, pixelTolerance, returnPopupsOnly, maxLayerResults);
+
+            }
         }
 
         private async Task BuildFullExtentGraphicsAsync(GraphicCollection graphicCollection)
