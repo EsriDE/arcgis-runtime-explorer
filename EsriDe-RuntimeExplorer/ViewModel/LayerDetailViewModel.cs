@@ -7,6 +7,7 @@ using CsvHelper;
 using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Mapping;
 using EsriDe.RuntimeExplorer.CsvConverter;
+using EsriDe.RuntimeExplorer.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Ioc;

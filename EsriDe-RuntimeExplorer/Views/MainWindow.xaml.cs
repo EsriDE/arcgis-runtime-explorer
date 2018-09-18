@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using EsriDe.RuntimeExplorer.Properties;
 using MahApps.Metro.Controls;
 
-namespace EsriDe.RuntimeExplorer
+namespace EsriDe.RuntimeExplorer.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

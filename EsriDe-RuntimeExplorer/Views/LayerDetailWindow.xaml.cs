@@ -6,7 +6,7 @@ using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Symbology;
 using MahApps.Metro.Controls;
 
-namespace EsriDe.RuntimeExplorer
+namespace EsriDe.RuntimeExplorer.Views
 {
     /// <summary>
     /// Interaction logic for LayerDetailWindow.xaml

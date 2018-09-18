@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.UI;
+using EsriDe.RuntimeExplorer.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;

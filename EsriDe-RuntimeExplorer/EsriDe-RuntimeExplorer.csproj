@@ -134,7 +134,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AboutContentControl.xaml.cs">
+    <Compile Include="Controls\AboutContentControl.xaml.cs">
       <DependentUpon>AboutContentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\BaseConverter.cs" />
@@ -143,23 +143,23 @@
     </Compile>
     <Compile Include="CsvConverter\FeatureTableTypeConverter.cs" />
     <Compile Include="Converter\DrawStatusToVisibilityConverter.cs" />
-    <Compile Include="InspectWindow.xaml.cs">
+    <Compile Include="Views\InspectWindow.xaml.cs">
       <DependentUpon>InspectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\CountToVisibilityConverter.cs" />
-    <Compile Include="LayerDetailWindow.xaml.cs">
+    <Compile Include="Views\LayerDetailWindow.xaml.cs">
       <DependentUpon>LayerDetailWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LegendControl.xaml.cs">
+    <Compile Include="Controls\LegendControl.xaml.cs">
       <DependentUpon>LegendControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\ReverseItemsConverter.cs" />
     <Compile Include="Converter\SpatialReferenceToWkidConverter.cs" />
     <Compile Include="Converter\StringToColorConverter.cs" />
-    <Compile Include="LegendTabControl.xaml.cs">
+    <Compile Include="Controls\LegendTabControl.xaml.cs">
       <DependentUpon>LegendTabControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LocatorControl.xaml.cs">
+    <Compile Include="Controls\LocatorControl.xaml.cs">
       <DependentUpon>LocatorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Theme\AccentColorMenuData.cs" />
@@ -171,7 +171,7 @@
     <Compile Include="ViewModel\MainDataViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Page Include="AboutContentControl.xaml">
+    <Page Include="Controls\AboutContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,27 +179,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InspectWindow.xaml">
+    <Page Include="Views\InspectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LayerDetailWindow.xaml">
+    <Page Include="Views\LayerDetailWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LegendControl.xaml">
+    <Page Include="Controls\LegendControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LegendTabControl.xaml">
+    <Page Include="Controls\LegendTabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LocatorControl.xaml">
+    <Page Include="Controls\LocatorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -207,7 +207,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
