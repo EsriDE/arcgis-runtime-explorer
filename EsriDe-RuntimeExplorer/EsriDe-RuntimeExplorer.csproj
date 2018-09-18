@@ -137,6 +137,9 @@
     <Compile Include="AboutContentControl.xaml.cs">
       <DependentUpon>AboutContentControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\IdentifyResultsControl.xaml.cs">
+      <DependentUpon>IdentifyResultsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converter\BaseConverter.cs" />
     <Compile Include="Controls\MapContentControl.xaml.cs">
       <DependentUpon>MapContentControl.xaml</DependentUpon>
@@ -166,12 +169,17 @@
     <Compile Include="Theme\AppThemeMenuData.cs" />
     <Compile Include="Theme\SimpleCommand.cs" />
     <Compile Include="ViewModel\AboutContentViewModel.cs" />
+    <Compile Include="ViewModel\IdentifyResultsViewModel.cs" />
     <Compile Include="ViewModel\LayerDetailViewModel.cs" />
     <Compile Include="ViewModel\LegendItemViewModel.cs" />
     <Compile Include="ViewModel\MainDataViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="AboutContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\IdentifyResultsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

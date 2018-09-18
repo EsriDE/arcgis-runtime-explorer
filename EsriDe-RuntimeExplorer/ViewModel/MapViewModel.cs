@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 using Esri.ArcGISRuntime;
 using Esri.ArcGISRuntime.Data;
@@ -12,6 +13,7 @@ using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.Tasks.Geocoding;
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.UI.Controls;
+using EsriDe.RuntimeExplorer.Controls;
 using GalaSoft.MvvmLight;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
@@ -148,7 +150,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             {
                 // get the tap location in screen units
                 System.Windows.Point tapScreenPoint = e.Position;
-
+                
 
                 var pixelTolerance = 20;
                 var returnPopupsOnly = false;
@@ -157,7 +159,15 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
                 // identify all layers in the MapView, passing the tap point, tolerance, types to return, and max results
                 var identifyLayerResults = await MapView.IdentifyLayersAsync(tapScreenPoint, pixelTolerance, returnPopupsOnly, maxLayerResults);
-
+                var firstGeoElement = identifyLayerResults.FirstOrDefault()?.GeoElements.FirstOrDefault();
+                if (firstGeoElement != null)
+                {
+                    var identifyResultsControl = new IdentifyResultsControl
+                    {
+                        DataContext = new IdentifyResultsViewModel(identifyLayerResults)
+                    };
+                    MapView.ShowCalloutAt(e.Location, identifyResultsControl);
+                }
             }
         }
 

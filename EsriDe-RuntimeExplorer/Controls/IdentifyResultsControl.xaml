@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="EsriDe.RuntimeExplorer.Controls.IdentifyResultsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:EsriDe.RuntimeExplorer.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Command="{Binding LayerLeftCommand}"></Button>
+            <Button Grid.Column="1" Command="{Binding ElementLeftCommand}"></Button>
+            <Grid Column="2">
+
+            </Grid>
+            <Button Grid.Column="3" Command="{Binding ElementRightCommand}"></Button>
+            <Button Grid.Column="4" Command="{Binding LayerRightCommand}"></Button>
+        </Grid>
+        <Grid Row="1">
+            <xctk:PropertyGrid SelectedObject="{Binding SelectedGeoElement}" />
+        </Grid>
+    </Grid>
+</UserControl>
