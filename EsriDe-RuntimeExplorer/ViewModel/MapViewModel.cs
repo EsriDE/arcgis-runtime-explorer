@@ -85,6 +85,13 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _layerExtentGraphicsVisible, value);
         }
 
+        private bool _identifyModeEnabled;
+        public bool IdentifyModeEnabled
+        {
+            get => _identifyModeEnabled;
+            set => Set(ref _identifyModeEnabled, value);
+        }
+
         public MapViewModel()
         {
             var fullExtentOverlay = new GraphicsOverlay();

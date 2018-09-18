@@ -176,6 +176,11 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 LayerExtentGraphicsVisible = !LayerExtentGraphicsVisible;
                 mainDataViewModel.SelectedMapView.LayerExtentGraphicsVisible = LayerExtentGraphicsVisible;
             });
+            IdentifyCommand = new RelayCommand(() =>
+            {
+                IdentifyModeEnabled = !IdentifyModeEnabled;
+                mainDataViewModel.SelectedMapView.IdentifyModeEnabled = IdentifyModeEnabled;
+            });
 
             PropertyChanged += (sender, args) =>
             {
@@ -225,6 +230,13 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _layerExtentGraphicsVisible, value);
         }
 
+        private bool _identifyModeEnabled;
+        public bool IdentifyModeEnabled
+        {
+            get => _identifyModeEnabled;
+            set => Set(ref _identifyModeEnabled, value);
+        }
+
         public ICommand LayerDetailsCommand { get; private set; }
         public ICommand InspectMmpkCommand { get; private set; }
         public ICommand InspectGeodatabaseCommand { get; private set; }
@@ -235,5 +247,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand AddFileBasemapCommand { get; private set; }
         public ICommand ShowAboutCommand { get; private set; }
         public ICommand ToggleLayerExtentGraphicsVisibility { get; private set; }
+        public ICommand IdentifyCommand { get; private set; }
     }
 }
