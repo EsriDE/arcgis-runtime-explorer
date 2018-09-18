@@ -7,6 +7,13 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{StaticResource Locator}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <ListView ItemsSource="{Binding MainData.SelectedMapView.LegendItems}" SelectedItem="{Binding MainData.SelectedMapView.SelectedLegendItem}">
             <ListView.View>
@@ -47,7 +54,24 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Inspect" Command="{Binding Main.InspectLayerCommand}"></MenuItem>
+                    <MenuItem Header="Inspect" Command="{Binding Main.InspectLayerCommand}">
+                        <MenuItem.Icon>
+                            <Rectangle Width="13" Height="16" >
+                                <Rectangle.Fill>
+                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_journal}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Zoom To Layer" Command="{Binding Main.ZoomToLayerCommand}">
+                        <MenuItem.Icon>
+                            <Rectangle Width="13" Height="16" >
+                                <Rectangle.Fill>
+                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_location_round}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

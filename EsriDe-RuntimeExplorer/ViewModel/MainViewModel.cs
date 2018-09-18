@@ -178,6 +178,19 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 mainDataViewModel.SelectedMapView.LayerExtentGraphicsVisible = LayerExtentGraphicsVisible;
             });
 
+
+            ZoomToLayerCommand = new RelayCommand(async () =>
+                {
+                    var mapView = mainDataViewModel?.SelectedMapView?.MapView;
+                    if (mapView != null)
+                    {
+                        var extent = mainDataViewModel.SelectedMapView.SelectedLayer.FullExtent;
+                        await mapView.SetViewpointAsync(new Viewpoint(extent));
+                    }
+
+                },
+                () => mainDataViewModel?.SelectedMapView?.SelectedLayer != null);
+
             PropertyChanged += (sender, args) =>
             {
                 mainDataViewModel.FilePath = FilePath;
@@ -236,5 +249,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand AddFileBasemapCommand { get; private set; }
         public ICommand ShowAboutCommand { get; private set; }
         public ICommand ToggleLayerExtentGraphicsVisibility { get; private set; }
+        public ICommand ZoomToLayerCommand { get; private set; }
     }
 }
