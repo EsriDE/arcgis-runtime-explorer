@@ -82,7 +82,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     {
                         await OpenGeodatabaseAsync();
                     }
-                    else if (FilePath.EndsWith(".mmpk"))
+                    else if (FilePath.EndsWith(".mmpk") || System.IO.Directory.Exists(FilePath))
                     {
                         await OpenMmpkAsync();
                     }

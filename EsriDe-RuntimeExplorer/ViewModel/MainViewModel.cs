@@ -58,11 +58,22 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             {
                 Debug.WriteLine("File open");
                 var dlg = new OpenFileDialog();
-                dlg.Filter =
-                    "ArcGIS Runtime Mobile Formats|*.mmpk;*.geodatabase|Mobile Map Packages (*.mmpk)|*.mmpk|Mobile Geodatabases (*.geodatabase)|*.geodatabase|All Files (*.*)|*.*";
+                dlg.Filter = string.Join("|", new[]
+                {
+                    "ArcGIS Runtime Mobile Formats|*.mmpk;*.geodatabase",
+                    "Mobile Map Packages|*.mmpk",
+                    "Unpacked Mobile Map Packages|*.info",
+                    "Mobile Geodatabases|*.geodatabase",
+                    "All Files|*.*"
+                });
                 if (dlg.ShowDialog() == true)
                 {
-                    FilePath = dlg.FileName;
+                    var selectedPath = dlg.FileName;
+                    if (selectedPath.EndsWith(".info"))
+                    {
+                        selectedPath = System.IO.Path.GetDirectoryName(selectedPath);
+                    }
+                    FilePath = selectedPath;
                 }
             });
 
