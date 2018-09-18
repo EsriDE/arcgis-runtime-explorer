@@ -1,19 +1,19 @@
+using Esri.ArcGISRuntime.Geometry;
+using Esri.ArcGISRuntime.Mapping;
+using Esri.ArcGISRuntime.UI;
+using EsriDe.RuntimeExplorer.Theme;
+using EsriDe.RuntimeExplorer.Views;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using MahApps.Metro;
+using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Esri.ArcGISRuntime.Mapping;
-using Esri.ArcGISRuntime.UI;
-using EsriDe.RuntimeExplorer.Views;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using Microsoft.Win32;
-using MahApps.Metro;
-using EsriDe.RuntimeExplorer.Theme;
-using System.Collections.Generic;
 using System.Windows.Media;
-using Esri.ArcGISRuntime.Geometry;
 
 //using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
