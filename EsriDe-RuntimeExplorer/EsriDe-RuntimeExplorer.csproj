@@ -137,6 +137,7 @@
     <Compile Include="Controls\AboutContentControl.xaml.cs">
       <DependentUpon>AboutContentControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ExpandablePropertyGrid.cs" />
     <Compile Include="Controls\IdentifyResultsControl.xaml.cs">
       <DependentUpon>IdentifyResultsControl.xaml</DependentUpon>
     </Compile>
