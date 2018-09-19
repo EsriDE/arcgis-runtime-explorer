@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using Xceed.Wpf.Toolkit.PropertyGrid;
+﻿using Xceed.Wpf.Toolkit.PropertyGrid;
 
 namespace EsriDe.RuntimeExplorer.Controls
 {
@@ -7,21 +6,18 @@ namespace EsriDe.RuntimeExplorer.Controls
     {
         public ExpandablePropertyGrid()
         {
-            SelectedObjectChanged += PropertyGrid_OnSelectedObjectChanged;
+            PreparePropertyItem += LetsPreparePropertyItem;
         }
 
-        private void PropertyGrid_OnSelectedObjectChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void LetsPreparePropertyItem(object sender, PropertyItemEventArgs e)
         {
-            if (sender is PropertyGrid grid)
+            var prop = e.PropertyItem as PropertyItem;
+            if (prop == null) return;
+
+            prop.MinHeight = 22;
+            if (!prop.PropertyType.IsValueType && prop.PropertyType != typeof(string))
             {
-                foreach (PropertyItem prop in grid.Properties)
-                {
-                    prop.MinHeight = 22;
-                    if (!prop.PropertyType.IsValueType && prop.PropertyType != typeof(string))
-                    {
-                        prop.IsExpandable = true;
-                    }
-                }
+                prop.IsExpandable = true;
             }
         }
     }
