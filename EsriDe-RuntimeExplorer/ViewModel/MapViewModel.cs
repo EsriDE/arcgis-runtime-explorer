@@ -154,19 +154,22 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
                 var pixelTolerance = 20;
                 var returnPopupsOnly = false;
-                var maxLayerResults = 5;
+                var maxResultsPerLayer = 100;
 
 
                 // identify all layers in the MapView, passing the tap point, tolerance, types to return, and max results
-                var identifyLayerResults = await MapView.IdentifyLayersAsync(tapScreenPoint, pixelTolerance, returnPopupsOnly, maxLayerResults);
-                var firstGeoElement = identifyLayerResults.FirstOrDefault()?.GeoElements.FirstOrDefault();
-                if (firstGeoElement != null)
+                var identifyLayerResults = await MapView.IdentifyLayersAsync(tapScreenPoint, pixelTolerance, returnPopupsOnly, maxResultsPerLayer);
+                if (identifyLayerResults.Any())
                 {
                     var identifyResultsControl = new IdentifyResultsControl
                     {
                         DataContext = new IdentifyResultsViewModel(identifyLayerResults)
                     };
                     MapView.ShowCalloutAt(e.Location, identifyResultsControl);
+                }
+                else
+                {
+                    MapView.DismissCallout();
                 }
             }
         }
