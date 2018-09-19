@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Esri.ArcGISRuntime.Data;
+using Xceed.Wpf.Toolkit.PropertyGrid;
 
 namespace EsriDe.RuntimeExplorer.Controls
 {
@@ -24,6 +25,17 @@ namespace EsriDe.RuntimeExplorer.Controls
         public IdentifyResultsControl()
         {
             InitializeComponent();
+        }
+
+        private void PropertyGrid_SelectedObjectChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (sender is PropertyGrid grid)
+            {
+                foreach (PropertyItem prop in grid.Properties)
+                {
+                    prop.IsExpandable = true;
+                }
+            }
         }
     }
 }

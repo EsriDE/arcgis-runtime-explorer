@@ -20,6 +20,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 if (args.PropertyName == nameof(SelectedLayerIndex))
                 {
                     SelectedLayerDisplayIndex = SelectedLayerIndex + 1;
+                    SelectedLayerName = IdentifyLayerResults[SelectedLayerIndex].LayerContent.Name;
                 }
                 if (args.PropertyName == nameof(SelectedElementIndex))
                 {
@@ -62,6 +63,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             }
 
             SelectedLayerIndex = 0;
+            SelectedLayerName = IdentifyLayerResults[SelectedLayerIndex].LayerContent.Name;
             SelectedLayerDisplayIndex = 1;
             LayerCount = IdentifyLayerResults.Count;
             SelectedElementIndex = 0;
@@ -127,6 +129,15 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             get => _elementCount;
             set => Set(ref _elementCount, value);
         }
+
+        private string _selectedLayerName;
+
+        public string SelectedLayerName
+        {
+            get => _selectedLayerName;
+            set => Set(ref _selectedLayerName, value);
+        }
+
 
         public ICommand LayerLeftCommand { get; private set; }
         public ICommand LayerRightCommand { get; private set; }
