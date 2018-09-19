@@ -125,13 +125,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     if (map != null)
                     {
                         map.Basemap = Basemap.CreateTopographic();
-                        
-                        if (map.SpatialReference.BaseGeographic != SpatialReferences.WebMercator &&
-                            map.SpatialReference.BaseGeographic != SpatialReferences.Wgs84)
-                        {
-                            MessageBox.Show(
-                                "Basemap applied, but SpatialReference of current map differs from basemaps SpatialReference. Basemap may be not visible.", "Hint", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
+                        ValidateSpatialReference(map);
                     }
                 },
                 () => mainDataViewModel.SelectedMapView != null);
@@ -151,11 +145,13 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                                 var tileCache = new TileCache(dlg.FileName);
                                 var tileLayer = new ArcGISTiledLayer(tileCache);
                                 map.Basemap = new Basemap(tileLayer);
+                                ValidateSpatialReference(map);
                                 break;
                             case ".vtpk":
                                 //var vectorTileCache = new Esri.ArcGISRuntime.Mapping.VectorTileCache()
                                 var vectorTileLayer = new ArcGISVectorTiledLayer(new Uri(dlg.FileName));
                                 map.Basemap = new Basemap(vectorTileLayer);
+                                ValidateSpatialReference(map);
                                 break;
                             default:
                                 break;
@@ -205,6 +201,19 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 }
             };
 
+        }
+
+        private static void ValidateSpatialReference(Map map)
+        {
+            var mapRef = map.SpatialReference.BaseGeographic;
+            var baseRef = map.Basemap.BaseLayers.FirstOrDefault().SpatialReference.BaseGeographic;
+
+            if (mapRef != baseRef)
+            {
+                MessageBox.Show(
+                    $"Basemap applied, but SpatialReference of current map (Wkid: {mapRef.Wkid}) differs from basemaps SpatialReference (Wkid: {baseRef.Wkid}). Basemap may be not visible.",
+                    "Hint", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         public List<AccentColorMenuData> AccentColors { get; set; }
