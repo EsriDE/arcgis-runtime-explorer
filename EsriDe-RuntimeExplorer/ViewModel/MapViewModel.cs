@@ -1,14 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 using Esri.ArcGISRuntime;
+using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.Tasks.Geocoding;
 using Esri.ArcGISRuntime.UI;
+using Esri.ArcGISRuntime.UI.Controls;
+using EsriDe.RuntimeExplorer.Controls;
 using GalaSoft.MvvmLight;
 
 namespace EsriDe.RuntimeExplorer.ViewModel
@@ -85,6 +90,13 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _layerExtentGraphicsVisible, value);
         }
 
+        private bool _identifyModeEnabled;
+        public bool IdentifyModeEnabled
+        {
+            get => _identifyModeEnabled;
+            set => Set(ref _identifyModeEnabled, value);
+        }
+
         public MapViewModel()
         {
             var fullExtentOverlay = new GraphicsOverlay();
@@ -125,7 +137,41 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 {
                     fullExtentOverlay.IsVisible = LayerExtentGraphicsVisible;
                 }
+                if (args.PropertyName == nameof(MapView))
+                {
+                    MapView.GeoViewTapped += MapViewOnGeoViewTapped;
+                }
             };
+        }
+
+        private async void MapViewOnGeoViewTapped(object s, GeoViewInputEventArgs e)
+        {
+            if (IdentifyModeEnabled)
+            {
+                // get the tap location in screen units
+                System.Windows.Point tapScreenPoint = e.Position;
+                
+
+                var pixelTolerance = 20;
+                var returnPopupsOnly = false;
+                var maxResultsPerLayer = 100;
+
+
+                // identify all layers in the MapView, passing the tap point, tolerance, types to return, and max results
+                var identifyLayerResults = await MapView.IdentifyLayersAsync(tapScreenPoint, pixelTolerance, returnPopupsOnly, maxResultsPerLayer);
+                if (identifyLayerResults.Any())
+                {
+                    var identifyResultsControl = new IdentifyResultsControl
+                    {
+                        DataContext = new IdentifyResultsViewModel(identifyLayerResults)
+                    };
+                    MapView.ShowCalloutAt(e.Location, identifyResultsControl);
+                }
+                else
+                {
+                    MapView.DismissCallout();
+                }
+            }
         }
 
         private async Task BuildFullExtentGraphicsAsync(GraphicCollection graphicCollection)

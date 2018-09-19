@@ -179,6 +179,18 @@
                 </MenuItem.Header>
                 <MenuItem Header="Show layer extent graphics" IsChecked="{Binding LayerExtentGraphicsVisible}" Command="{Binding ToggleLayerExtentGraphicsVisibility}"/>
             </MenuItem>
+            <MenuItem ToolTip="Identify" Height="48" Width="48" IsChecked="{Binding IdentifyModeEnabled}" Command="{Binding IdentifyCommand}">
+                <MenuItem.Header>
+                    <Rectangle Height="28" Width="28">
+                        <Rectangle.Resources>
+                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
+                        </Rectangle.Resources>
+                        <Rectangle.Fill>
+                            <VisualBrush Visual="{StaticResource appbar_information_circle}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </MenuItem.Header>
+            </MenuItem>
         </Menu>
         <controls:LocatorControl Grid.Row="1" Grid.Column="0"></controls:LocatorControl>
         <controls:LegendTabControl Grid.Row="2" Grid.Column="0"/>
