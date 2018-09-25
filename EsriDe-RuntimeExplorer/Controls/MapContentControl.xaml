@@ -9,39 +9,46 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              DataContextChanged="UserControl_DataContextChanged">
-    <Grid>
-        <Grid.Resources>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="#FF23FF00"></Setter>
-                <Setter Property="Background" Value="Black"></Setter>
-                <Setter Property="Opacity" Value="0.5"/>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Opacity" Value="1"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-        </Grid.Resources>
-        <esri:MapView x:Name="MapView" Map="{Binding Map}" GraphicsOverlays="{Binding GraphicsOverlays}" DrawStatusChanged="GeoView_OnDrawStatusChanged" NavigationCompleted="MapView_OnNavigationCompleted"></esri:MapView>
-        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="{Binding MapScale,ElementName=MapView,StringFormat=1:{0:0}}"></TextBlock>
+    <UserControl.Resources>
+        <Style x:Key="GreenHighlightedText" TargetType="Grid">
+            <Style.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#FF23FF00"></Setter>
+                    <Setter Property="Background" Value="Black"></Setter>
+                    <Setter Property="Opacity" Value="0.5"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Style.Resources>
+        </Style>
+    </UserControl.Resources>
 
-        <xctk:WatermarkComboBox VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" MinWidth="100" Watermark="Bookmarks" ItemsSource="{Binding Map.Bookmarks}" SelectedItem="{Binding SelectedBookmark}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">
-            <xctk:WatermarkComboBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type esri:Bookmark}">
-                    <TextBlock Text="{Binding Name}"></TextBlock>
-                </DataTemplate>
-            </xctk:WatermarkComboBox.ItemTemplate>
-        </xctk:WatermarkComboBox>
-        
-        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
-            <TextBlock Text="{Binding VisibleArea.Extent.XMin, ElementName=MapView}"></TextBlock>
-            <TextBlock Text=" / "></TextBlock>
-            <TextBlock Text="{Binding VisibleArea.Extent.YMin, ElementName=MapView}"></TextBlock>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
-            <TextBlock Text="{Binding VisibleArea.Extent.XMax, ElementName=MapView}"></TextBlock>
-            <TextBlock Text=" / "></TextBlock>
-            <TextBlock Text="{Binding VisibleArea.Extent.YMax, ElementName=MapView}"></TextBlock>
-        </StackPanel>
+    <Grid>
+        <esri:MapView x:Name="MapView" Map="{Binding Map}" GraphicsOverlays="{Binding GraphicsOverlays}" DrawStatusChanged="GeoView_OnDrawStatusChanged" NavigationCompleted="MapView_OnNavigationCompleted"></esri:MapView>
+        <Grid Style="{StaticResource GreenHighlightedText}">
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="{Binding MapScale,ElementName=MapView,StringFormat=1:{0:0}}"></TextBlock>
+
+            <xctk:WatermarkComboBox VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" MinWidth="100" Watermark="Bookmarks" ItemsSource="{Binding Map.Bookmarks}" SelectedItem="{Binding SelectedBookmark}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">
+                <xctk:WatermarkComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type esri:Bookmark}">
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </xctk:WatermarkComboBox.ItemTemplate>
+            </xctk:WatermarkComboBox>
+
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
+                <TextBlock Text="{Binding VisibleArea.Extent.XMin, ElementName=MapView}"></TextBlock>
+                <TextBlock Text=" / "></TextBlock>
+                <TextBlock Text="{Binding VisibleArea.Extent.YMin, ElementName=MapView}"></TextBlock>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock Text="{Binding VisibleArea.Extent.XMax, ElementName=MapView}"></TextBlock>
+                <TextBlock Text=" / "></TextBlock>
+                <TextBlock Text="{Binding VisibleArea.Extent.YMax, ElementName=MapView}"></TextBlock>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

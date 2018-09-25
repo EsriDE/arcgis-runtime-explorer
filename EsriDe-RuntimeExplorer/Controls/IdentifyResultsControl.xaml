@@ -19,6 +19,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="DarkSlateGray" />
+                    <Setter Property="FontSize" Value="18" />
+                </Style>
+            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -33,7 +39,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
                 <Label>Layer:</Label>
-                <Label Content="{Binding SelectedLayerName}"></Label>
+                <Label Content="{Binding SelectedLayerName}" FontWeight="Bold"></Label>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Orientation="Horizontal">
                 <Label>Element</Label>
@@ -44,11 +50,11 @@
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="{Binding SelectedLayerDisplayIndex}"/>
-                <Label Grid.Column="1" Content=" / "/>
+                <Label Grid.Column="0" Content="{Binding SelectedLayerDisplayIndex}" HorizontalAlignment="Right"/>
+                <Label Grid.Column="1" Content="/"/>
                 <Label Grid.Column="2" Content="{Binding LayerCount}"/>
             </Grid>
             <Button Grid.Row="1" Grid.Column="2" Command="{Binding LayerRightCommand}">
@@ -60,11 +66,11 @@
             <Grid Grid.Row="1" Grid.Column="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="{Binding SelectedElementDisplayIndex}"/>
-                <Label Grid.Column="1" Content=" / "/>
+                <Label Grid.Column="0" Content="{Binding SelectedElementDisplayIndex}" HorizontalAlignment="Right"/>
+                <Label Grid.Column="1" Content="/"/>
                 <Label Grid.Column="2" Content="{Binding ElementCount}"/>
             </Grid>
             <Button Grid.Row="1" Grid.Column="5" Command="{Binding ElementRightCommand}">
