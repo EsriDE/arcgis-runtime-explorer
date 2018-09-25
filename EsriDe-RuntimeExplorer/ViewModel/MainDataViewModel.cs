@@ -100,6 +100,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                         GeocodeResults.Add(geocodeResult);
                     }
                 }
+                if (args.PropertyName == nameof(SelectedMapView))
+                {
+                    SelectedMapView.IdentifyModeEnabled = true;
+                }
                 if (args.PropertyName == nameof(SelectedGeocodeResult))
                 {
                     SelectedMapView.SelectedGeocodeResult = SelectedGeocodeResult;

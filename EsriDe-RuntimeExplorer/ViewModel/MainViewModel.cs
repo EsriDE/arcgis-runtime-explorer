@@ -177,12 +177,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 LayerExtentGraphicsVisible = !LayerExtentGraphicsVisible;
                 mainDataViewModel.SelectedMapView.LayerExtentGraphicsVisible = LayerExtentGraphicsVisible;
             });
-            IdentifyCommand = new RelayCommand(() =>
-            {
-                IdentifyModeEnabled = !IdentifyModeEnabled;
-                mainDataViewModel.SelectedMapView.IdentifyModeEnabled = IdentifyModeEnabled;
-            });
-
 
             ZoomToLayerCommand = new RelayCommand(async () =>
                 {
@@ -242,13 +236,6 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         {
             get => _layerExtentGraphicsVisible;
             set => Set(ref _layerExtentGraphicsVisible, value);
-        }
-
-        private bool _identifyModeEnabled;
-        public bool IdentifyModeEnabled
-        {
-            get => _identifyModeEnabled;
-            set => Set(ref _identifyModeEnabled, value);
         }
 
         public ICommand LayerDetailsCommand { get; private set; }
