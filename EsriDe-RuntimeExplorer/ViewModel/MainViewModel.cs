@@ -192,7 +192,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
             PropertyChanged += (sender, args) =>
             {
-                mainDataViewModel.FilePath = FilePath;
+                if (args.PropertyName == nameof(FilePath))
+                {
+                    mainDataViewModel.FilePath = FilePath;
+                }
                 if (args.PropertyName == nameof(MapDrawStatus))
                 {
                     AppStatus = MapDrawStatus.ToString();
