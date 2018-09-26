@@ -1,6 +1,7 @@
-using Esri.ArcGISRuntime.Geometry;
+using Esri.ArcGISRuntime;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.UI;
+using EsriDe.RuntimeExplorer.Events;
 using EsriDe.RuntimeExplorer.Theme;
 using EsriDe.RuntimeExplorer.Views;
 using GalaSoft.MvvmLight;
@@ -205,14 +206,33 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
         private static void ValidateSpatialReference(Map map)
         {
-            var mapRef = map.SpatialReference.BaseGeographic;
-            var baseRef = map.Basemap.BaseLayers.FirstOrDefault().SpatialReference.BaseGeographic;
-
-            if (mapRef != baseRef)
+            var baseLayer = map.Basemap.BaseLayers.FirstOrDefault();
+            if (baseLayer.LoadStatus != LoadStatus.Loaded)
             {
-                MessageBox.Show(
-                    $"Basemap applied, but SpatialReference of current map (Wkid: {mapRef.Wkid}) differs from basemaps SpatialReference (Wkid: {baseRef.Wkid}). Basemap may be not visible.",
-                    "Hint", MessageBoxButton.OK, MessageBoxImage.Information);
+                baseLayer.Loaded += (sender, args) => BaseLayerOnLoaded(baseLayer, new MapEventArgs(map));
+            }
+            else
+            {
+                BaseLayerOnLoaded(baseLayer, new MapEventArgs(map));
+            }
+        }
+
+        private static void BaseLayerOnLoaded(object o, MapEventArgs args)
+        {
+            var layer = (o as Layer);
+            if (layer.LoadStatus == LoadStatus.Loaded)
+            {
+                var map = args.Map;
+                var mapRef = map.SpatialReference.BaseGeographic;
+                var baseLayer = map.Basemap.BaseLayers.FirstOrDefault();
+                var baseRef = baseLayer?.SpatialReference?.BaseGeographic;
+
+                if (mapRef != baseRef)
+                {
+                    MessageBox.Show(
+                        $"Basemap applied, but SpatialReference of current map (Wkid: {mapRef.Wkid.ToString() ?? "empty"}) differs from basemaps SpatialReference (Wkid: {baseRef.Wkid.ToString() ?? "empty"}). Basemap may be not visible.",
+                        "Hint", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 

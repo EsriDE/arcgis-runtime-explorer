@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="CsvConverter\FeatureTableTypeConverter.cs" />
     <Compile Include="Converter\DrawStatusToVisibilityConverter.cs" />
+    <Compile Include="Events\MapEventArgs.cs" />
     <Compile Include="Views\InspectWindow.xaml.cs">
       <DependentUpon>InspectWindow.xaml</DependentUpon>
     </Compile>
