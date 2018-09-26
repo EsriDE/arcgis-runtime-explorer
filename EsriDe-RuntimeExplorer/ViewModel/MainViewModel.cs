@@ -1,6 +1,7 @@
-using Esri.ArcGISRuntime.Geometry;
+using Esri.ArcGISRuntime;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.UI;
+using EsriDe.RuntimeExplorer.Events;
 using EsriDe.RuntimeExplorer.Theme;
 using EsriDe.RuntimeExplorer.Views;
 using GalaSoft.MvvmLight;
@@ -125,13 +126,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     if (map != null)
                     {
                         map.Basemap = Basemap.CreateTopographic();
-                        
-                        if (map.SpatialReference.BaseGeographic != SpatialReferences.WebMercator &&
-                            map.SpatialReference.BaseGeographic != SpatialReferences.Wgs84)
-                        {
-                            MessageBox.Show(
-                                "Basemap applied, but SpatialReference of current map differs from basemaps SpatialReference. Basemap may be not visible.", "Hint", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
+                        ValidateSpatialReference(map);
                     }
                 },
                 () => mainDataViewModel.SelectedMapView != null);
@@ -151,11 +146,13 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                                 var tileCache = new TileCache(dlg.FileName);
                                 var tileLayer = new ArcGISTiledLayer(tileCache);
                                 map.Basemap = new Basemap(tileLayer);
+                                ValidateSpatialReference(map);
                                 break;
                             case ".vtpk":
                                 //var vectorTileCache = new Esri.ArcGISRuntime.Mapping.VectorTileCache()
                                 var vectorTileLayer = new ArcGISVectorTiledLayer(new Uri(dlg.FileName));
                                 map.Basemap = new Basemap(vectorTileLayer);
+                                ValidateSpatialReference(map);
                                 break;
                             default:
                                 break;
@@ -202,6 +199,38 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 }
             };
 
+        }
+
+        private static void ValidateSpatialReference(Map map)
+        {
+            var baseLayer = map.Basemap.BaseLayers.FirstOrDefault();
+            if (baseLayer.LoadStatus != LoadStatus.Loaded)
+            {
+                baseLayer.Loaded += (sender, args) => BaseLayerOnLoaded(baseLayer, new MapEventArgs(map));
+            }
+            else
+            {
+                BaseLayerOnLoaded(baseLayer, new MapEventArgs(map));
+            }
+        }
+
+        private static void BaseLayerOnLoaded(object o, MapEventArgs args)
+        {
+            var layer = (o as Layer);
+            if (layer.LoadStatus == LoadStatus.Loaded)
+            {
+                var map = args.Map;
+                var mapRef = map.SpatialReference.BaseGeographic;
+                var baseLayer = map.Basemap.BaseLayers.FirstOrDefault();
+                var baseRef = baseLayer?.SpatialReference?.BaseGeographic;
+
+                if (mapRef != baseRef)
+                {
+                    MessageBox.Show(
+                        $"Basemap applied, but SpatialReference of current map (Wkid: {mapRef.Wkid.ToString() ?? "empty"}) differs from basemaps SpatialReference (Wkid: {baseRef.Wkid.ToString() ?? "empty"}). Basemap may be not visible.",
+                        "Hint", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
         }
 
         public List<AccentColorMenuData> AccentColors { get; set; }
