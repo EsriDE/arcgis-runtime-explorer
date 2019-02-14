@@ -74,7 +74,7 @@
                                 <ItemsControl ItemsSource="{Binding MainData.SelectedMapView.Map.OperationalLayers, Converter={converter:ReverseItemsConverter}}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <StackPanel Background="White"></StackPanel>
+                                            <StackPanel Background="{DynamicResource WindowBackgroundBrush}"></StackPanel>
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
