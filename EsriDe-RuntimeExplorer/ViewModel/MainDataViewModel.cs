@@ -130,7 +130,40 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
         private async Task OpenMmpkAsync()
         {
-            Mmpk = await MobileMapPackage.OpenAsync(FilePath);
+            try
+            {
+                Mmpk = await MobileMapPackage.OpenAsync(FilePath);
+            }
+            catch (Exception e)
+            {
+                //packed MMPK files that contains raster data could not be loaded, they must be unpacked
+                if (e.Message.Contains("Mobile map package contains raster data that requires the mobile map package to be unpacked in a directory before use"))
+                {
+                    var message = $"{e.Message}{Environment.NewLine}{Environment.NewLine}{Properties.Resources.QuestionUnpackMMPKToFolder}";
+                    var result = MessageBox.Show(message, Properties.Resources.MessageBoxDecision, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var folder = FilePath.Replace(Path.GetExtension(FilePath), "");
+                        if (!Directory.Exists(folder))
+                        {
+                            using (ZipArchive zip = ZipFile.Open(FilePath, ZipArchiveMode.Read))
+                            {
+                                zip.ExtractToDirectory(folder);
+                            }
+                        }
+                        Mmpk = await MobileMapPackage.OpenAsync(folder);
+                    }
+                }
+            }
+
+            if (Mmpk == null || string.IsNullOrEmpty(Mmpk.Path))
+            {
+                MessageBox.Show(Properties.Resources.ErrorMmpkCouldNotBeLoaded, Properties.Resources.MessageBoxError,
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             foreach (var map in Mmpk.Maps)
             {
                 await map.LoadAsync();
