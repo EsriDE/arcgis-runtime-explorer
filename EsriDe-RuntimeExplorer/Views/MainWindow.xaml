@@ -61,13 +61,10 @@
 
     <mahControls:MetroWindow.RightWindowCommands>
         <mahControls:WindowCommands>
-            <mahControls:DropDownButton Content="{x:Static p:Resources.AppTheme}" ItemContainerStyle="{StaticResource AppThemeMenuItemStyle}" ItemsSource="{Binding Main.AppThemes, Mode=OneWay}" Background="{DynamicResource WindowTitleColorBrush}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource WindowTitleColorBrush}" ArrowBrush="{DynamicResource HighlightBrush}">
+            <mahControls:DropDownButton Content="{x:Static p:Resources.AppTheme}" ItemContainerStyle="{StaticResource AppThemeMenuItemStyle}" ItemsSource="{Binding Main.AppThemes, Mode=OneWay}" Background="{DynamicResource AccentColorBrush4}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource AccentColorBrush4}" ArrowBrush="{DynamicResource HighlightBrush}" ArrowMouseOverBrush="DarkSlateGray">
             </mahControls:DropDownButton>
 
-            <mahControls:DropDownButton Content="{x:Static p:Resources.AppColor}"
-                ItemContainerStyle="{StaticResource AccentColorMenuItemStyle}"
-                ItemsSource="{Binding Main.AccentColors, Mode=OneWay}"
-                Background="{DynamicResource WindowTitleColorBrush}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource WindowTitleColorBrush}" ArrowBrush="{DynamicResource HighlightBrush}">
+            <mahControls:DropDownButton Content="{x:Static p:Resources.AppColor}" ItemContainerStyle="{StaticResource AccentColorMenuItemStyle}" ItemsSource="{Binding Main.AccentColors, Mode=OneWay}" Background="{DynamicResource AccentColorBrush4}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource AccentColorBrush4}" ArrowBrush="{DynamicResource HighlightBrush}" ArrowMouseOverBrush="DarkSlateGray">
             </mahControls:DropDownButton>
 
             <Button Click="ShowAbout" ToolTip="{x:Static p:Resources.About}">
@@ -102,8 +99,9 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="Auto" MinWidth="250"/>
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -156,7 +154,8 @@
         </Menu>
         <controls:LocatorControl Grid.Row="1" Grid.Column="0"></controls:LocatorControl>
         <controls:LegendTabControl Grid.Row="2" Grid.Column="0"/>
-        <TabControl x:Name="MapTabControl" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
+        <GridSplitter Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" HorizontalAlignment="Stretch"/>
+        <TabControl x:Name="MapTabControl" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" DataContext="{Binding MainData}" ItemsSource="{Binding MapViews}" SelectedItem="{Binding SelectedMapView}">
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
                     <Setter Property="mahControls:ControlsHelper.HeaderFontSize" Value="18" />
@@ -168,7 +167,7 @@
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
-        <StatusBar Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+        <StatusBar Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
