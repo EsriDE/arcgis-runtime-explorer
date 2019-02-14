@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using Esri.ArcGISRuntime;
 using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Mapping;
@@ -75,39 +78,46 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         {
             PropertyChanged += async (sender, args) =>
             {
-                if (args.PropertyName == nameof(FilePath))
+                try
                 {
-                    MapViews.Clear();
-                    if (FilePath.EndsWith(".geodatabase"))
+                    if (args.PropertyName == nameof(FilePath))
                     {
-                        await OpenGeodatabaseAsync();
+                        MapViews.Clear();
+                        if (FilePath.EndsWith(".geodatabase"))
+                        {
+                            await OpenGeodatabaseAsync();
+                        }
+                        else if (FilePath.EndsWith(".mmpk") || Directory.Exists(FilePath))
+                        {
+                            await OpenMmpkAsync();
+                        }
                     }
-                    else if (FilePath.EndsWith(".mmpk") || System.IO.Directory.Exists(FilePath))
+                    if (args.PropertyName == nameof(LocatorSearchText) && LocatorTask != null)
                     {
-                        await OpenMmpkAsync();
+                        if (LocatorTask.LoadStatus != LoadStatus.Loaded)
+                        {
+                            await LocatorTask.LoadAsync();
+                        }
+                        var geocodeResults = await LocatorTask.GeocodeAsync(LocatorSearchText);
+                        GeocodeResults.Clear();
+                        foreach (var geocodeResult in geocodeResults.Take(10))
+                        {
+                            GeocodeResults.Add(geocodeResult);
+                        }
+                    }
+                    if (args.PropertyName == nameof(SelectedMapView) && SelectedMapView != null)
+                    {
+                        SelectedMapView.IdentifyModeEnabled = true;
+                    }
+                    if (args.PropertyName == nameof(SelectedGeocodeResult))
+                    {
+                        SelectedMapView.SelectedGeocodeResult = SelectedGeocodeResult;
+                        LocatorSearchText = null;
                     }
                 }
-                if (args.PropertyName == nameof(LocatorSearchText) && LocatorTask != null)
+                catch (Exception ex)
                 {
-                    if (LocatorTask.LoadStatus != LoadStatus.Loaded)
-                    {
-                        await LocatorTask.LoadAsync();
-                    }
-                    var geocodeResults = await LocatorTask.GeocodeAsync(LocatorSearchText);
-                    GeocodeResults.Clear();
-                    foreach (var geocodeResult in geocodeResults.Take(10))
-                    {
-                        GeocodeResults.Add(geocodeResult);
-                    }
-                }
-                if (args.PropertyName == nameof(SelectedMapView) && SelectedMapView != null)
-                {
-                    SelectedMapView.IdentifyModeEnabled = true;
-                }
-                if (args.PropertyName == nameof(SelectedGeocodeResult))
-                {
-                    SelectedMapView.SelectedGeocodeResult = SelectedGeocodeResult;
-                    LocatorSearchText = null;
+                    MessageBox.Show(ex.ToString());
                 }
             };
             var geocodeServiceUrl = @"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer";
