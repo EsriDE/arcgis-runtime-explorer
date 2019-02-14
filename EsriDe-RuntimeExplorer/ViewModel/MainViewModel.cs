@@ -227,8 +227,8 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 if (mapRef != baseRef)
                 {
                     MessageBox.Show(
-                        $"Basemap applied, but SpatialReference of current map (Wkid: {mapRef.Wkid.ToString() ?? "empty"}) differs from basemaps SpatialReference (Wkid: {baseRef.Wkid.ToString() ?? "empty"}). Basemap may be not visible.",
-                        "Hint", MessageBoxButton.OK, MessageBoxImage.Information);
+                        string.Format(Properties.Resources.ErrorSpatialReferencesDoNotMatch, mapRef.Wkid.ToString() ?? "empty", baseRef.Wkid.ToString() ?? "empty"),
+                        Properties.Resources.MessageBoxHint, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }

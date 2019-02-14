@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:EsriDe.RuntimeExplorer"
+             xmlns:p="clr-namespace:EsriDe.RuntimeExplorer.Properties"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{StaticResource Locator}">
@@ -18,7 +19,7 @@
         <ListView ItemsSource="{Binding MainData.SelectedMapView.LegendItems}" SelectedItem="{Binding MainData.SelectedMapView.SelectedLegendItem}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="Auto" Header="Layer">
+                    <GridViewColumn Width="Auto" Header="{x:Static p:Resources.TOCHeaderLayer}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" DataContext="{Binding}">
@@ -39,7 +40,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="MinScale">
+                    <GridViewColumn Width="Auto" Header="{x:Static p:Resources.TOCHeaderMinScale}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -54,7 +55,7 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Inspect" Command="{Binding Main.InspectLayerCommand}">
+                    <MenuItem Header="{x:Static p:Resources.ContextMenuInspect}" Command="{Binding Main.InspectLayerCommand}">
                         <MenuItem.Icon>
                             <Rectangle Width="13" Height="16" >
                                 <Rectangle.Fill>
@@ -63,7 +64,7 @@
                             </Rectangle>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Zoom To Layer" Command="{Binding Main.ZoomToLayerCommand}">
+                    <MenuItem Header="{x:Static p:Resources.ContextMenuZoomToLayer}" Command="{Binding Main.ZoomToLayerCommand}">
                         <MenuItem.Icon>
                             <Rectangle Width="13" Height="16" >
                                 <Rectangle.Fill>

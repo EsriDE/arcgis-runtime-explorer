@@ -8,6 +8,7 @@
              xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
              xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:controls="clr-namespace:EsriDe.RuntimeExplorer.Controls"
+             xmlns:p="clr-namespace:EsriDe.RuntimeExplorer.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{StaticResource Locator}">
@@ -28,11 +29,11 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Margin="3,0">Total Layers:</TextBlock>
-                    <TextBlock Margin="3,0" FontWeight="UltraBold" Text="{Binding MainData.SelectedMapView.AllLayersCount, FallbackValue=0}"></TextBlock>
+                    <TextBlock Margin="3,0" Text="{x:Static p:Resources.TOCTotalLayers}" />
+                    <TextBlock Margin="3,0" FontWeight="UltraBold" Text="{Binding MainData.SelectedMapView.AllLayersCount, FallbackValue=0}" />
                     <TextBlock>|</TextBlock>
-                    <TextBlock Margin="3,0">Operational Layers:</TextBlock>
-                    <TextBlock Margin="3,0" FontWeight="UltraBold" Text="{Binding MainData.SelectedMapView.OperationalLayersCount, FallbackValue=0}"></TextBlock>
+                    <TextBlock Margin="3,0" Text="{x:Static p:Resources.TOCOperationalLayers}" />
+                    <TextBlock Margin="3,0" FontWeight="UltraBold" Text="{Binding MainData.SelectedMapView.OperationalLayersCount, FallbackValue=0}" />
                 </StackPanel>
                
                 <TabControl Grid.Row="1" TabStripPlacement="Left" Grid.IsSharedSizeScope="True" >
@@ -55,7 +56,7 @@
                         </Style>
                     </TabControl.Resources>
 
-                    <TabItem Header="Visibility" TextOptions.TextFormattingMode="Display">
+                    <TabItem Header="{x:Static p:Resources.TOCVisibility}" TextOptions.TextFormattingMode="Display">
                         <Grid >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition SharedSizeGroup="xxx"/>
@@ -64,7 +65,7 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Symbology" TextOptions.TextFormattingMode="Display">
+                    <TabItem Header="{x:Static p:Resources.TOCSymbology}" TextOptions.TextFormattingMode="Display">
                         <Grid >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition SharedSizeGroup="xxx"/>

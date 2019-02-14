@@ -6,6 +6,7 @@
              xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
              xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:p="clr-namespace:EsriDe.RuntimeExplorer.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              DataContextChanged="UserControl_DataContextChanged">
@@ -31,7 +32,7 @@
         <Grid Style="{StaticResource GreenHighlightedText}">
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="{Binding MapScale,ElementName=MapView,StringFormat=1:{0:0}}"></TextBlock>
 
-            <xctk:WatermarkComboBox VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" MinWidth="100" Watermark="Bookmarks" ItemsSource="{Binding Map.Bookmarks}" SelectedItem="{Binding SelectedBookmark}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">
+            <xctk:WatermarkComboBox VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" MinWidth="100" Watermark="{x:Static p:Resources.Bookmarks}" ItemsSource="{Binding Map.Bookmarks}" SelectedItem="{Binding SelectedBookmark}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">
                 <xctk:WatermarkComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type esri:Bookmark}">
                         <TextBlock Text="{Binding Name}"></TextBlock>

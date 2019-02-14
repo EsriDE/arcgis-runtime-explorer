@@ -22,7 +22,7 @@ namespace EsriDe.RuntimeExplorer.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace EsriDe.RuntimeExplorer.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EsriDe.RuntimeExplorer.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,246 @@ namespace EsriDe.RuntimeExplorer.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        public static string AppColor {
+            get {
+                return ResourceManager.GetString("AppColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        public static string AppTheme {
+            get {
+                return ResourceManager.GetString("AppTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmarks.
+        /// </summary>
+        public static string Bookmarks {
+            get {
+                return ResourceManager.GetString("Bookmarks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inspect.
+        /// </summary>
+        public static string ContextMenuInspect {
+            get {
+                return ResourceManager.GetString("ContextMenuInspect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom To Layer.
+        /// </summary>
+        public static string ContextMenuZoomToLayer {
+            get {
+                return ResourceManager.GetString("ContextMenuZoomToLayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MMPK could not be loaded..
+        /// </summary>
+        public static string ErrorMmpkCouldNotBeLoaded {
+            get {
+                return ResourceManager.GetString("ErrorMmpkCouldNotBeLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basemap applied, but SpatialReference of current map (Wkid: {0}) differs from basemaps SpatialReference (Wkid: {1}). Basemap may be not visible..
+        /// </summary>
+        public static string ErrorSpatialReferencesDoNotMatch {
+            get {
+                return ResourceManager.GetString("ErrorSpatialReferencesDoNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underlay a Topographic Basemap from ArcGIS Online.
+        /// </summary>
+        public static string MenuBasemap {
+            get {
+                return ResourceManager.GetString("MenuBasemap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inspect.
+        /// </summary>
+        public static string MenuInspect {
+            get {
+                return ResourceManager.GetString("MenuInspect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layer Details.
+        /// </summary>
+        public static string MenuLayerDetails {
+            get {
+                return ResourceManager.GetString("MenuLayerDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open File.
+        /// </summary>
+        public static string MenuOpenFile {
+            get {
+                return ResourceManager.GetString("MenuOpenFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string MenuOptions {
+            get {
+                return ResourceManager.GetString("MenuOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action required.
+        /// </summary>
+        public static string MessageBoxDecision {
+            get {
+                return ResourceManager.GetString("MessageBoxDecision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string MessageBoxError {
+            get {
+                return ResourceManager.GetString("MessageBoxError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hint.
+        /// </summary>
+        public static string MessageBoxHint {
+            get {
+                return ResourceManager.GetString("MessageBoxHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show layer extent graphics.
+        /// </summary>
+        public static string OptionsShowLayerExtents {
+            get {
+                return ResourceManager.GetString("OptionsShowLayerExtents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to unpack the MMPK in the current directory and use the folder instead?.
+        /// </summary>
+        public static string QuestionUnpackMMPKToFolder {
+            get {
+                return ResourceManager.GetString("QuestionUnpackMMPKToFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search address ....
+        /// </summary>
+        public static string SearchAddress {
+            get {
+                return ResourceManager.GetString("SearchAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layer.
+        /// </summary>
+        public static string TOCHeaderLayer {
+            get {
+                return ResourceManager.GetString("TOCHeaderLayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MinScale.
+        /// </summary>
+        public static string TOCHeaderMinScale {
+            get {
+                return ResourceManager.GetString("TOCHeaderMinScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operational Layers:.
+        /// </summary>
+        public static string TOCOperationalLayers {
+            get {
+                return ResourceManager.GetString("TOCOperationalLayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbology.
+        /// </summary>
+        public static string TOCSymbology {
+            get {
+                return ResourceManager.GetString("TOCSymbology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Layers:.
+        /// </summary>
+        public static string TOCTotalLayers {
+            get {
+                return ResourceManager.GetString("TOCTotalLayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visibility.
+        /// </summary>
+        public static string TOCVisibility {
+            get {
+                return ResourceManager.GetString("TOCVisibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unnamed Map.
+        /// </summary>
+        public static string UnnamedMap {
+            get {
+                return ResourceManager.GetString("UnnamedMap", resourceCulture);
             }
         }
     }

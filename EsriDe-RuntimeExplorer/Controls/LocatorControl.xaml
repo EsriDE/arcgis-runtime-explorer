@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:EsriDe.RuntimeExplorer"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:geocoding="clr-namespace:Esri.ArcGISRuntime.Tasks.Geocoding;assembly=Esri.ArcGISRuntime"
+             xmlns:p="clr-namespace:EsriDe.RuntimeExplorer.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="25" d:DesignWidth="200"
              DataContext="{Binding MainData}">
@@ -14,7 +15,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <xctk:WatermarkTextBox Grid.Row="0" Watermark="Search address.." Text="{Binding LocatorSearchText, UpdateSourceTrigger=PropertyChanged}"></xctk:WatermarkTextBox>
+        <xctk:WatermarkTextBox Grid.Row="0" Watermark="{x:Static p:Resources.SearchAddress}" Text="{Binding LocatorSearchText, UpdateSourceTrigger=PropertyChanged}"></xctk:WatermarkTextBox>
         <ListBox Grid.Row="1" ItemsSource="{Binding GeocodeResults}" SelectedItem="{Binding SelectedGeocodeResult}">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="geocoding:GeocodeResult">

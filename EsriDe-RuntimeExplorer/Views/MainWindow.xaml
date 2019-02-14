@@ -4,12 +4,13 @@
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
-                        xmlns:runtimeExplorer="clr-namespace:EsriDe.RuntimeExplorer"
+                        xmlns:re="clr-namespace:EsriDe.RuntimeExplorer"
                         xmlns:viewModel="clr-namespace:EsriDe.RuntimeExplorer.ViewModel"
                         xmlns:controls="clr-namespace:EsriDe.RuntimeExplorer.Controls"
                         xmlns:mahControls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                         xmlns:converter="clr-namespace:EsriDe.RuntimeExplorer.Converter"
+                        xmlns:p="clr-namespace:EsriDe.RuntimeExplorer.Properties"
                         mc:Ignorable="d"
                         GlowBrush="{DynamicResource AccentColorBrush}"
                         Title="ArcGIS Runtime Explorer" 
@@ -60,16 +61,16 @@
 
     <mahControls:MetroWindow.RightWindowCommands>
         <mahControls:WindowCommands>
-            <mahControls:DropDownButton Content="Theme" ItemContainerStyle="{StaticResource AppThemeMenuItemStyle}" ItemsSource="{Binding Main.AppThemes, Mode=OneWay}" Background="{DynamicResource WindowTitleColorBrush}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource WindowTitleColorBrush}" ArrowBrush="{DynamicResource HighlightBrush}">
+            <mahControls:DropDownButton Content="{x:Static p:Resources.AppTheme}" ItemContainerStyle="{StaticResource AppThemeMenuItemStyle}" ItemsSource="{Binding Main.AppThemes, Mode=OneWay}" Background="{DynamicResource WindowTitleColorBrush}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource WindowTitleColorBrush}" ArrowBrush="{DynamicResource HighlightBrush}">
             </mahControls:DropDownButton>
 
-            <mahControls:DropDownButton Content="Color"
+            <mahControls:DropDownButton Content="{x:Static p:Resources.AppColor}"
                 ItemContainerStyle="{StaticResource AccentColorMenuItemStyle}"
                 ItemsSource="{Binding Main.AccentColors, Mode=OneWay}"
                 Background="{DynamicResource WindowTitleColorBrush}" Foreground="{DynamicResource AccentSelectedColorBrush}" BorderBrush="{DynamicResource WindowTitleColorBrush}" ArrowBrush="{DynamicResource HighlightBrush}">
             </mahControls:DropDownButton>
 
-            <Button Click="ShowAbout" ToolTip="About">
+            <Button Click="ShowAbout" ToolTip="{x:Static p:Resources.About}">
                 <iconPacks:PackIconModern Width="10"
                                           Height="10"
                                           Kind="Question" />
@@ -80,7 +81,7 @@
 
     <mahControls:MetroWindow.Flyouts>
         <mahControls:FlyoutsControl>
-            <mahControls:Flyout x:Name="AboutFlyout" Header="About"
+            <mahControls:Flyout x:Name="AboutFlyout" Header="{x:Static p:Resources.About}"
                      IsModal="True"
                      Position="Right">
                 <controls:AboutContentControl/>
@@ -92,9 +93,9 @@
         <DataTemplate>
             <Grid Width="{TemplateBinding Width}"
                   Height="{TemplateBinding Height}"
-                  Margin="4"
+                  Margin="6"
                   RenderOptions.BitmapScalingMode="HighQuality">
-                <Image Source="Resources/world.ico"></Image>
+                <Image Source="/Resources/world.ico"></Image>
             </Grid>
         </DataTemplate>
     </mahControls:MetroWindow.IconTemplate>
@@ -111,40 +112,19 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" DataContext="{Binding Main}">
-            <MenuItem ToolTip="Open File" Height="48" Width="48" Command="{Binding FileOpenCommand}">
+            <MenuItem ToolTip="{x:Static p:Resources.MenuOpenFile}" Height="48" Width="48" Command="{Binding FileOpenCommand}">
                 <MenuItem.Header>
-                    <Rectangle Height="26" Width="32">
-                        <Rectangle.Resources>
-                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
-                        </Rectangle.Resources>
-                        <Rectangle.Fill>
-                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_folder_open}" />
-                        </Rectangle.Fill>
-                    </Rectangle>
+                    <iconPacks:PackIconEntypo Kind="Folder" Foreground="{DynamicResource AccentColorBrush}" Height="28" Width="28" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem ToolTip="Layer Details" Height="48" Width="48" Command="{Binding LayerDetailsCommand}">
+            <MenuItem ToolTip="{x:Static p:Resources.MenuLayerDetails}" Height="48" Width="48" Command="{Binding LayerDetailsCommand}">
                 <MenuItem.Header>
-                    <Rectangle Height="28" Width="28">
-                        <Rectangle.Resources>
-                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
-                        </Rectangle.Resources>
-                        <Rectangle.Fill>
-                            <VisualBrush Visual="{StaticResource appbar_layer}" />
-                        </Rectangle.Fill>
-                    </Rectangle>
+                    <iconPacks:PackIconEntypo Kind="Layers" Foreground="{DynamicResource AccentColorBrush}" Height="28" Width="28" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem ToolTip="Inspect" Height="48" Width="48">
+            <MenuItem ToolTip="{x:Static p:Resources.MenuInspect}" Height="48" Width="48">
                 <MenuItem.Header>
-                    <Rectangle Height="28" Width="24">
-                        <Rectangle.Resources>
-                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
-                        </Rectangle.Resources>
-                        <Rectangle.Fill>
-                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_journal}" />
-                        </Rectangle.Fill>
-                    </Rectangle>
+                    <iconPacks:PackIconEntypo Kind="Eye" Foreground="{DynamicResource AccentColorBrush}" Height="28" Width="28" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </MenuItem.Header>
                 <MenuItem Header="Mmpk" Command="{Binding InspectMmpkCommand}" />
                 <MenuItem Header="Geodatabase" Command="{Binding InspectGeodatabaseCommand}" />
@@ -152,32 +132,26 @@
                 <MenuItem Header="Layer" Command="{Binding InspectLayerCommand}" />
                 <MenuItem Header="BackgroundGrid" Command="{Binding InspectBackgroundGridCommand}" />
             </MenuItem>
-            <MenuItem ToolTip="Underlay a Topographic Basemap from ArcGIS Online" Height="48" Width="48" Command="{Binding AddBasemapCommand}">
+            <MenuItem ToolTip="{x:Static p:Resources.MenuBasemap}" Height="48" Width="48" Command="{Binding AddBasemapCommand}">
                 <MenuItem.Header>
-                    <Rectangle Height="28" Width="28">
-                        <Rectangle.Resources>
-                            <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
-                        </Rectangle.Resources>
-                        <Rectangle.Fill>
-                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_globe}" />
-                        </Rectangle.Fill>
-                    </Rectangle>
+                    <iconPacks:PackIconEntypo Kind="Globe" Foreground="{DynamicResource AccentColorBrush}" Height="28" Width="28" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </MenuItem.Header>
                 <MenuItem Header="AGOL Topographic" Command="{Binding AddBasemapCommand}" />
                 <MenuItem Header="TPK/VTPK File ..." Command="{Binding AddFileBasemapCommand}" />
             </MenuItem>
-            <MenuItem ToolTip="Options" Height="48" Width="48">
+            <MenuItem ToolTip="{x:Static p:Resources.MenuOptions}" Height="48" Width="48">
                 <MenuItem.Header>
-                    <Rectangle Height="28" Width="28">
+                    <iconPacks:PackIconEntypo Kind="Tools" Foreground="{DynamicResource AccentColorBrush}" Height="28" Width="28" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <!--<Rectangle Height="28" Width="28">
                         <Rectangle.Resources>
                             <SolidColorBrush x:Key="BlackBrush" Color="{DynamicResource AccentColor}" />
                         </Rectangle.Resources>
                         <Rectangle.Fill>
                             <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_symbol_braces}" />
                         </Rectangle.Fill>
-                    </Rectangle>
+                    </Rectangle>-->
                 </MenuItem.Header>
-                <MenuItem Header="Show layer extent graphics" IsChecked="{Binding LayerExtentGraphicsVisible}" Command="{Binding ToggleLayerExtentGraphicsVisibility}"/>
+                <MenuItem Header="{x:Static p:Resources.OptionsShowLayerExtents}" IsChecked="{Binding LayerExtentGraphicsVisible}" Command="{Binding ToggleLayerExtentGraphicsVisibility}"/>
             </MenuItem>
         </Menu>
         <controls:LocatorControl Grid.Row="1" Grid.Column="0"></controls:LocatorControl>
@@ -190,7 +164,7 @@
             </TabControl.Resources>
             <TabControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
-                    <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title, FallbackValue='Unnamed Map', TargetNullValue='No Name Found'}"></TextBlock>
+                    <TextBlock DataContext="{Binding Map.Item}" Text="{Binding Title, FallbackValue={x:Static p:Resources.UnnamedMap}, TargetNullValue='No Name Found'}"></TextBlock>
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>

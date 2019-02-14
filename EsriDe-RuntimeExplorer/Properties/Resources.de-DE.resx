@@ -121,58 +121,58 @@
     <value>About</value>
   </data>
   <data name="AppColor" xml:space="preserve">
-    <value>Color</value>
+    <value>Farbe</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Theme</value>
+    <value>Thema</value>
   </data>
   <data name="Bookmarks" xml:space="preserve">
-    <value>Bookmarks</value>
+    <value>Lesezeichen</value>
   </data>
   <data name="ContextMenuInspect" xml:space="preserve">
-    <value>Inspect</value>
+    <value>Inspizieren</value>
   </data>
   <data name="ContextMenuZoomToLayer" xml:space="preserve">
-    <value>Zoom To Layer</value>
+    <value>Kartenausschnitt auf Layer bewegen</value>
   </data>
   <data name="ErrorMmpkCouldNotBeLoaded" xml:space="preserve">
-    <value>MMPK could not be loaded.</value>
+    <value>MMPK konnte nicht geladen werden.</value>
   </data>
   <data name="ErrorSpatialReferencesDoNotMatch" xml:space="preserve">
-    <value>Basemap applied, but SpatialReference of current map (Wkid: {0}) differs from basemaps SpatialReference (Wkid: {1}). Basemap may be not visible.</value>
+    <value>Die Grundkarte hat nicht die gleiche SpatialReference wie die aktuelle Karte (Karten-Wkid: {0}), Grundkarte-Wkid: {1}). Die Grundkarte ist möglicherweise nicht sichtbar.</value>
   </data>
   <data name="MenuBasemap" xml:space="preserve">
-    <value>Underlay a Topographic Basemap from ArcGIS Online</value>
+    <value>Topographische Basemap von ArcGIS Online unterlegen</value>
   </data>
   <data name="MenuInspect" xml:space="preserve">
-    <value>Inspect</value>
+    <value>Inspizieren</value>
   </data>
   <data name="MenuLayerDetails" xml:space="preserve">
     <value>Layer Details</value>
   </data>
   <data name="MenuOpenFile" xml:space="preserve">
-    <value>Open File</value>
+    <value>Datei öffnen</value>
   </data>
   <data name="MenuOptions" xml:space="preserve">
-    <value>Options</value>
+    <value>Optionen</value>
   </data>
   <data name="MessageBoxDecision" xml:space="preserve">
-    <value>Action required</value>
+    <value>Aktion erforderlich</value>
   </data>
   <data name="MessageBoxError" xml:space="preserve">
-    <value>Error</value>
+    <value>Fehler</value>
   </data>
   <data name="MessageBoxHint" xml:space="preserve">
-    <value>Hint</value>
+    <value>Hinweis</value>
   </data>
   <data name="OptionsShowLayerExtents" xml:space="preserve">
-    <value>Show layer extent graphics</value>
+    <value>Layer Extents anzeigen</value>
   </data>
   <data name="QuestionUnpackMMPKToFolder" xml:space="preserve">
-    <value>Do you want to unpack the MMPK in the current directory and use the folder instead?</value>
+    <value>Wollen sie die MMPK Datei in ein Verzeichnis entpacken und daraus öffnen?</value>
   </data>
   <data name="SearchAddress" xml:space="preserve">
-    <value>Search address ...</value>
+    <value>Nach Adresse suchen ...</value>
   </data>
   <data name="TOCHeaderLayer" xml:space="preserve">
     <value>Layer</value>
@@ -181,18 +181,18 @@
     <value>MinScale</value>
   </data>
   <data name="TOCOperationalLayers" xml:space="preserve">
-    <value>Operational Layers:</value>
+    <value>Operative Layer:</value>
   </data>
   <data name="TOCSymbology" xml:space="preserve">
-    <value>Symbology</value>
+    <value>Symbologie</value>
   </data>
   <data name="TOCTotalLayers" xml:space="preserve">
-    <value>Total Layers:</value>
+    <value>Layer insgesamt:</value>
   </data>
   <data name="TOCVisibility" xml:space="preserve">
-    <value>Visibility</value>
+    <value>Sichtbarkeit</value>
   </data>
   <data name="UnnamedMap" xml:space="preserve">
-    <value>Unnamed Map</value>
+    <value>Neue Karte</value>
   </data>
 </root>
