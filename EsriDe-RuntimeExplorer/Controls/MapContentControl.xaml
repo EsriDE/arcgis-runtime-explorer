@@ -28,14 +28,20 @@
     </UserControl.Resources>
 
     <Grid>
-        <esri:MapView x:Name="MapView" Map="{Binding Map}" GraphicsOverlays="{Binding GraphicsOverlays}" DrawStatusChanged="GeoView_OnDrawStatusChanged" NavigationCompleted="MapView_OnNavigationCompleted"></esri:MapView>
+        <esri:MapView x:Name="MapView" Map="{Binding Map}" GraphicsOverlays="{Binding GraphicsOverlays}" DrawStatusChanged="GeoView_OnDrawStatusChanged" NavigationCompleted="MapView_OnNavigationCompleted" KeyDown="MapView_OnKeyDown"></esri:MapView>
+        <esri:ScaleLine MapScale="{Binding MapScale, ElementName=MapView, Mode=OneWay}" Margin="20" FontSize="10" />
+        <StackPanel HorizontalAlignment="Left" Margin="10" Width="32">
+            <esri:Compass x:Name="Compass" GeoView="{Binding ElementName=MapView, Mode=OneWay}" HorizontalAlignment="Center" AutoHide="False" TouchDown="Compass_OnTouchDown"/>
+            <TextBlock Text="{Binding MapRotation, ElementName=MapView, Mode=OneWay, StringFormat={}{0}°}" HorizontalAlignment="Center" FontSize="8" Margin="4,0,0,0" />
+        </StackPanel>
+
         <Grid Style="{StaticResource GreenHighlightedText}">
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="{Binding MapScale,ElementName=MapView,StringFormat=1:{0:0}}"></TextBlock>
 
             <xctk:WatermarkComboBox VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15" MinWidth="100" Watermark="{x:Static p:Resources.Bookmarks}" ItemsSource="{Binding Map.Bookmarks}" SelectedItem="{Binding SelectedBookmark}" Visibility="{Binding Map.Bookmarks.Count, Converter={converter:CountToVisibilityConverter}}">
                 <xctk:WatermarkComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type esri:Bookmark}">
-                        <TextBlock Text="{Binding Name}"></TextBlock>
+                        <TextBlock Text="{Binding Name}" Margin="2"></TextBlock>
                     </DataTemplate>
                 </xctk:WatermarkComboBox.ItemTemplate>
             </xctk:WatermarkComboBox>
