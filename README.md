@@ -41,3 +41,6 @@ Here it is:
   * Background grid
 * lists detail information about all layers
   * ability to export these details to a CSV file
+
+## References
+https://community.esri.com/groups/geodev-germany/blog/2019/02/15/view-evaluate-and-modify-arcgis-runtime-caches-with-the-runtime-explorer
