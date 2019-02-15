@@ -205,6 +205,15 @@ namespace EsriDe.RuntimeExplorer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show bookmark extent graphics.
+        /// </summary>
+        public static string OptionsShowBookmarkExtents {
+            get {
+                return ResourceManager.GetString("OptionsShowBookmarkExtents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show layer extent graphics.
         /// </summary>
         public static string OptionsShowLayerExtents {

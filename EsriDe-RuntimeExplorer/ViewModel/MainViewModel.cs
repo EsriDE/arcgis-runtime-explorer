@@ -172,7 +172,15 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             ToggleLayerExtentGraphicsVisibility = new RelayCommand(() =>
             {
                 LayerExtentGraphicsVisible = !LayerExtentGraphicsVisible;
-                mainDataViewModel.SelectedMapView.LayerExtentGraphicsVisible = LayerExtentGraphicsVisible;
+                if (mainDataViewModel.SelectedMapView != null)
+                    mainDataViewModel.SelectedMapView.LayerExtentGraphicsVisible = LayerExtentGraphicsVisible;
+            });
+
+            ToggleBookmarkExtentGraphicsVisibility = new RelayCommand(() =>
+            {
+                BookmarkExtentGraphicsVisible = !BookmarkExtentGraphicsVisible;
+                if (mainDataViewModel.SelectedMapView != null)
+                    mainDataViewModel.SelectedMapView.BookmarkExtentGraphicsVisible = BookmarkExtentGraphicsVisible;
             });
 
             ZoomToLayerCommand = new RelayCommand(async () =>
@@ -270,6 +278,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _layerExtentGraphicsVisible, value);
         }
 
+        private bool _bookmarkExtentGraphicsVisible = true;
+
+        public bool BookmarkExtentGraphicsVisible
+        {
+            get => _bookmarkExtentGraphicsVisible;
+            set => Set(ref _bookmarkExtentGraphicsVisible, value);
+        }
+
         public ICommand LayerDetailsCommand { get; private set; }
         public ICommand InspectMmpkCommand { get; private set; }
         public ICommand InspectGeodatabaseCommand { get; private set; }
@@ -280,6 +296,7 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public ICommand AddFileBasemapCommand { get; private set; }
         public ICommand ShowAboutCommand { get; private set; }
         public ICommand ToggleLayerExtentGraphicsVisibility { get; private set; }
+        public ICommand ToggleBookmarkExtentGraphicsVisibility { get; private set; }
         public ICommand ZoomToLayerCommand { get; private set; }
         public ICommand IdentifyCommand { get; private set; }
     }

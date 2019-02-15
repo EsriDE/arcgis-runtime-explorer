@@ -165,6 +165,9 @@
   <data name="MessageBoxHint" xml:space="preserve">
     <value>Hint</value>
   </data>
+  <data name="OptionsShowBookmarkExtents" xml:space="preserve">
+    <value>Show bookmark extent graphics</value>
+  </data>
   <data name="OptionsShowLayerExtents" xml:space="preserve">
     <value>Show layer extent graphics</value>
   </data>

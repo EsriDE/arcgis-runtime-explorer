@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media;
-using Esri.ArcGISRuntime;
-using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.Symbology;
@@ -20,9 +15,9 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 {
     public class MapViewModel : ViewModelBase
     {
-        private Esri.ArcGISRuntime.UI.Controls.MapView _mapView;
+        private MapView _mapView;
 
-        public Esri.ArcGISRuntime.UI.Controls.MapView MapView
+        public MapView MapView
         {
             get => _mapView;
             set => Set(ref _mapView, value);
@@ -90,6 +85,14 @@ namespace EsriDe.RuntimeExplorer.ViewModel
             set => Set(ref _layerExtentGraphicsVisible, value);
         }
 
+        private bool _bookmarkExtentGraphicsVisible = true;
+
+        public bool BookmarkExtentGraphicsVisible
+        {
+            get => _bookmarkExtentGraphicsVisible;
+            set => Set(ref _bookmarkExtentGraphicsVisible, value);
+        }
+
         private bool _identifyModeEnabled;
         public bool IdentifyModeEnabled
         {
@@ -100,13 +103,22 @@ namespace EsriDe.RuntimeExplorer.ViewModel
         public MapViewModel()
         {
             var fullExtentOverlay = new GraphicsOverlay();
-            fullExtentOverlay.IsVisible = false;
+            fullExtentOverlay.IsVisible = LayerExtentGraphicsVisible;
             var fullExtentRenderer = new SimpleRenderer();
             var outlineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Red, 1.0);
             var fillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, System.Drawing.Color.Black, outlineSymbol);
             fullExtentRenderer.Symbol = fillSymbol;
             fullExtentOverlay.Renderer = fullExtentRenderer;
             GraphicsOverlays.Add(fullExtentOverlay);
+
+            var bookmarkExtentOverlay = new GraphicsOverlay();
+            bookmarkExtentOverlay.IsVisible = BookmarkExtentGraphicsVisible;
+            var bookmarkExtentRenderer = new SimpleRenderer();
+            var outlineSymbol2 = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Orange, 1.0);
+            var fillSymbol2 = new SimpleFillSymbol(SimpleFillSymbolStyle.Null, System.Drawing.Color.Black, outlineSymbol2);
+            bookmarkExtentRenderer.Symbol = fillSymbol2;
+            bookmarkExtentOverlay.Renderer = bookmarkExtentRenderer;
+            GraphicsOverlays.Add(bookmarkExtentOverlay);
 
             PropertyChanged += async (sender, args) =>
             {
@@ -121,6 +133,8 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                     OperationalLayersCount = Map.OperationalLayers.Count;
                     fullExtentOverlay.Graphics.Clear();
                     await BuildFullExtentGraphicsAsync(fullExtentOverlay.Graphics);
+                    bookmarkExtentOverlay.Graphics.Clear();
+                    await BuildBookmarkExtentGraphicsAsync(bookmarkExtentOverlay.Graphics);
                 }
                 if (args.PropertyName == nameof(SelectedBookmark))
                 {
@@ -136,6 +150,10 @@ namespace EsriDe.RuntimeExplorer.ViewModel
                 if (args.PropertyName == nameof(LayerExtentGraphicsVisible))
                 {
                     fullExtentOverlay.IsVisible = LayerExtentGraphicsVisible;
+                }
+                if (args.PropertyName == nameof(BookmarkExtentGraphicsVisible))
+                {
+                    bookmarkExtentOverlay.IsVisible = BookmarkExtentGraphicsVisible;
                 }
                 if (args.PropertyName == nameof(MapView))
                 {
@@ -182,6 +200,27 @@ namespace EsriDe.RuntimeExplorer.ViewModel
 
                 var fullExtentGraphic = new Graphic(layer.FullExtent);
                 graphicCollection.Add(fullExtentGraphic);
+            }
+        }
+
+        private async Task BuildBookmarkExtentGraphicsAsync(GraphicCollection graphicCollection)
+        {
+            foreach (var bookmark in Map.Bookmarks)
+            {
+                var bookmarkExtentGraphic = new Graphic(bookmark.Viewpoint.TargetGeometry);
+                graphicCollection.Add(bookmarkExtentGraphic);
+
+                var textSym = new TextSymbol
+                {
+                    Text = bookmark.Name,
+                    FontFamily = "Tahoma", Size = 12,
+                    Color = Color.Orange,
+                    HaloColor = Color.White, HaloWidth = 2,
+                    HorizontalAlignment = HorizontalAlignment.Left, VerticalAlignment = VerticalAlignment.Bottom
+                };
+                var bottomLeftPoint = new MapPoint(bookmark.Viewpoint.TargetGeometry.Extent.XMin, bookmark.Viewpoint.TargetGeometry.Extent.YMin);
+                var labelGraphic = new Graphic(bottomLeftPoint, textSym);
+                graphicCollection.Add(labelGraphic);
             }
         }
 

@@ -150,6 +150,7 @@
                     </Rectangle>-->
                 </MenuItem.Header>
                 <MenuItem Header="{x:Static p:Resources.OptionsShowLayerExtents}" IsChecked="{Binding LayerExtentGraphicsVisible}" Command="{Binding ToggleLayerExtentGraphicsVisibility}"/>
+                <MenuItem Header="{x:Static p:Resources.OptionsShowBookmarkExtents}" IsChecked="{Binding BookmarkExtentGraphicsVisible}" Command="{Binding ToggleBookmarkExtentGraphicsVisibility}"/>
             </MenuItem>
         </Menu>
         <controls:LocatorControl Grid.Row="1" Grid.Column="0"></controls:LocatorControl>
