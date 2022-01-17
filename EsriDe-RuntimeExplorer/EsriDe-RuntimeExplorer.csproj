@@ -60,8 +60,8 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
+    <Reference Include="CommonServiceLocator, Version=2.0.6.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.2.0.6\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
@@ -69,11 +69,14 @@
     <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>packages\CsvHelper.7.1.1\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
-    <Reference Include="Esri.ArcGISRuntime, Version=100.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
-      <HintPath>packages\Esri.ArcGISRuntime.WPF.100.4.0\lib\net461\Esri.ArcGISRuntime.dll</HintPath>
+    <Reference Include="Esri.ArcGISRuntime, Version=100.13.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <HintPath>packages\Esri.ArcGISRuntime.100.13.0\lib\net461\Esri.ArcGISRuntime.dll</HintPath>
     </Reference>
-    <Reference Include="Esri.ArcGISRuntime.Toolkit, Version=100.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Esri.ArcGISRuntime.Toolkit.100.4.0\lib\net461\Esri.ArcGISRuntime.Toolkit.dll</HintPath>
+    <Reference Include="Esri.ArcGISRuntime.Toolkit, Version=100.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Esri.ArcGISRuntime.Toolkit.100.13.0\lib\net461\Esri.ArcGISRuntime.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Esri.ArcGISRuntime.WPF, Version=100.13.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <HintPath>packages\Esri.ArcGISRuntime.WPF.100.13.0\lib\net461\Esri.ArcGISRuntime.WPF.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
@@ -95,9 +98,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -115,23 +120,20 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.2.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.2.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -288,11 +290,15 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="packages\Esri.ArcGISRuntime.WPF.100.4.0\build\net461\Esri.ArcGISRuntime.WPF.targets" Condition="Exists('packages\Esri.ArcGISRuntime.WPF.100.4.0\build\net461\Esri.ArcGISRuntime.WPF.targets')" />
+  <Import Project="packages\Esri.ArcGISRuntime.runtimes.win.100.13.0\build\net461\Esri.ArcGISRuntime.runtimes.win.targets" Condition="Exists('packages\Esri.ArcGISRuntime.runtimes.win.100.13.0\build\net461\Esri.ArcGISRuntime.runtimes.win.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\Esri.ArcGISRuntime.WPF.100.4.0\build\net461\Esri.ArcGISRuntime.WPF.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.WPF.100.4.0\build\net461\Esri.ArcGISRuntime.WPF.targets'))" />
+    <Error Condition="!Exists('packages\Esri.ArcGISRuntime.runtimes.win.100.13.0\build\net461\Esri.ArcGISRuntime.runtimes.win.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.runtimes.win.100.13.0\build\net461\Esri.ArcGISRuntime.runtimes.win.targets'))" />
+    <Error Condition="!Exists('packages\Esri.ArcGISRuntime.100.13.0\build\net461\Esri.ArcGISRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.100.13.0\build\net461\Esri.ArcGISRuntime.targets'))" />
+    <Error Condition="!Exists('packages\Esri.ArcGISRuntime.WPF.100.13.0\build\net461\Esri.ArcGISRuntime.WPF.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.WPF.100.13.0\build\net461\Esri.ArcGISRuntime.WPF.targets'))" />
   </Target>
+  <Import Project="packages\Esri.ArcGISRuntime.100.13.0\build\net461\Esri.ArcGISRuntime.targets" Condition="Exists('packages\Esri.ArcGISRuntime.100.13.0\build\net461\Esri.ArcGISRuntime.targets')" />
+  <Import Project="packages\Esri.ArcGISRuntime.WPF.100.13.0\build\net461\Esri.ArcGISRuntime.WPF.targets" Condition="Exists('packages\Esri.ArcGISRuntime.WPF.100.13.0\build\net461\Esri.ArcGISRuntime.WPF.targets')" />
 </Project>
